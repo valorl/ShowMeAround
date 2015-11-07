@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,13 +9,13 @@ namespace Data
 {
     public class Interest
     {
-        public Interest(int id, string name)
+        public Interest(string name)
         {
-            this.Id = id;
             this.Name = name;
         }
+        public Interest() { }
 
-        public int Id { get; set; }
+        [Key]
         public string Name { get; set; }
         public ICollection<User> Users { get; set; }
     }

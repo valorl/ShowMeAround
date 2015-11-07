@@ -19,7 +19,29 @@ namespace Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            // Many-to-many UserLanguages
+            modelBuilder.Entity<Language>().
+                HasMany(l => l.Users).
+                WithMany(u => u.Languages).
+                Map(
+                 m =>
+                 {
+                     m.MapLeftKey("UserId");
+                     m.MapRightKey("LanguageName");
+                     m.ToTable("UserLanguages");
+                 });
 
+            // Many-to-many UserInterests
+            modelBuilder.Entity<Interest>().
+                HasMany(i => i.Users).
+                WithMany(u => u.Interests).
+                Map(
+                 m =>
+                 {
+                     m.MapLeftKey("UserId");
+                     m.MapRightKey("InterestName");
+                     m.ToTable("UserInterests");
+                 });
         }
     }
 }

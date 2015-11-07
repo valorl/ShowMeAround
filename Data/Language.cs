@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace Data
 {
     public class Language
     {
-        public Language(int id, string name)
+        public Language(string name)
         {
-            this.Id = id;
             this.Name = name;
         }
+        public Language() { }
 
-        public int Id { get; set; }
+        [Key]
         public string Name { get; set; }
         public ICollection<User> Users { get; set; }
     }
