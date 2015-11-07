@@ -52,6 +52,15 @@
   <ItemGroup>
     <Compile Include="Interest.cs" />
     <Compile Include="Language.cs" />
+    <Compile Include="Migrations\201511071957137_InitialCreate.cs" />
+    <Compile Include="Migrations\201511071957137_InitialCreate.Designer.cs">
+      <DependentUpon>201511071957137_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511072327418_AddM2M.cs" />
+    <Compile Include="Migrations\201511072327418_AddM2M.Designer.cs">
+      <DependentUpon>201511072327418_AddM2M.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShowMeAroundContext.cs" />
     <Compile Include="User.cs" />
@@ -62,6 +71,14 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201511071957137_InitialCreate.resx">
+      <DependentUpon>201511071957137_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511072327418_AddM2M.resx">
+      <DependentUpon>201511072327418_AddM2M.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

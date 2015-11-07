@@ -20,9 +20,9 @@ namespace Data
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             // Many-to-many UserLanguages
-            modelBuilder.Entity<Language>().
-                HasMany(l => l.Users).
-                WithMany(u => u.Languages).
+            modelBuilder.Entity<User>().
+                HasMany(u => u.Languages).
+                WithMany(l => l.Users).
                 Map(
                  m =>
                  {
@@ -32,9 +32,9 @@ namespace Data
                  });
 
             // Many-to-many UserInterests
-            modelBuilder.Entity<Interest>().
-                HasMany(i => i.Users).
-                WithMany(u => u.Interests).
+            modelBuilder.Entity<User>().
+                HasMany(u => u.Interests).
+                WithMany(i => i.Users).
                 Map(
                  m =>
                  {
