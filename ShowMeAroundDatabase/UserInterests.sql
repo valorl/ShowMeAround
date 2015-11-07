@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[UserInterests]
+(
+	[Id] INT NOT NULL PRIMARY KEY, 
+    [UserID] INT NOT NULL, 
+    [Interest] NVARCHAR(50) NOT NULL, 
+    CONSTRAINT [FK_USERINTERESTS_TO_USERS] FOREIGN KEY ([UserID]) REFERENCES [Users]([id])
+)
