@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "ShowMeAroundDatabase", "ShowMeAroundDatabase\ShowMeAroundDatabase.sqlproj", "{BA55945D-121E-48D8-B3AC-680C52494AC2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{3D9ABE1D-29FA-45B6-94CD-497FE0897068}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{AB494D17-771A-4704-918A-FDD55752DB15}"
@@ -17,11 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BA55945D-121E-48D8-B3AC-680C52494AC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BA55945D-121E-48D8-B3AC-680C52494AC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BA55945D-121E-48D8-B3AC-680C52494AC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BA55945D-121E-48D8-B3AC-680C52494AC2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BA55945D-121E-48D8-B3AC-680C52494AC2}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{3D9ABE1D-29FA-45B6-94CD-497FE0897068}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3D9ABE1D-29FA-45B6-94CD-497FE0897068}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D9ABE1D-29FA-45B6-94CD-497FE0897068}.Release|Any CPU.ActiveCfg = Release|Any CPU
