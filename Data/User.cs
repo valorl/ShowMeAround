@@ -26,6 +26,12 @@ namespace Data
         public ICollection<Language> Languages { get; set; }
         public ICollection<Interest> Interests { get; set; }
 
+        //Auth
+        [Column(TypeName = "varchar(MAX)")]
+        public string PwdHash { get; set; }
+        [Column(TypeName = "varchar(MAX)")]
+        public string PwDSalt { get; set; }
+
 
         public void AddLanguage(Language language)
         {
