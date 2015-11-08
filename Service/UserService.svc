@@ -3,4 +3,4 @@
     Debug="true" 
     Service="Service.UserService" 
     CodeBehind="UserService.svc.cs" 
-    Factory="System.ServiceModel.Activation.WebServiceHostFactory" %>
+ %>

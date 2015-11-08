@@ -26,31 +26,30 @@ namespace Service
     [ServiceContract]
     public interface IUserService
     {
-
-        [WebGet(UriTemplate = "/users",
-            RequestFormat = WebMessageFormat.Xml, ResponseFormat = WebMessageFormat.Xml)]
         [OperationContract]
+        [WebGet(UriTemplate = "/users/",
+            ResponseFormat = WebMessageFormat.Xml)]
         List<User> GetAll();
 
-        [WebGet(UriTemplate = "/user/{id}",
-            RequestFormat = WebMessageFormat.Xml, ResponseFormat = WebMessageFormat.Xml)]
         [OperationContract]
-        List<User> GetById(int id);
-        
-        [WebInvoke(Method="POST", UriTemplate="/users", 
-            RequestFormat = WebMessageFormat.Xml, ResponseFormat = WebMessageFormat.Xml)]
+        [WebGet(UriTemplate = "/user/{id}/",
+            ResponseFormat = WebMessageFormat.Xml)]
+        List<User> GetById(string id);
+
         [OperationContract]
+        [WebInvoke(Method="POST", UriTemplate="/users/", 
+            RequestFormat = WebMessageFormat.Xml)]
         User Create(User user);
-
-        [WebInvoke(Method="PUT", UriTemplate = "/user/{id}", 
-            RequestFormat = WebMessageFormat.Xml, ResponseFormat = WebMessageFormat.Xml)]
+        
         [OperationContract]
-        User Update(int id, User user);
-
-        [WebInvoke(Method="DELETE", UriTemplate = "/user/{id}",
-            RequestFormat = WebMessageFormat.Xml, ResponseFormat = WebMessageFormat.Xml)]
+        [WebInvoke(Method="PUT", UriTemplate = "/user/{id}/", 
+            RequestFormat = WebMessageFormat.Xml)]
+        User Update(string id, User user);
+        
         [OperationContract]
-        void Delete(int id);
+        [WebInvoke(Method="DELETE", UriTemplate = "/user/{id}/",
+            RequestFormat = WebMessageFormat.Xml)]  
+        void Delete(string id);
 
 
     }

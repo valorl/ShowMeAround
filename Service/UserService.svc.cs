@@ -14,10 +14,24 @@ namespace Service
 
         public List<User> GetAll()
         {
-            throw new NotImplementedException();
+            // testing purposes
+            var list = new List<User>();
+
+            list.Add(new User
+            {
+                Id = 5,
+                FirstName = "Valer",
+                LastName = "Orlovsky",
+                Email = "valer@gmail",
+                BirthDate = DateTime.Now
+                
+            });
+
+            return list;
+
         }
 
-        public List<User> GetById(int id)
+        public List<User> GetById(string id)
         {
             throw new NotImplementedException();
         }
@@ -27,12 +41,12 @@ namespace Service
             throw new NotImplementedException();
         }
 
-        public User Update(int id, User user)
+        public User Update(string id, User user)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(int id)
+        public void Delete(string id)
         {
             throw new NotImplementedException();
         }
