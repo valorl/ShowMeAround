@@ -17,7 +17,7 @@ namespace Data.Tests
 
             ctx.Interest.Add(new Interest("kickbox"));
             ctx.Interest.Add(new Interest("metal"));
-
+            // save 
             ctx.SaveChanges();
         }
         [TestCleanup]
@@ -32,7 +32,7 @@ namespace Data.Tests
 
             User mauro = (User)ctx.User.Where(u => u.FirstName == "Mauro").FirstOrDefault(); ;
             if (mauro != null) ctx.User.Remove(mauro);
-            ctx.SaveChanges();
+                ctx.SaveChanges();
         }
         [TestMethod]
         public void AddUser()
