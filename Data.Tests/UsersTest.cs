@@ -17,7 +17,7 @@ namespace Data.Tests
 
             ctx.Interest.Add(new Interest("kickbox"));
             ctx.Interest.Add(new Interest("metal"));
-            // save 
+
             ctx.SaveChanges();
         }
         [TestCleanup]
