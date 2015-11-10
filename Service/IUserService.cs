@@ -34,11 +34,11 @@ namespace Service
         [OperationContract]
         [WebGet(UriTemplate = "/user/{id}/",
             ResponseFormat = WebMessageFormat.Xml)]
-        List<User> GetById(string id);
+        User GetById(string id);
 
         [OperationContract]
         [WebInvoke(Method="POST", UriTemplate="/users/", 
-            RequestFormat = WebMessageFormat.Xml)]
+            RequestFormat = WebMessageFormat.Xml, ResponseFormat = WebMessageFormat.Xml)]
         User Create(User user);
         
         [OperationContract]

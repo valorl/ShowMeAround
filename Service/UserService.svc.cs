@@ -5,12 +5,20 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using Data;
+using DataAccess;
+
 namespace Service
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "UserService" in code, svc and config file together.
     // NOTE: In order to launch WCF Test Client for testing this service, please select UserService.svc or UserService.svc.cs at the Solution Explorer and start debugging.
     public class UserService : IUserService
     {
+        private UserDA userDA;
+
+        public UserService()
+        {
+            userDA = new UserDA();
+        }
 
         public List<User> GetAll()
         {
@@ -24,31 +32,43 @@ namespace Service
                 LastName = "Orlovsky",
                 Email = "valer@gmail",
                 BirthDate = DateTime.Now
-                
+
             });
 
             return list;
 
+            // Actual functionality
+            //return userDA.GetAll().ToList();
+
         }
 
-        public List<User> GetById(string id)
+        public User GetById(string id)
         {
-            throw new NotImplementedException();
+            int intID = Convert.ToInt32(id);
+            return userDA.GetOneByID(intID);
         }
 
         public User Create(User user)
         {
-            throw new NotImplementedException();
+            userDA.Insert(user);
+            return userDA.GetOneByEmail(user.Email);
         }
 
         public User Update(string id, User user)
         {
-            throw new NotImplementedException();
+            user.Id = Convert.ToInt32(id);
+            userDA.Update(user);
+            return userDA.GetOneByID(user.Id);
         }
 
         public void Delete(string id)
         {
-            throw new NotImplementedException();
+            var toBeDeleted = userDA.GetOneByID(Convert.ToInt32(id));
+
+            if (toBeDeleted != null)
+            {
+                userDA.Delete(toBeDeleted);
+            }
         }
     }
 }
