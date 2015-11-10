@@ -33,12 +33,40 @@ namespace DataAccess
         {
             if (email == null) throw new ArgumentNullException("UserDA.GetOneByEmail: 'email' null");
             return dbContext.User.Where(u => u.Email == email).FirstOrDefault();
+                        
         }
         public void Insert(User model)
         {
             if (model == null) throw new ArgumentNullException("UserDA.Insert: 'model' null");
             if (GetOneByEmail(model.Email) != null) 
                 throw new ArgumentException("UserDA.Insert: User[" + model.Email + "] already exists in the database.");
+
+            foreach (var language in model.Languages)
+            {
+                Language dbLanguage = dbContext.Language.Find(language.Name);
+                if (dbLanguage == null)
+                {
+                    dbContext.Language.Add(language);
+                }
+                else
+                {
+                    dbContext.Language.Attach(language);
+                }
+            }
+            foreach (var interest in model.Interests)
+            {
+                Language dbInterest = dbContext.Language.Find(interest.Name);
+                if (dbInterest == null)
+                {
+                    dbContext.Interest.Add(interest);
+                }
+                else
+                {
+                    dbContext.Interest.Attach(interest);
+                }
+
+            }
+            
             dbContext.User.Add(model);
         }
 

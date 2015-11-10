@@ -51,6 +51,7 @@ namespace Service
         public User Create(User user)
         {
             userDA.Insert(user);
+            userDA.SaveChanges();
             return userDA.GetOneByEmail(user.Email);
         }
 
@@ -58,6 +59,7 @@ namespace Service
         {
             user.Id = Convert.ToInt32(id);
             userDA.Update(user);
+            userDA.SaveChanges();
             return userDA.GetOneByID(user.Id);
         }
 
@@ -68,6 +70,7 @@ namespace Service
             if (toBeDeleted != null)
             {
                 userDA.Delete(toBeDeleted);
+                userDA.SaveChanges();
             }
         }
     }
