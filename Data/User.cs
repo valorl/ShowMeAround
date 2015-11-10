@@ -54,7 +54,7 @@ namespace Data
         {
             if (Languages.Any(l => l.Name == language.Name))
             {
-                Languages.Remove(language);
+                Languages.Remove(language); 
             }
         }
 
