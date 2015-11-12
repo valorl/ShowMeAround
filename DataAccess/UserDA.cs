@@ -38,59 +38,76 @@ namespace DataAccess
         public void Insert(User model)
         {
             if (model == null) throw new ArgumentNullException("UserDA.Insert: 'model' null");
-            //if (GetOneByEmail(model.Email) != null) 
-            //    throw new ArgumentException("UserDA.Insert: User[" + model.Email + "] already exists in the database.");
-
-            User u = new User();
-            u.Languages = new List<Language>();
-            u.Interests = new List<Interest>();
-            u.BirthDate = model.BirthDate;
-            u.FirstName = model.FirstName;
-            u.LastName = model.LastName;
+            if (GetOneByEmail(model.Email) != null)
+                throw new ArgumentException("UserDA.Insert: User[" + model.Email + "] already exists in the database.");
 
             dbContext.User.Add(model);
-            foreach (var language in model.Languages)
-            {
 
-                
-                Language dbLanguage = dbContext.Language.Find(language.Name);
-                if (dbLanguage == null)
+            using (var anotherCtx = new ShowMeAroundContext())
+            {
+                //FK violation fix
+                foreach (var language in model.Languages)
                 {
-                    //dbContext.Language.Add(language);
-                    //u.Languages.Add(language);
+
+                    Language dbLanguage = anotherCtx.Language.Find(language.Name);
+                    if (dbLanguage != null)
+                    {
+                        dbContext.Entry(language).State = System.Data.Entity.EntityState.Unchanged;
+                    }
+
 
                 }
-                else
+
+                if (model.Interests != null)
                 {
-                    //dbContext.Language.Attach(language);
-                    //u.Languages.Add(dbLanguage);
-                   
-                    dbContext.Entry(language).State = System.Data.Entity.EntityState.Unchanged;
+                    foreach (var interest in model.Interests)
+                    {
+
+                        Interest dbInterest = dbContext.Interest.Find(interest.Name);
+                        if (dbInterest != null)
+                        {
+                            dbContext.Entry(interest).State = System.Data.Entity.EntityState.Unchanged;
+                        }
+                    }
                 }
             }
-            //foreach (var interest in model.Interests)
-            //{
-            //    Interest dbInterest = dbContext.Interest.Find(interest.Name);
-            //    if (dbInterest == null)
-            //    {
-            //        //dbContext.Interest.Add(interest);
-            //    }
-            //    else
-            //    {
-            //        //dbContext.Interest.Attach(interest);
-            //        dbContext.Entry(dbInterest).State = System.Data.Entity.EntityState.Detached;
-            //    }
-
-            //}
             
-           // dbContext.User.Add(u);
         }
 
         public void Update(User model)
         {
             if (GetOneByEmail(model.Email) != null)
                 throw new ArgumentException("UserDA.Update: No such user in the database [e-mail: " + model.Email + "]");
+
+            //dbContext.Entry(model).State = System.Data.Entity.EntityState.Modified;
+
+
+            //User u = GetOneByEmail(model.Email);
+            //dbContext.User.Add(u);
+            using (var anotherCtx = new ShowMeAroundContext())
+            {
+
+                foreach (var language in model.Languages)
+                {
+                    Language dbLanguage = anotherCtx.Language.Find(language.Name);
+                    if (dbLanguage != null)
+                    {
+                        dbContext.Entry(language).State = System.Data.Entity.EntityState.Unchanged;
+                    }
+                }
+            }
+            
+
             dbContext.Entry(model).State = System.Data.Entity.EntityState.Modified;
+            //foreach (var interest in u.Interests)
+            //{
+            //    Interest dbInterest = dbContext.Interest.Find(interest.Name);
+            //    if (dbInterest != null)
+            //    {
+            //        dbContext.Entry(interest).State = System.Data.Entity.EntityState.Unchanged;
+            //    }
+            //}
+            
         }
 
         public void Delete(User model)
