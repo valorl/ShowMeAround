@@ -20,20 +20,28 @@ namespace DataAccess
 
         public IEnumerable<User> GetAll()
         {
-            return dbContext.User.ToList();
+            using (var tempCtx = new ShowMeAroundContext())
+            {
+                return tempCtx.User.ToList();
+            }
         }
 
         public User GetOneByID(int id)
         {
-            if (id == null) throw new ArgumentNullException("UserDA.GetOneByID: 'id' null");
-            return dbContext.User.Find(id);
+            using (var tempCtx = new ShowMeAroundContext())
+            {
+                if (id == null) throw new ArgumentNullException("UserDA.GetOneByID: 'id' null");
+                return tempCtx.User.Find(id);
+            }
         }
 
         public User GetOneByEmail(string email)
         {
-            if (email == null) throw new ArgumentNullException("UserDA.GetOneByEmail: 'email' null");
-            return dbContext.User.Where(u => u.Email == email).FirstOrDefault();
-                        
+            using (var tempCtx = new ShowMeAroundContext())
+            {
+                if (email == null) throw new ArgumentNullException("UserDA.GetOneByEmail: 'email' null");
+                return tempCtx.User.SingleOrDefault(u => u.Email == email);
+            }
         }
         public void Insert(User model)
         {
@@ -43,26 +51,26 @@ namespace DataAccess
 
             dbContext.User.Add(model);
 
-            using (var anotherCtx = new ShowMeAroundContext())
+            using (var tempCtx = new ShowMeAroundContext())
             {
                 //FK violation fix
-                foreach (var language in model.Languages)
+                if (model.Languages != null)
                 {
-
-                    Language dbLanguage = anotherCtx.Language.Find(language.Name);
-                    if (dbLanguage != null)
+                    foreach (var language in model.Languages)
                     {
-                        dbContext.Entry(language).State = System.Data.Entity.EntityState.Unchanged;
+                        Language dbLanguage = tempCtx.Language.Find(language.Name);
+                        if (dbLanguage != null)
+                        {
+                            dbContext.Entry(language).State = System.Data.Entity.EntityState.Unchanged;
+                        }
                     }
-
-
                 }
+                
 
                 if (model.Interests != null)
                 {
                     foreach (var interest in model.Interests)
                     {
-
                         Interest dbInterest = dbContext.Interest.Find(interest.Name);
                         if (dbInterest != null)
                         {
@@ -79,41 +87,36 @@ namespace DataAccess
             if (GetOneByEmail(model.Email) != null)
                 throw new ArgumentException("UserDA.Update: No such user in the database [e-mail: " + model.Email + "]");
 
-            //dbContext.Entry(model).State = System.Data.Entity.EntityState.Modified;
-
-
-            //User u = GetOneByEmail(model.Email);
-            //dbContext.User.Add(u);
-            using (var anotherCtx = new ShowMeAroundContext())
+            using (var tempCtx = new ShowMeAroundContext())
             {
 
                 foreach (var language in model.Languages)
                 {
-                    Language dbLanguage = anotherCtx.Language.Find(language.Name);
+                    Language dbLanguage = tempCtx.Language.Find(language.Name);
                     if (dbLanguage != null)
                     {
                         dbContext.Entry(language).State = System.Data.Entity.EntityState.Unchanged;
+                    }
+                }
+                foreach (var interest in model.Interests)
+                {
+                    Interest dbInterest = tempCtx.Interest.Find(interest.Name);
+                    if (dbInterest != null)
+                    {
+                        dbContext.Entry(interest).State = System.Data.Entity.EntityState.Unchanged;
                     }
                 }
             }
             
 
             dbContext.Entry(model).State = System.Data.Entity.EntityState.Modified;
-            //foreach (var interest in u.Interests)
-            //{
-            //    Interest dbInterest = dbContext.Interest.Find(interest.Name);
-            //    if (dbInterest != null)
-            //    {
-            //        dbContext.Entry(interest).State = System.Data.Entity.EntityState.Unchanged;
-            //    }
-            //}
             
         }
 
         public void Delete(User model)
         {
             if (model == null) throw new ArgumentNullException("UserDA.Delete: 'model' null");
-            if (GetOneByEmail(model.Email) == null) 
+            if (GetOneByEmail(model.Email) == null)
                 throw new ArgumentException("UserDA.Remove: No such user in the database [e-mail: " + model.Email + "]");
             dbContext.User.Remove(model);
         }
