@@ -1,0 +1,61 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="UI.master.cs" Inherits="UI.UI" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="Content/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="Content/Normalize.css" rel="stylesheet" type="text/css" />
+    <link href="Content/show-me-around.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <form id="form1" runat="server">
+        
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div id="nav-container" class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" runat="server" href="~/">ShowMeAround</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a runat="server" href="~/">Home</a></li>
+                        <li><a runat="server" href="~/About">About</a></li>
+                        <li><a runat="server" href="~/Contact">Contact</a></li>
+                    </ul>
+                    <asp:LoginView runat="server" ViewStateMode="Disabled">
+                        <AnonymousTemplate>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a runat="server" href="~/Users/Registration.aspx">Register</a></li>
+                                <li><a runat="server" href="~/Users/Login">Log in</a></li>
+                            </ul>
+                        </AnonymousTemplate>
+                    </asp:LoginView>
+                </div>
+            </div>
+        </div>
+        <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <hr />
+
+        </div>
+    <footer class="footer">
+      <div id="foot-container" class="container">
+        <p class="text-muted">&copy; <%: DateTime.Now.Year %> - Show Me Around</p>
+      </div>
+    </footer>
+    </form>
+    <script src="Scripts/bootstrap.js"></script>
+    <script src="Scripts/jquery-1.9.1.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</body>
+</html>
