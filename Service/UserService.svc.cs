@@ -23,21 +23,18 @@ namespace Service
 
         public List<User> GetAll()
         {
-            // testing purposes
-            var list = new List<User>();
+            // authenticate current user
+            var request = WebOperationContext.Current.IncomingRequest;
+            var headers = request.Headers;
+            var auth_header = headers.Get("Authorization");
+            if(auth_header == null) throw new WebFaultException(System.Net.HttpStatusCode.Unauthorized);  // Return 401
+            
+            string token = auth_header.Split()[1];
 
-            //list.Add(new User
-            //{
-            //    Id = 5,
-            //    FirstName = "Valer",
-            //    LastName = "Orlovsky",
-            //    Email = "valer@gmail",
-            //    BirthDate = DateTime.Now
 
-            //});
-
-            //return list;
-
+            var auth = new Utils.Authentication();
+            if (!auth.ValidateToken(token)) throw new WebFaultException(System.Net.HttpStatusCode.Unauthorized);  // Return 401
+            
             // Actual functionality
             return userDA.GetAll().ToList();
 

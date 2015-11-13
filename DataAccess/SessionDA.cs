@@ -30,7 +30,7 @@ namespace DataAccess
             using (var tempCtx = new ShowMeAroundContext())
             {
                 if (token == null) throw new ArgumentNullException("SessionDA.GetOneByToken: 'token' null");
-                return tempCtx.Session.SingleOrDefault(s => s.Token == token);
+                return tempCtx.Session.Find(token);
             }
         }
 
