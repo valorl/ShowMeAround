@@ -22,6 +22,15 @@ namespace UI.Users {
         protected global::System.Web.UI.WebControls.TextBox firstname;
         
         /// <summary>
+        /// firstNameValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator firstNameValidator;
+        
+        /// <summary>
         /// lastname control.
         /// </summary>
         /// <remarks>
@@ -29,6 +38,15 @@ namespace UI.Users {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox lastname;
+        
+        /// <summary>
+        /// lastNameValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator lastNameValidator;
         
         /// <summary>
         /// email control.
@@ -40,6 +58,15 @@ namespace UI.Users {
         protected global::System.Web.UI.WebControls.TextBox email;
         
         /// <summary>
+        /// emailValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator emailValidator;
+        
+        /// <summary>
         /// password control.
         /// </summary>
         /// <remarks>
@@ -49,6 +76,15 @@ namespace UI.Users {
         protected global::System.Web.UI.WebControls.TextBox password;
         
         /// <summary>
+        /// passwordValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator passwordValidator;
+        
+        /// <summary>
         /// passwordconfirm control.
         /// </summary>
         /// <remarks>
@@ -56,6 +92,15 @@ namespace UI.Users {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox passwordconfirm;
+        
+        /// <summary>
+        /// confirmPasswordValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator confirmPasswordValidator;
         
         /// <summary>
         /// Button1 control.
