@@ -26,20 +26,20 @@ namespace Service
             // testing purposes
             var list = new List<User>();
 
-            list.Add(new User
-            {
-                Id = 5,
-                FirstName = "Valer",
-                LastName = "Orlovsky",
-                Email = "valer@gmail",
-                BirthDate = DateTime.Now
+            //list.Add(new User
+            //{
+            //    Id = 5,
+            //    FirstName = "Valer",
+            //    LastName = "Orlovsky",
+            //    Email = "valer@gmail",
+            //    BirthDate = DateTime.Now
 
-            });
+            //});
 
-            return list;
+            //return list;
 
             // Actual functionality
-            //return userDA.GetAll().ToList();
+            return userDA.GetAll().ToList();
 
         }
 
