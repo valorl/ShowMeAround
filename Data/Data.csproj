@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Interest.cs" />
     <Compile Include="Language.cs" />
+    <Compile Include="MeetUp.cs" />
     <Compile Include="Migrations\201511071957137_InitialCreate.cs" />
     <Compile Include="Migrations\201511071957137_InitialCreate.Designer.cs">
       <DependentUpon>201511071957137_InitialCreate.cs</DependentUpon>
@@ -63,6 +64,10 @@
     <Compile Include="Migrations\201511081902223_AddAuthProps.cs" />
     <Compile Include="Migrations\201511081902223_AddAuthProps.Designer.cs">
       <DependentUpon>201511081902223_AddAuthProps.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511131119469_AddMeetUps.cs" />
+    <Compile Include="Migrations\201511131119469_AddMeetUps.Designer.cs">
+      <DependentUpon>201511131119469_AddMeetUps.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,6 +91,12 @@
     <EmbeddedResource Include="Migrations\201511081902223_AddAuthProps.resx">
       <DependentUpon>201511081902223_AddAuthProps.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511131119469_AddMeetUps.resx">
+      <DependentUpon>201511131119469_AddMeetUps.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

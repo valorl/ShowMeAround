@@ -15,6 +15,7 @@ namespace Data
         public DbSet<User> User { get; set; }
         public DbSet<Interest> Interest { get; set; }
         public DbSet<Language> Language { get; set; }
+        public DbSet<MeetUp> MeetUp { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
