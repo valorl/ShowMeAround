@@ -47,7 +47,7 @@ namespace DataAccess
             if (model == null) throw new ArgumentNullException("SessionDA.Update: 'model'null");
             if (GetOneByToken(model.Token) == null) 
                 throw new ArgumentException("SessionDA.Update: Session[" + model.Token + "] doesn't exists.");
-            dbContext.Entry<Session>.State = System.Data.Entity.EntityState.Modified;
+            dbContext.Entry(model).State = System.Data.Entity.EntityState.Modified;
             
         }
 
