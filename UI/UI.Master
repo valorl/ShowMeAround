@@ -14,7 +14,7 @@
 
 <body>
     <form id="form1" runat="server">
-        
+
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div id="nav-container" class="container">
                 <div class="navbar-header">
@@ -48,11 +48,11 @@
             <hr />
 
         </div>
-    <footer class="footer">
-      <div id="foot-container" class="container">
-        <p class="text-muted">&copy; <%: DateTime.Now.Year %> - Show Me Around</p>
-      </div>
-    </footer>
+        <footer class="footer">
+            <div id="foot-container" class="container">
+                <p class="text-muted">&copy; <%: DateTime.Now.Year %> - Show Me Around</p>
+            </div>
+        </footer>
     </form>
     <script src="Scripts/bootstrap.js"></script>
     <script src="Scripts/jquery-1.9.1.js"></script>
