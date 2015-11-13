@@ -51,8 +51,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IDataAccess.cs" />
-    <Compile Include="MeetUpDA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SessionDA.cs" />
     <Compile Include="UserDA.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -62,7 +62,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
