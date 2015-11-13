@@ -34,5 +34,6 @@ namespace Data.Migrations
             DropIndex("dbo.MeetUps", new[] { "Guide_Id" });
             DropTable("dbo.MeetUps");
         }
+        //test
     }
 }
