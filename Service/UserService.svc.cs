@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.Text;
 using Data;
 using DataAccess;
+using System.ServiceModel.Web;
 
 namespace Service
 {
@@ -50,6 +51,13 @@ namespace Service
 
         public User Create(User user)
         {
+            // request info test
+            //var request = WebOperationContext.Current.IncomingRequest;
+            //var headers = request.Headers;
+            //foreach (string name in headers)
+            //{
+            //    Console.WriteLine(name + " " + headers.Get(name));
+            //}
             userDA.Insert(user);
             userDA.SaveChanges();
             return userDA.GetOneByEmail(user.Email);

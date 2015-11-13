@@ -45,6 +45,7 @@ namespace DataAccess
         }
         public void Insert(User model)
         {
+            
             if (model == null) throw new ArgumentNullException("UserDA.Insert: 'model' null");
             if (GetOneByEmail(model.Email) != null)
                 throw new ArgumentException("UserDA.Insert: User[" + model.Email + "] already exists in the database.");
