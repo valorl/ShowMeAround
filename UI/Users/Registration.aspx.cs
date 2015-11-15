@@ -26,6 +26,11 @@ namespace UI.Users
         }
         protected void Button1_Click(object sender, EventArgs e)
         {
+            User user = new User();
+            user.LastName = lastname.ToString();
+            user.FirstName = firstname.ToString();
+            user.Email = email.ToString();
+
             HttpClient client = new HttpClient();
             HttpResponseMessage wcfResponse = client.GetAsync("http://localhost:3729/HttpService.svc/MyHttpGetData/10").Result;
             HttpContent stream = wcfResponse.Content;
