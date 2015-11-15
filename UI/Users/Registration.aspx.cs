@@ -7,6 +7,14 @@ using System.Web.UI.WebControls;
 using DataAccess;
 using Data;
 using System.Net.Http;
+using System.IO;
+using System.Web.Services;
+using System.Web.Script.Services;
+using System.Globalization;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Data;
+using System.Web.ModelBinding;
 
 namespace UI.Users
 {
@@ -22,7 +30,17 @@ namespace UI.Users
             HttpResponseMessage wcfResponse = client.GetAsync("http://localhost:3729/HttpService.svc/MyHttpGetData/10").Result;
             HttpContent stream = wcfResponse.Content;
             var data = stream.ReadAsStringAsync();
-           // Label1.Text = data.Result;
+            // Label1.Text = data.Result;
+        }
+
+        public void addLanguages()
+        {
+           // List<string> allLanguages = new List<string>();
+            foreach (CultureInfo item in CultureInfo.GetCultures(CultureTypes.InstalledWin32Cultures))
+            {
+                languageList.Items.Add(item.Name);
+
+            }
         }
 
     }
