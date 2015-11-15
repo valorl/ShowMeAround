@@ -6,15 +6,13 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 using Data;
+using Data.Utils;
 
 namespace Service
 {
     // ShowMeAround API - Session:
-    // /sessions/:
-    //     GET - No action (clients should not be able to see all the sessions, only their own)
-    //     POST - Create and add a new session
-    //     PUT - No action
-    //     DELETE - No action
+    // /login
+    //     POST - Login - Check e-mail and password, then create a session and return it
     // /user/{id}
     //     GET - Return a specific user using their {id}
     //     POST - No action
@@ -26,8 +24,8 @@ namespace Service
     {
 
         [OperationContract]
-        [WebInvoke(Method = "POST", UriTemplate = "/sessions/", RequestFormat = WebMessageFormat.Xml)]
-        Session Create(Session session);
+        [WebInvoke(Method = "POST", UriTemplate = "/login", RequestFormat = WebMessageFormat.Xml)]
+        Session Login(LoginWrapper credentials);
 
         [OperationContract]
         [WebInvoke(Method = "DELETE", UriTemplate = "/session/{userid}", RequestFormat = WebMessageFormat.Xml)]

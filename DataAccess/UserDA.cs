@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Data;
+using Data.Utils;
 
 
 namespace DataAccess
@@ -20,19 +21,17 @@ namespace DataAccess
 
         public IEnumerable<User> GetAll()
         {
-            using (var tempCtx = new ShowMeAroundContext())
-            {
-                return tempCtx.User.ToList();
-            }
+
+            return dbContext.User.ToList();
+
         }
 
         public User GetOneByID(int id)
         {
-            using (var tempCtx = new ShowMeAroundContext())
-            {
-                if (id == null) throw new ArgumentNullException("UserDA.GetOneByID: 'id' null");
-                return tempCtx.User.Find(id);
-            }
+
+            if (id == 0) throw new ArgumentNullException("UserDA.GetOneByID: 'id' null");
+            return dbContext.User.Find(id);
+
         }
 
         public User GetOneByEmail(string email)
@@ -45,10 +44,13 @@ namespace DataAccess
         }
         public void Insert(User model)
         {
-            
+
             if (model == null) throw new ArgumentNullException("UserDA.Insert: 'model' null");
             if (GetOneByEmail(model.Email) != null)
                 throw new ArgumentException("UserDA.Insert: User[" + model.Email + "] already exists in the database.");
+
+            model.PwDSalt = PasswordHasher.GetSalt();
+            model.PwdHash = PasswordHasher.HashPwd(model.PwdHash, model.PwDSalt);
 
             dbContext.User.Add(model);
 
@@ -66,7 +68,7 @@ namespace DataAccess
                         }
                     }
                 }
-                
+
 
                 if (model.Interests != null)
                 {
@@ -80,7 +82,7 @@ namespace DataAccess
                     }
                 }
             }
-            
+
         }
 
         public void Update(User model)
@@ -108,10 +110,10 @@ namespace DataAccess
                     }
                 }
             }
-            
+
 
             dbContext.Entry(model).State = System.Data.Entity.EntityState.Modified;
-            
+
         }
 
         public void Delete(User model)
@@ -122,7 +124,7 @@ namespace DataAccess
             dbContext.User.Remove(model);
         }
 
-        
+
 
         public void SaveChanges()
         {

@@ -16,6 +16,13 @@ namespace Data
 
         }
 
+        public Session(User user)
+        {
+            UserID = user.Id;
+            Token = Guid.NewGuid().ToString("N");
+            TimeStamp = DateTime.Now;
+        }
+
         [Key]
         [DataMember]
         public string Token { get; set; }

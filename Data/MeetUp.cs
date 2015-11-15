@@ -43,8 +43,8 @@ namespace Data
         [DataMember]
         public String City { get; set; }
         [DataMember]
-        public Enum TravelerState { get; set; }
+        public RequestState TravelerState { get; set; }
         [DataMember]
-        public Enum GuideState { get; set; }
+        public RequestState GuideState { get; set; }
     }
 }

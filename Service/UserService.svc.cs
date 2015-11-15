@@ -30,11 +30,11 @@ namespace Service
             if(auth_header == null) throw new WebFaultException(System.Net.HttpStatusCode.Unauthorized);  // Return 401
             
             string token = auth_header.Split()[1];
-
+            
 
             var auth = new Utils.Authentication();
             if (!auth.ValidateToken(token)) throw new WebFaultException(System.Net.HttpStatusCode.Unauthorized);  // Return 401
-            
+
             // Actual functionality
             return userDA.GetAll().ToList();
 
