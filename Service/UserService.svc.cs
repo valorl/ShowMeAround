@@ -7,6 +7,7 @@ using System.Text;
 using Data;
 using DataAccess;
 using System.ServiceModel.Web;
+using Service.Utils;
 
 namespace Service
 {
@@ -15,33 +16,32 @@ namespace Service
     public class UserService : IUserService
     {
         private UserDA userDA;
+        private SessionDA sessionDA;
+        private Authentication auth;
 
         public UserService()
         {
             userDA = new UserDA();
+            sessionDA = new SessionDA();
+            auth = new Authentication();
         }
 
         public List<User> GetAll()
         {
             // authenticate current user
-            var request = WebOperationContext.Current.IncomingRequest;
-            var headers = request.Headers;
-            var auth_header = headers.Get("Authorization");
-            if(auth_header == null) throw new WebFaultException(System.Net.HttpStatusCode.Unauthorized);  // Return 401
-            
-            string token = auth_header.Split()[1];
-            
-
-            var auth = new Utils.Authentication();
-            if (!auth.ValidateToken(token)) throw new WebFaultException(System.Net.HttpStatusCode.Unauthorized);  // Return 401
+            auth.Authorize(WebOperationContext.Current.IncomingRequest);
 
             // Actual functionality
             return userDA.GetAll().ToList();
 
         }
 
+
+
         public User GetById(string id)
         {
+            auth.Authorize(WebOperationContext.Current.IncomingRequest);
+
             int intID = Convert.ToInt32(id);
             return userDA.GetOneByID(intID);
         }
@@ -63,6 +63,11 @@ namespace Service
         public User Update(string id, User user)
         {
             user.Id = Convert.ToInt32(id);
+            
+            // Only allow users update their own information
+            User authUser = auth.Authorize(WebOperationContext.Current.IncomingRequest);
+            if(authUser.Id != user.Id) 
+
             userDA.Update(user);
             userDA.SaveChanges();
             return userDA.GetOneByID(user.Id);
@@ -72,11 +77,16 @@ namespace Service
         {
             var toBeDeleted = userDA.GetOneByID(Convert.ToInt32(id));
 
+            // to do auth
+
             if (toBeDeleted != null)
             {
                 userDA.Delete(toBeDeleted);
                 userDA.SaveChanges();
             }
         }
+
+        
+
     }
 }

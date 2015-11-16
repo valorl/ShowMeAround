@@ -17,14 +17,16 @@ namespace Service
     {
         SessionDA sessionDA;
         UserDA userDA;
+        Authentication auth;
         public SessionService()
         {
             sessionDA = new SessionDA();
             userDA = new UserDA();
+            auth = new Authentication();
+
         }
         public Session Login(LoginWrapper credentials)
         {
-            var auth = new Authentication();
             if (auth.ValidateCredentials(credentials.Email, credentials.Pwd))
             {
                 var session = new Session(userDA.GetOneByEmail(credentials.Email));
@@ -43,9 +45,15 @@ namespace Service
             int intID = Convert.ToInt32(userid);
             if (sessionDA.GetAll().SingleOrDefault(s => s.UserID == intID) == null)
                 throw new ArgumentException("SessionService.Delete: No such session. [UserId: " + userid + "]");
+        
+            User authUser = auth.Authorize(WebOperationContext.Current.IncomingRequest);
+            if (authUser.Id != intID) throw new WebFaultException(System.Net.HttpStatusCode.Unauthorized);
 
+            userDA.Delete(userDA.GetOneByID(intID));
+            userDA.SaveChanges();
             
         }
+
 
 
     }
