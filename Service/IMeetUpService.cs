@@ -26,7 +26,7 @@ namespace Service
     public interface IMeetUpService
     {
         [OperationContract]
-        [WebGet(UriTemplate = "/meetup/",
+        [WebGet(UriTemplate = "/meetups/",
             ResponseFormat = WebMessageFormat.Xml)]
         List<MeetUp> GetAll();
 
@@ -36,7 +36,7 @@ namespace Service
         MeetUp GetById(string id);
 
         [OperationContract]
-        [WebInvoke(Method = "POST", UriTemplate = "/meetup/",
+        [WebInvoke(Method = "POST", UriTemplate = "/meetups/",
             RequestFormat = WebMessageFormat.Xml, ResponseFormat = WebMessageFormat.Xml)]
         MeetUp Create(MeetUp meetup);
 
