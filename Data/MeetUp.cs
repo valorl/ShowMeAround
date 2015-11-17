@@ -41,7 +41,7 @@ namespace Data
         [DataMember]
         public DateTime FinishDate { get; set; }
         [DataMember]
-        public String City { get; set; }
+        public string City { get; set; }
         [DataMember]
         public RequestState TravelerState { get; set; }
         [DataMember]

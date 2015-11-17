@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="SessionsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MeetupsTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
