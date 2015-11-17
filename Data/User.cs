@@ -13,8 +13,8 @@ namespace Data
     {
         public User()
         {
-            this.Languages = new HashSet<Language>();
-            this.Interests = new HashSet<Interest>();
+            this.Languages = new List<Language>();
+            this.Interests = new List<Interest>();
         }
 
         [Key]
@@ -30,9 +30,9 @@ namespace Data
         [DataMember]
         public DateTime BirthDate { get; set; }
         [DataMember]
-        public ICollection<Language> Languages { get; set; }
+        public List<Language> Languages { get; set; }
         [DataMember]
-        public ICollection<Interest> Interests { get; set; }
+        public List<Interest> Interests { get; set; }
 
         //Auth
         [Column(TypeName = "varchar(MAX)")]

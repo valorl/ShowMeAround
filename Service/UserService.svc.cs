@@ -66,7 +66,7 @@ namespace Service
             
             // Only allow users update their own information
             User authUser = auth.Authorize(WebOperationContext.Current.IncomingRequest);
-            if(authUser.Id != user.Id) 
+            if (authUser.Id != user.Id) throw new WebFaultException(System.Net.HttpStatusCode.Unauthorized);
 
             userDA.Update(user);
             userDA.SaveChanges();

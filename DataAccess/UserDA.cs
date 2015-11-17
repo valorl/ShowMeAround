@@ -87,26 +87,31 @@ namespace DataAccess
 
         public void Update(User model)
         {
-            if (GetOneByEmail(model.Email) != null)
+            if (GetOneByEmail(model.Email) == null)
                 throw new ArgumentException("UserDA.Update: No such user in the database [e-mail: " + model.Email + "]");
 
             using (var tempCtx = new ShowMeAroundContext())
             {
-
-                foreach (var language in model.Languages)
+                if (model.Languages != null && model.Languages.Count > 0)
                 {
-                    Language dbLanguage = tempCtx.Language.Find(language.Name);
-                    if (dbLanguage != null)
+                    foreach (var language in model.Languages)
                     {
-                        dbContext.Entry(language).State = System.Data.Entity.EntityState.Unchanged;
+                        Language dbLanguage = tempCtx.Language.Find(language.Name);
+                        if (dbLanguage != null)
+                        {
+                            dbContext.Entry(language).State = System.Data.Entity.EntityState.Unchanged;
+                        }
                     }
                 }
-                foreach (var interest in model.Interests)
+                if (model.Interests != null && model.Interests.Count > 0)
                 {
-                    Interest dbInterest = tempCtx.Interest.Find(interest.Name);
-                    if (dbInterest != null)
+                    foreach (var interest in model.Interests)
                     {
-                        dbContext.Entry(interest).State = System.Data.Entity.EntityState.Unchanged;
+                        Interest dbInterest = tempCtx.Interest.Find(interest.Name);
+                        if (dbInterest != null)
+                        {
+                            dbContext.Entry(interest).State = System.Data.Entity.EntityState.Unchanged;
+                        }
                     }
                 }
             }
