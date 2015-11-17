@@ -21,10 +21,10 @@ namespace Service
             userDA = new UserDA();
         }
 
-        public List<User> GetAll()
-        {
-            // testing purposes
-            var list = new List<User>();
+            public List<User> GetAll()
+            {
+                // testing purposes
+                var list = new List<User>();
 
             //list.Add(new User
             //{

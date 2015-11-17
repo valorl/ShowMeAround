@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess
 {
-    class MeetUpDA : IDataAccess<MeetUp>
+    public class MeetUpDA : IDataAccess<MeetUp>
     {
         private ShowMeAroundContext dbContext;
 
@@ -24,7 +24,7 @@ namespace DataAccess
             }
         }
 
-        public MeetUp GetOneById(int id)
+        public MeetUp GetOneByID(int id)
         {
             using (var tempCtx = new ShowMeAroundContext())
             {
@@ -36,7 +36,7 @@ namespace DataAccess
         public void Insert(MeetUp model)
         {
             if (model == null) throw new ArgumentNullException("MeetUpDA.Insert: 'model' null");
-            if (GetOneById(model.Id) != null)
+            if (GetOneByID(model.Id) != null)
                 throw new ArgumentException("MeetUpDA.Insert: Meetup[" + model.Id + "] already exists in the database.");
 
             dbContext.MeetUp.Add(model);
@@ -70,7 +70,7 @@ namespace DataAccess
 
         public void Update(MeetUp model)
         {
-            if (GetOneById(model.Id) != null)
+            if (GetOneByID(model.Id) != null)
                 throw new ArgumentException("MeetUpDA.Update: No such Meetup in the database [Id: " + model.Id + "]");
 
             using (var tempCtx = new ShowMeAroundContext())
@@ -105,7 +105,7 @@ namespace DataAccess
         public void Delete(MeetUp model)
         {
             if (model == null) throw new ArgumentNullException("MeetUpDA.Delete: 'model' null");
-            if (GetOneById(model.Id) == null)
+            if (GetOneByID(model.Id) == null)
                 throw new ArgumentException("MeetUpDA.Remove: No such Meetup in the database [Id: " + model.Id + "]");
             dbContext.MeetUp.Remove(model);
         }
@@ -115,4 +115,6 @@ namespace DataAccess
             dbContext.SaveChanges();
 
         }
+    }
+
 }
