@@ -30,9 +30,9 @@ namespace Data
         [DataMember]
         public DateTime BirthDate { get; set; }
         [DataMember]
-        public List<Language> Languages { get; set; }
+        public virtual ICollection<Language> Languages { get; set; }
         [DataMember]
-        public List<Interest> Interests { get; set; }
+        public virtual ICollection<Interest> Interests { get; set; }
 
         //Auth
         [Column(TypeName = "varchar(MAX)")]

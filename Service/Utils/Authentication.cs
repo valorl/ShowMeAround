@@ -65,7 +65,7 @@ namespace Service.Utils
             var session = sessionDA.GetOneByToken(token);
             if (session == null) return false;
             TimeSpan sinceToken = DateTime.Now - session.TimeStamp;
-            if (sinceToken.TotalMinutes >= 15)
+            if (sinceToken.TotalMinutes >= 60)
             {
                 sessionDA.Delete(session);
                 sessionDA.SaveChanges();

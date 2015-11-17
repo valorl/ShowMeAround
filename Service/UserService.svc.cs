@@ -43,7 +43,8 @@ namespace Service
             auth.Authorize(WebOperationContext.Current.IncomingRequest);
 
             int intID = Convert.ToInt32(id);
-            return userDA.GetOneByID(intID);
+            var user = userDA.GetOneByID(intID);
+            return user;
         }
 
         public User Create(User user)
