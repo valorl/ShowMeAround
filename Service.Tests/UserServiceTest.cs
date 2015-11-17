@@ -17,8 +17,8 @@ namespace Service.Tests
                 Email = "valer@mail.com",
                 BirthDate = DateTime.Now
             };
-            
-                       
+
+            }          
         }
     }
-}
+
