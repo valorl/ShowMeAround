@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-public enum RequestState
+public enum MeetUpState
 {
     Undefined = 0,
     Sent = 1,
@@ -46,5 +46,12 @@ namespace Data
         public Enum TravelerState { get; set; }
         [DataMember]
         public Enum GuideState { get; set; }
+
+
     }
 }
+
+
+
+
+
