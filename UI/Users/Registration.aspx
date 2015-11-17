@@ -23,6 +23,14 @@
             <asp:Label CssClass="control-label" AssociatedControlID="email" runat="server">E-mail</asp:Label>
             <div class="controls">
                 <asp:TextBox runat="server" ID="email" CssClass="form-control input-lg" />
+                 <asp:RegularExpressionValidator
+                    ID="emailValidator"
+                    ControlToValidate="email"
+                    Display="Static"
+                    runat="server"
+                    ErrorMessage="Please enter your email"
+                    ValidationExpression="^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$">
+                </asp:RegularExpressionValidator>
             </div>
         </div>
 
@@ -36,7 +44,7 @@
                     Display="Static"
                     runat="server"
                     ErrorMessage="Please enter a valid password"
-                    ValidationExpression="\d{3}-\d{3}-\d{4}">
+                    ValidationExpression="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}$">
                 </asp:RegularExpressionValidator>
                 <p class="help-block">Password must be at least 8 characters and contain at least one number and one uppercase character</p>
             </div>
@@ -46,8 +54,16 @@
             <asp:Label CssClass="control-label" AssociatedControlID="passwordconfirm" runat="server">Password (Confirm)</asp:Label>
             <div class="controls">
                 <asp:TextBox runat="server" ID="passwordconfirm" CssClass="form-control input-lg" />
+                <asp:CompareValidator 
+                    ID="confirmPassword"
+                    ControlToValidate="passwordconfirm"
+                    ControlToCompare="password"
+                    Display="Static"
+                    runat="server"
+                    ErrorMessage="Passwords do not match">
+                </asp:CompareValidator>
                 <p class="help-block">Please confirm password</p>
-            </div>
+              </div>
         </div>
 
         <div class="form-group">
