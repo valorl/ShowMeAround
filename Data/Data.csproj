@@ -77,6 +77,14 @@
     <Compile Include="Migrations\201511151928571_MeetUpChange.Designer.cs">
       <DependentUpon>201511151928571_MeetUpChange.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511171219020_ServiceFixMigration.cs" />
+    <Compile Include="Migrations\201511171219020_ServiceFixMigration.Designer.cs">
+      <DependentUpon>201511171219020_ServiceFixMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511171219370_ServiceFixMigration2.cs" />
+    <Compile Include="Migrations\201511171219370_ServiceFixMigration2.Designer.cs">
+      <DependentUpon>201511171219370_ServiceFixMigration2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Session.cs" />
@@ -110,6 +118,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511151928571_MeetUpChange.resx">
       <DependentUpon>201511151928571_MeetUpChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511171219020_ServiceFixMigration.resx">
+      <DependentUpon>201511171219020_ServiceFixMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511171219370_ServiceFixMigration2.resx">
+      <DependentUpon>201511171219370_ServiceFixMigration2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

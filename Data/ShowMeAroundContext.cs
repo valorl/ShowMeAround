@@ -10,6 +10,7 @@ namespace Data
         public ShowMeAroundContext()
             : base("name=ShowMeAroundContext")
         {
+            //this.Configuration.ProxyCreationEnabled = false;
         }
 
         public DbSet<User> User { get; set; }

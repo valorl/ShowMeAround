@@ -29,7 +29,7 @@ namespace Service
         public List<User> GetAll()
         {
             // authenticate current user
-            auth.Authorize(WebOperationContext.Current.IncomingRequest);
+            //auth.Authorize(WebOperationContext.Current.IncomingRequest);
 
             // Actual functionality
             return userDA.GetAll().ToList();
@@ -40,11 +40,12 @@ namespace Service
 
         public User GetById(string id)
         {
-            auth.Authorize(WebOperationContext.Current.IncomingRequest);
+            //auth.Authorize(WebOperationContext.Current.IncomingRequest);
 
             int intID = Convert.ToInt32(id);
             var user = userDA.GetOneByID(intID);
             return user;
+            
         }
 
         public User Create(User user)

@@ -22,7 +22,14 @@ namespace DataAccess
         public IEnumerable<User> GetAll()
         {
 
-            return dbContext.User.ToList();
+            var users = dbContext.User.ToList();
+            foreach (var user in users)
+            {
+                dbContext.Entry(user).Collection(u => u.Languages).Load();
+                dbContext.Entry(user).Collection(u => u.Interests).Load();
+            }
+            return users;
+
 
         }
 
@@ -30,7 +37,14 @@ namespace DataAccess
         {
 
             if (id == 0) throw new ArgumentNullException("UserDA.GetOneByID: 'id' null");
-            return dbContext.User.Find(id);
+            using (var tempCtx = new ShowMeAroundContext())
+            {
+                var user = tempCtx.User.Find(id);
+                tempCtx.Entry(user).Collection(u => u.Languages).Load();
+                tempCtx.Entry(user).Collection(u => u.Interests).Load();
+                return user;
+            }
+            
 
         }
 
