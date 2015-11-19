@@ -104,6 +104,7 @@
     <Content Include="Scripts\moment-with-locales.js" />
     <Content Include="Users\Login.aspx" />
     <Content Include="Users\Registration.aspx" />
+    <Content Include="Users\SendRequest.aspx" />
     <Content Include="Web.config" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="UI.Master" />
@@ -145,6 +146,13 @@
     </Compile>
     <Compile Include="Users\Registration.aspx.designer.cs">
       <DependentUpon>Registration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\SendRequest.aspx.cs">
+      <DependentUpon>SendRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\SendRequest.aspx.designer.cs">
+      <DependentUpon>SendRequest.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
