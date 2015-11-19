@@ -24,11 +24,11 @@ namespace Data
         }
 
         [Key]
-        [DataMember]
+        [DataMember(Order = 0)]
         public string Token { get; set; }
-        [DataMember]
+        [DataMember(Order = 1)]
         public int UserID { get; set; }
-        [DataMember]
+        [DataMember(Order = 2)]
         public DateTime TimeStamp { get; set; }
     }
 }

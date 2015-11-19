@@ -64,7 +64,7 @@ namespace DataAccess
                 throw new ArgumentException("UserDA.Insert: User[" + model.Email + "] already exists in the database.");
 
             model.PwDSalt = PasswordHasher.GetSalt();
-            model.PwdHash = PasswordHasher.HashPwd(model.PwdHash, model.PwDSalt);
+            if(model.PwdHash !=null) model.PwdHash = PasswordHasher.HashPwd(model.PwdHash, model.PwDSalt);
 
             dbContext.User.Add(model);
 
@@ -88,7 +88,7 @@ namespace DataAccess
                 {
                     foreach (var interest in model.Interests)
                     {
-                        Interest dbInterest = dbContext.Interest.Find(interest.Name);
+                        Interest dbInterest = tempCtx.Interest.Find(interest.Name);
                         if (dbInterest != null)
                         {
                             dbContext.Entry(interest).State = System.Data.Entity.EntityState.Unchanged;

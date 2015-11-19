@@ -30,21 +30,21 @@ namespace Data
  
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [DataMember]
+        [DataMember(Order = 0)]
         public int Id { get; set; }
-        [DataMember]
+        [DataMember(Order = 1)]
         public User Traveler { get; set; }
-        [DataMember]
+        [DataMember(Order = 2)]
         public User Guide { get; set; }
-        [DataMember]
+        [DataMember(Order = 3)]
         public DateTime StartDate { get; set; }
-        [DataMember]
+        [DataMember(Order = 4)]
         public DateTime FinishDate { get; set; }
-        [DataMember]
+        [DataMember(Order = 5)]
         public string City { get; set; }
-        [DataMember]
+        [DataMember(Order = 6)]
         public RequestState TravelerState { get; set; }
-        [DataMember]
+        [DataMember(Order = 7)]
         public RequestState GuideState { get; set; }
     }
 }

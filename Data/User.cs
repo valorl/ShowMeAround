@@ -19,27 +19,27 @@ namespace Data
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [DataMember]
+        [DataMember(Order = 0)]
         public int Id { get; set; }
-        [DataMember]
+        [DataMember(Order = 1)]
         public string FirstName { get; set; }
-        [DataMember]
+        [DataMember(Order = 2)]
         public string LastName { get; set; }
-        [DataMember]
+        [DataMember(Order = 3)]
         public string Email { get; set; }
-        [DataMember]
+        [DataMember(Order = 4)]
         public DateTime BirthDate { get; set; }
-        [DataMember]
+        [DataMember(Order = 5)]
         public List<Language> Languages { get; set; }
-        [DataMember]
+        [DataMember(Order = 6)]
         public List<Interest> Interests { get; set; }
 
         //Auth
         [Column(TypeName = "varchar(MAX)")]
-        [DataMember]
+        [DataMember(Order = 7)]
         public string PwdHash { get; set; }
         [Column(TypeName = "varchar(MAX)")]
-        [DataMember]
+        [DataMember(Order = 8)]
         public string PwDSalt { get; set; }
 
 
