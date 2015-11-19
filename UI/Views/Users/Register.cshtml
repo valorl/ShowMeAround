@@ -1,0 +1,60 @@
+﻿@model Data.User
+
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2></h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset class="container-forms">
+        <legend><h2><center>Sign Up</center></h2></legend>
+        @Html.AntiForgeryToken()
+        @if (ViewBag.Message != null)
+        {
+            <div style="border:solid 1px green">
+                @ViewBag.Message
+            </div>
+        }
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FirstName)
+        </div>
+        <div>
+            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control input-lg" })
+            @Html.ValidationMessageFor(model => model.FirstName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LastName)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.LastName, new { @class = "form-control input-lg" })
+            @Html.ValidationMessageFor(model => model.LastName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control input-lg" })
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Languages)
+        </div>
+        <div></div>
+        <p>
+            <br />
+            <input type="submit" value="Register" class="btn btn-success" />
+        </p>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
