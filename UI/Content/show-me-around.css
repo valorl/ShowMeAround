@@ -258,3 +258,9 @@ footer .glyphicon {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+
+/* VALIDATION */
+
+.help-block {
+    color: #f4511e;
+}
