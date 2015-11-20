@@ -26,7 +26,7 @@ namespace Service
             auth = new Authentication();
         }
 
-        public List<User> GetAll()
+        public List<User> GetAllUsers()
         {
             // authenticate current user
             //auth.Authorize(WebOperationContext.Current.IncomingRequest);
@@ -38,7 +38,7 @@ namespace Service
 
 
 
-        public User GetById(string id)
+        public User GetUserById(string id)
         {
             //auth.Authorize(WebOperationContext.Current.IncomingRequest);
 
@@ -48,7 +48,7 @@ namespace Service
             
         }
 
-        public User Create(User user)
+        public User CreateUser(User user)
         {
             // request info test
             //var request = WebOperationContext.Current.IncomingRequest;
@@ -62,7 +62,7 @@ namespace Service
             return userDA.GetOneByEmail(user.Email);
         }
 
-        public User Update(string id, User user)
+        public User UpdateUser(string id, User user)
         {
             user.Id = Convert.ToInt32(id);
             
@@ -75,7 +75,7 @@ namespace Service
             return userDA.GetOneByID(user.Id);
         }
 
-        public void Delete(string id)
+        public void DeleteUser(string id)
         {
             var toBeDeleted = userDA.GetOneByID(Convert.ToInt32(id));
 

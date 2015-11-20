@@ -20,26 +20,26 @@ namespace Service
         {
             meetUpDA = new MeetUpDA();
         }
-        public List<MeetUp> GetAll()
+        public List<MeetUp> GetAllMeetups()
         {
             var list = new List<MeetUp>();
             return meetUpDA.GetAll().ToList();
         }
 
-        public MeetUp GetById(string id)
+        public MeetUp GetMeetUpById(string id)
         {
             int intID = Convert.ToInt32(id);
             return meetUpDA.GetOneByID(intID);
         }
 
-        public MeetUp Create(MeetUp meetup)
+        public MeetUp CreateMeetUp(MeetUp meetup)
         {
             meetUpDA.Insert(meetup);
             meetUpDA.SaveChanges();
             return meetUpDA.GetOneByID(meetup.Id);
         }
 
-        public MeetUp Update(string id, MeetUp meetUp)
+        public MeetUp UpdateMeetUp(string id, MeetUp meetUp)
         {
             meetUp.Id = Convert.ToInt32(id);
             meetUpDA.Update(meetUp);
@@ -47,7 +47,7 @@ namespace Service
             return meetUpDA.GetOneByID(meetUp.Id);
         }
 
-        public void Delete(string id)
+        public void DeleteMeetUp(string id)
         {
             var toBeDeleted = meetUpDA.GetOneByID(Convert.ToInt32(id));
 

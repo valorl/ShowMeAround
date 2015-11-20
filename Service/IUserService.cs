@@ -9,47 +9,23 @@ using Data;
 
 namespace Service
 {
-
-    // ShowMeAround API - User:
-    // /users:
-    //     GET - Return all users
-    //     POST - Create and add a new user
-    //     PUT - No action
-    //     DELETE - No action
-    // /user/{id}
-    //     GET - Return a specific user using their {id}
-    //     POST - No action
-    //     PUT - Update a specific user using their {id}
-    //     DELETE - Delete a specific user using their {id}
-
-
     [ServiceContract]
     public interface IUserService
     {
         [OperationContract]
-        [WebGet(UriTemplate = "/users/",
-            ResponseFormat = WebMessageFormat.Xml)]
-        List<User> GetAll();
+        List<User> GetAllUsers();
 
         [OperationContract]
-        [WebGet(UriTemplate = "/user/{id}/",
-            ResponseFormat = WebMessageFormat.Xml)]
-        User GetById(string id);
+        User GetUserById(string id);
 
         [OperationContract]
-        [WebInvoke(Method="POST", UriTemplate="/users/", 
-            RequestFormat = WebMessageFormat.Xml, ResponseFormat = WebMessageFormat.Xml)]
-        User Create(User user);
+        User CreateUser(User user);
         
         [OperationContract]
-        [WebInvoke(Method="PUT", UriTemplate = "/user/{id}/", 
-            RequestFormat = WebMessageFormat.Xml)]
-        User Update(string id, User user);
+        User UpdateUser(string id, User user);
         
         [OperationContract]
-        [WebInvoke(Method="DELETE", UriTemplate = "/user/{id}/",
-            RequestFormat = WebMessageFormat.Xml)]  
-        void Delete(string id);
+        void DeleteUser(string id);
 
 
     }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="34fc8c25-2bd9-45ab-81e5-5550e20e1fcd" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:37550/MeetUpService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="MeetUpService.xsd" MetadataType="Schema" ID="20baf02a-f0a2-45a0-a5de-b7a4b28fd795" SourceId="1" SourceUrl="http://localhost:37550/MeetUpService.svc?xsd=xsd0" />
+    <MetadataFile FileName="MeetUpService1.xsd" MetadataType="Schema" ID="ee147711-5c23-43b6-8af9-cadff623c131" SourceId="1" SourceUrl="http://localhost:37550/MeetUpService.svc?xsd=xsd1" />
+    <MetadataFile FileName="MeetUpService.wsdl" MetadataType="Wsdl" ID="9619e003-a544-49ff-be45-7ee5ee139ff5" SourceId="1" SourceUrl="http://localhost:37550/MeetUpService.svc?wsdl" />
+    <MetadataFile FileName="MeetUpService.disco" MetadataType="Disco" ID="09ffae5e-c3db-4cb9-abc2-fcee8767a263" SourceId="1" SourceUrl="http://localhost:37550/MeetUpService.svc?disco" />
+    <MetadataFile FileName="MeetUpService2.xsd" MetadataType="Schema" ID="dfc8447c-3ec4-46b6-9a9d-6937d83e11e8" SourceId="1" SourceUrl="http://localhost:37550/MeetUpService.svc?xsd=xsd2" />
+    <MetadataFile FileName="MeetUpService3.xsd" MetadataType="Schema" ID="0a197982-6650-4c2f-94f6-04ef58f75a9c" SourceId="1" SourceUrl="http://localhost:37550/MeetUpService.svc?xsd=xsd3" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

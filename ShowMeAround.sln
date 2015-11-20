@@ -16,6 +16,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.Tests", "DataAccess.Tests\DataAccess.Tests.csproj", "{6A3460D8-DD18-4820-BFB2-3687F09FBDFE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{1E4BBA55-3568-4367-83A3-D93DD07BA97A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D29171E9-23FC-46F9-8DB9-EEF4A8CD1101} = {D29171E9-23FC-46F9-8DB9-EEF4A8CD1101}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -9,45 +9,22 @@ using Data;
 
 namespace Service
 {
-    // ShowMeAround API - MeetUp:
-    // /meetup:
-    //     GET - Return all meetups
-    //     POST - Create and add a new meetup
-    //     PUT - No action
-    //     DELETE - No action
-    // /meetup/{id}
-    //     GET - Return a specific meetup using their {id}
-    //     POST - No action
-    //     PUT - Update a specific meetup using their {id}
-    //     DELETE - Delete a specific meetup using their {id}
-
-
     [ServiceContract]
     public interface IMeetUpService
     {
         [OperationContract]
-        [WebGet(UriTemplate = "/meetups/",
-            ResponseFormat = WebMessageFormat.Xml)]
-        List<MeetUp> GetAll();
+        List<MeetUp> GetAllMeetups();
 
         [OperationContract]
-        [WebGet(UriTemplate = "/meetup/{id}/",
-            ResponseFormat = WebMessageFormat.Xml)]
-        MeetUp GetById(string id);
+        MeetUp GetMeetUpById(string id);
 
         [OperationContract]
-        [WebInvoke(Method = "POST", UriTemplate = "/meetups/",
-            RequestFormat = WebMessageFormat.Xml, ResponseFormat = WebMessageFormat.Xml)]
-        MeetUp Create(MeetUp meetup);
+        MeetUp CreateMeetUp(MeetUp meetup);
 
         [OperationContract]
-        [WebInvoke(Method = "PUT", UriTemplate = "/meetup/{id}/",
-            RequestFormat = WebMessageFormat.Xml)]
-        MeetUp Update(string id, MeetUp meetup);
+        MeetUp UpdateMeetUp(string id, MeetUp meetup);
 
         [OperationContract]
-        [WebInvoke(Method = "DELETE", UriTemplate = "/meetup/{id}/",
-            RequestFormat = WebMessageFormat.Xml)]
-        void Delete(string id);
+        void DeleteMeetUp(string id);
     }
 }

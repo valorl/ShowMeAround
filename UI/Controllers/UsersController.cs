@@ -31,8 +31,9 @@ namespace UI.Controllers
         [HttpPost]
         public ActionResult Register(User user)
         {
-            var client = new SMARestClient("UserService.svc");
-            User createdUser = client.Post<User>("users/", user);
+            var client = new UserService.UserServiceClient();
+            var createdUser = client.CreateUser(user);
+            if (createdUser == null) throw new Exception("UserService.CreateUser() failed.");
             return View();
         }
 
