@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Data;
 using UI.Helpers;
+using DataAccess;
 
 namespace UI.Controllers
 {
@@ -34,6 +35,7 @@ namespace UI.Controllers
             User createdUser = client.Post<User>("users/", user);
             return View();
         }
+
 
         public ActionResult Login()
         {

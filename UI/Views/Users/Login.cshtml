@@ -1,5 +1,21 @@
-﻿@{
+﻿@model Data.User
+
+@{
     ViewBag.Title = "Login";
 }
 
-<h2>Login</h2>
+<div class="container-forms">
+    <form class="form-signin">
+        <h2 class="form-signin-heading">Please sign in</h2>
+
+        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Email" })
+        <p></p>
+        @Html.TextBoxFor(model => model.PwdHash, new { @class = "form-control", @placeholder = "Password", type = "password" })
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+</div>
