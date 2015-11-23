@@ -32,11 +32,11 @@ namespace UI.Controllers
         [HttpPost]
         public ActionResult Register(Models.Registration registration)
         {
-            //user.
-
+            registration.User.Languages.Add(new Language("English"));
+            registration.User.Interests.Add(new Interest("String content 1"));
 
             var client = new SMARestClient("UserService.svc");
-            User createdUser = client.Post<User>("users/", registration.user);
+            User createdUser = client.Post<User>("users/", registration.User);
             return View();
         }
 

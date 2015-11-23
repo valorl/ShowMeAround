@@ -11,8 +11,8 @@ namespace UI.Models
 {
     public class Registration
     {
-        public User user { get; set; }
-        public Language languages { get; set; }
-        public Interest interest { get; set; }
+        public User User { get; set; }
+        public Language Languages { get; set; }
+        public Interest Interest { get; set; }
     }
 }
