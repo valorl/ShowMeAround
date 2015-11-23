@@ -38,7 +38,7 @@ namespace DataAccess.Tests
             var mDA = new MeetUpDA();
             var mu = mDA.GetAll().Where(m => m.City == "New York").FirstOrDefault();
             if (mu != null)
-            {.
+            {
                 mDA.Delete(mu);
                 mDA.SaveChanges();
             }

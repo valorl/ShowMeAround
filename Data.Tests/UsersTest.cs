@@ -44,7 +44,7 @@ namespace Data.Tests
             user.FirstName = "Mauro";
             user.LastName = "Monteiro";
             user.Email = "mauro@gmail.com";
-            user.PwdHash = "123456678";
+            user.PwdHash = "Capital10!";
             user.BirthDate = DateTime.Now;
 
             if (ctx.Language.Find("spanish") != null) user.AddLanguage(ctx.Language.Find("spanish"));
