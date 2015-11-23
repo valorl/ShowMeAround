@@ -20,7 +20,13 @@ namespace DataAccess
         {
             using (var tempCtx = new ShowMeAroundContext())
             {
-                return tempCtx.MeetUp.ToList();
+                var meetups = tempCtx.MeetUp.ToList();
+                foreach(var meetup in meetups)
+                {
+                    tempCtx.Entry(meetup).Reference(m => m.Guide).Load();
+                    tempCtx.Entry(meetup).Reference(m => m.Traveler).Load();
+                }
+                return meetups;
             }
         }
 

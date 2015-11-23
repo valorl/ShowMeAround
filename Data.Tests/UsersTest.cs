@@ -30,12 +30,12 @@ namespace Data.Tests
             if (ctx.Interest.Find("kickbox") != null) ctx.Interest.Remove(ctx.Interest.Find("kickbox"));
             if (ctx.Interest.Find("metal") != null) ctx.Interest.Remove(ctx.Interest.Find("metal"));
 
-            User mauro = (User)ctx.User.Where(u => u.FirstName == "Mauro").FirstOrDefault(); ;
+            User mauro = ctx.User.Where(u => u.FirstName == "Mauro").FirstOrDefault();
             if (mauro != null) ctx.User.Remove(mauro);
             ctx.SaveChanges();
         }
         [TestMethod]
-        public void AddUser()
+        public void User_CreateTest()
         {
             ShowMeAroundContext ctx = new ShowMeAroundContext();
 
@@ -44,6 +44,7 @@ namespace Data.Tests
             user.FirstName = "Mauro";
             user.LastName = "Monteiro";
             user.Email = "mauro@gmail.com";
+            user.PwdHash = "Capital10!";
             user.BirthDate = DateTime.Now;
 
             if (ctx.Language.Find("spanish") != null) user.AddLanguage(ctx.Language.Find("spanish"));

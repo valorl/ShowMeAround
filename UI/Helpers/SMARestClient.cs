@@ -41,8 +41,7 @@ namespace UI.Helpers
         {
             var req = new RestRequest(endpoint, Method.POST);
             req.RequestFormat = DataFormat.Xml;
-            //req.XmlSerializer = new RestSharp.Serializers.DotNetXmlSerializer();
-            req.XmlSerializer = new XmlSerializer();
+            req.XmlSerializer = new XmlSerializer() { DateFormat = DATE_FORMAT };
             req.DateFormat = DATE_FORMAT;
             req.AddBody(model, XMLNS);
             var response = client.Execute<T>(req);

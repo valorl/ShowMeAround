@@ -18,12 +18,16 @@ namespace Service
         private UserDA userDA;
         private SessionDA sessionDA;
         private Authentication auth;
+        private InterestDA interestDA;
+        private LanguageDA languageDA;
 
         public UserService()
         {
             userDA = new UserDA();
             sessionDA = new SessionDA();
             auth = new Authentication();
+            interestDA = new InterestDA();
+            languageDA = new LanguageDA();
         }
 
         public List<User> GetAll()
@@ -35,8 +39,19 @@ namespace Service
             return userDA.GetAll().ToList();
 
         }
+        // Interests
+        public List<Interest> GetAllInterests()
+        {
+      
+            return interestDA.GetAll().ToList();
+        }
 
+        // Languages
+        public List<Language> GetAllLanguages()
+        {
 
+            return languageDA.GetAll().ToList();
+        }
 
         public User GetById(string id)
         {

@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 using System.Web.Mvc;
+using CompareAttribute = System.Web.Mvc.CompareAttribute;
 
 namespace Data
 {
@@ -68,6 +69,12 @@ namespace Data
         [Column(TypeName = "varchar(MAX)")]
         [DataMember(Order = 8)]
         public string PwDSalt { get; set; }
+
+        [NotMapped]
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm password")]
+        [Compare("PwdHash", ErrorMessage = "The password and confirmation password do not match.")]
+        public string ConfirmPassword { get; set; }
 
 
         public void AddLanguage(Language language)

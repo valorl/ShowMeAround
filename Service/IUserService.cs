@@ -21,6 +21,10 @@ namespace Service
     //     POST - No action
     //     PUT - Update a specific user using their {id}
     //     DELETE - Delete a specific user using their {id}
+    // /interests:
+    //     GET - Return all interests
+    // /languages:
+    //     GET - Return all languages
 
 
     [ServiceContract]
@@ -51,6 +55,15 @@ namespace Service
             RequestFormat = WebMessageFormat.Xml)]  
         void Delete(string id);
 
+        [OperationContract]
+        [WebGet(UriTemplate = "/interests/",
+           ResponseFormat = WebMessageFormat.Xml)]
+        List<Interest> GetAllInterests();
+
+        [OperationContract]
+        [WebGet(UriTemplate = "/languages/",
+           ResponseFormat = WebMessageFormat.Xml)]
+        List<Language> GetAllLanguages();
 
     }
 }

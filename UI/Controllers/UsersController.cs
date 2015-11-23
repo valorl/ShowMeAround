@@ -29,11 +29,15 @@ namespace UI.Controllers
         }
 
         // to handle form submission 
+        [ValidateAntiForgeryToken]
         [HttpPost]
-        public ActionResult Register(User user)
+        public ActionResult Register(Models.Registration registration)
         {
+            registration.User.Languages.Add(new Language("English"));
+            registration.User.Interests.Add(new Interest("String content 1"));
+
             var client = new SMARestClient("UserService.svc");
-            User createdUser = client.Post<User>("users/", user);
+            User createdUser = client.Post<User>("users/", registration.User);
             return View();
         }
 
