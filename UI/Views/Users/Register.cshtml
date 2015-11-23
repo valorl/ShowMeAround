@@ -29,22 +29,27 @@
                 <h2 class="form-signin-heading">Register</h2>
 
                 @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", @placeholder = "First Name" })
-                @Html.ValidationMessageFor(model => model.FirstName)
+                <p class="help-block">@Html.ValidationMessageFor(model => model.FirstName)</p>
 
                 <p></p>
 
                 @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", @placeholder = "Last Name" })
-                @Html.ValidationMessageFor(model => model.LastName)
+                <p class="help-block">@Html.ValidationMessageFor(model => model.LastName)</p>
 
                 <p></p>
 
                 @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Email" })
-                @Html.ValidationMessageFor(model => model.Email)
+                <p class="help-block">@Html.ValidationMessageFor(model => model.Email)</p>
 
                 <p></p>
 
                 @Html.TextBoxFor(model => model.PwdHash, new { @class = "form-control", @placeholder = "Password", type = "password" })
-                @Html.ValidationMessageFor(model => model.PwdHash)
+                <p class="help-block">@Html.ValidationMessageFor(model => model.PwdHash)</p>
+
+                <p></p>
+
+                @Html.EditorFor(model => model.BirthDate, new { @class = "form-control datepicker", id = "datepicker", @placeholder = "BirthDate", type= "date" })
+                @Html.ValidationMessageFor(model => model.BirthDate)
 
                 <p></p>
                 <button class="btn btn-lg btn-primary btn-block btn-success" type="submit">Register</button>
