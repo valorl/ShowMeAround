@@ -24,6 +24,7 @@ namespace UI.Controllers
         [HttpGet]
         public ActionResult Register()
         {
+            var session = System.Web.HttpContext.Current.Session;
             return View();
         }
 
@@ -36,8 +37,20 @@ namespace UI.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult Login()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login (Session session)
+        {
+            var client = new SMARestClient("SessionService.svc");
+            Session newsession = client.Post<Session>("/login", session);
+
+            System.Web.HttpContext.Current.Session["anything"] = newsession.Token;
+
             return View();
         }
     }
