@@ -7,30 +7,29 @@ using System.Threading.Tasks;
 
 namespace DataAccess
 {
-    public class InterestsDA : IDataAccess<Interest>
+    public class LanguageDA : IDataAccess<Language>
     {
         private ShowMeAroundContext dbContext;
 
-        public InterestsDA()
+        public LanguageDA()
         {
             dbContext = new ShowMeAroundContext();
         }
 
-        public void Delete(Interest model)
+        public IEnumerable<Language> GetAll()
+        {
+            using (var tempCtx = new ShowMeAroundContext())
+            {
+                return tempCtx.Language.ToList();
+            }
+        }
+
+        public void Delete(Language model)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Interest> GetAll()
-        {
-            using (var tempCtx = new ShowMeAroundContext())
-            {
-                return tempCtx.Interest.ToList();
-            }
-
-        }
-
-        public void Insert(Interest model)
+        public void Insert(Language model)
         {
             throw new NotImplementedException();
         }
@@ -40,11 +39,14 @@ namespace DataAccess
             throw new NotImplementedException();
         }
 
-        public void Update(Interest model)
+        public void Update(Language model)
+        {
+            throw new NotImplementedException();
+        }
+
+        IEnumerable<Language> IDataAccess<Language>.GetAll()
         {
             throw new NotImplementedException();
         }
     }
 }
-
-    
