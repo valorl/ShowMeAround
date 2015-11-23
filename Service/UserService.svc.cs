@@ -18,6 +18,7 @@ namespace Service
         private UserDA userDA;
         private SessionDA sessionDA;
         private Authentication auth;
+        private InterestsDA interestsDA;
 
         public UserService()
         {
@@ -36,7 +37,11 @@ namespace Service
 
         }
 
-
+        public List<Interest> GetAllInterests()
+        {
+      
+            return interestsDA.GetAll().ToList();
+        }
 
         public User GetById(string id)
         {

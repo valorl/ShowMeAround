@@ -21,6 +21,9 @@ namespace Service
     //     POST - No action
     //     PUT - Update a specific user using their {id}
     //     DELETE - Delete a specific user using their {id}
+    // /interests:
+    //     GET - Return all interests
+
 
 
     [ServiceContract]
@@ -50,6 +53,11 @@ namespace Service
         [WebInvoke(Method="DELETE", UriTemplate = "/user/{id}/",
             RequestFormat = WebMessageFormat.Xml)]  
         void Delete(string id);
+
+        [OperationContract]
+        [WebGet(UriTemplate = "/interests/",
+           ResponseFormat = WebMessageFormat.Xml)]
+        List<Interest> GetAllInterests();
 
 
     }
