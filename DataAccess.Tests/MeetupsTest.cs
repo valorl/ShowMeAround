@@ -33,11 +33,24 @@ namespace DataAccess.Tests
 
         }
 
+        public void CleanUp()
+        {
+            var mDA = new MeetUpDA();
+            var mu = mDA.GetAll().Where(m => m.City == "New York").FirstOrDefault();
+            if (mu != null)
+            {.
+                mDA.Delete(mu);
+                mDA.SaveChanges();
+            }
+        }
+
+
+
         [TestMethod]
         public void MeetUp_FindTest()
         {
             var mDA = new MeetUpDA();
-            var meetup = mDA.GetAll().Where(m => m.City == "New York").SingleOrDefault();
+            var meetup = mDA.GetAll().Where(m => m.City == "New York").FirstOrDefault();
             Assert.IsNotNull(meetup);
         }
     }
