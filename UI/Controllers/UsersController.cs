@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Data;
 using UI.Helpers;
 using DataAccess;
+using System.Collections;
 
 namespace UI.Controllers
 {
@@ -24,6 +25,29 @@ namespace UI.Controllers
         [HttpGet]
         public ActionResult Register()
         {
+
+            //Languages
+            var client = new SMARestClient("UserService.svc");
+            var languageContent = client.Get<List<Language>>("languages/");
+            var languages = languageContent.ToList().Select(c => new SelectListItem
+            {
+                Text = c.Name,
+                Value = c.Name.ToString(),
+            }).ToList();
+
+            ViewBag.LanguageList = languages;
+
+            //Interest
+            var interestContent = client.Get<List<Interest>>("interests/");
+            var interests = interestContent.ToList().Select(c => new SelectListItem
+            {
+                Text = c.Name,
+                Value = c.Name.ToString(),
+            }).ToList();
+
+            ViewBag.InterestList = interests;
+
+
             var session = System.Web.HttpContext.Current.Session;
             return View();
         }
@@ -48,7 +72,7 @@ namespace UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login (Session session)
+        public ActionResult Login(Session session)
         {
             var client = new SMARestClient("SessionService.svc");
             Session newsession = client.Post<Session>("/login", session);

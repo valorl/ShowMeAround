@@ -14,5 +14,7 @@ namespace UI.Models
         public User User { get; set; }
         public Language Languages { get; set; }
         public Interest Interest { get; set; }
+        
+
     }
 }
