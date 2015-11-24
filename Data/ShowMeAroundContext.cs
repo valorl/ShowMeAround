@@ -11,6 +11,7 @@ namespace Data
             : base("name=ShowMeAroundContext")
         {
             //this.Configuration.ProxyCreationEnabled = false;
+            this.Configuration.ValidateOnSaveEnabled = false;
         }
 
         public DbSet<User> User { get; set; }

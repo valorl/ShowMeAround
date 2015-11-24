@@ -26,7 +26,6 @@ namespace UI.Controllers
         [HttpGet]
         public ActionResult Register()
         {
-
             //Languages
             var client = new SMARestClient("UserService.svc");
             var languageContent = client.Get<List<Language>>("languages/");
@@ -63,8 +62,10 @@ namespace UI.Controllers
         [HttpPost]
         public ActionResult Register(Models.Registration registration)
         {
-            registration.User.Languages.Add(new Language("English"));
+            //registration.User.Languages.Add(new Language("English"));
             registration.User.Interests.Add(new Interest("String content 1"));
+
+            registration.User.Languages = registration.LanguageContainer;
 
             var client = new SMARestClient("UserService.svc");
             User createdUser = client.Post<User>("users/", registration.User);
@@ -76,9 +77,8 @@ namespace UI.Controllers
             else
             {
                 TempData["successful_registration_message"] = "Your user account has been successfully created and you are now able to login!";
-                RedirectToAction("Login");
+                return RedirectToAction("Login");
             }
-            return View();
         }
 
         [HttpGet]

@@ -14,10 +14,13 @@ namespace UI.Models
         public User User { get; set; }
         public Language Languages { get; set; }
         public List<InterestModel> Interests { get; set; }
+        public List<Language> LanguageContainer { get; set; }
 
         public Registration()
         {
+            User = new User();
             Interests = new List<InterestModel>();
+            LanguageContainer = new List<Language>();
         }
     }
 

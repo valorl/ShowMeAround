@@ -147,7 +147,15 @@ namespace DataAccess
 
         public void SaveChanges()
         {
-            dbContext.SaveChanges();
+            try
+            {
+                dbContext.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            
         }
     }
 }

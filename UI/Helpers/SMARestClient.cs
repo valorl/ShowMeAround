@@ -44,7 +44,6 @@ namespace UI.Helpers
             req.RequestFormat = DataFormat.Xml;
             req.XmlSerializer = new XmlSerializer() { DateFormat = DATE_FORMAT };
             req.DateFormat = DATE_FORMAT;
-            xmlns_base = xmlns_base + typeof(T).Namespace;
             string xmlns = string.Concat(xmlns_base, typeof(T).Namespace);
             req.AddBody(model, xmlns);
             var response = client.Execute<T>(req);

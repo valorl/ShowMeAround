@@ -20,7 +20,12 @@ namespace DataAccess
         {
             using (var tempCtx = new ShowMeAroundContext())
             {
-                return tempCtx.Language.ToList();
+                var languages = tempCtx.Language.ToList();
+                foreach (var language in languages)
+                {
+                    language.Users = null;
+                }
+                return languages;
             }
         }
 

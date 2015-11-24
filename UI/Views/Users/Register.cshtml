@@ -46,8 +46,8 @@
                 <p class="help-block">@Html.ValidationMessageFor(model => model.User.BirthDate)</p>
 
                 <p>
-                    @Html.DropDownListFor(model => model.Languages, ViewBag.LanguageList as IEnumerable<SelectListItem>, new { @class = "form-control form-control-languages", id = "languageList",  })
-                    <input type="button" name="Add Language" value="Add" id="Button1" class="btn btn-list" onclick="addLanguageRow()" />
+                    @Html.DropDownListFor(model => model.Languages, ViewBag.LanguageList as IEnumerable<SelectListItem>, new { @class = "form-control form-control-languages", id = "languageList", })
+                    <input type="button" name="Add Language" value="Add" id="btnAddLanguage" class="btn btn-list" />
                 </p>
                 @Html.TextBoxFor(model => model.User.Languages, "languageSelected", new { @class = "form-control", id = "languageSelected" })<br />
                 <table>
@@ -65,31 +65,40 @@
     }
 </div>
 
-<script language="javascript" type="text/javascript">
-    function addLanguageRow() {
 
-        @{
-            Model.User.Languages.Add(new Data.Language());
-        }
-
-        var index = $("#languagesBody").children("tr").length;
-
-        var indexCell = "<td style='display:none'><input name='User.Languages.Index' type='hidden' value='" + index + "' /></td>";
-        var titleCell = "<td><input id='Languages_" + index + "__Name' name='User.Languages[" + index + "].Name' type='text' value='' /></td>";
-        var removeCell = "<td><input id='btnAddLanguage' type='button' value='Remove' onclick='removeRow(" + index + ");' /></td>";
-
-        var newRow = "<tr id='languagesRow" + index + "'>" + indexCell + titleCell + publishedCell + removeCell + "</tr>";
-        $("#tbBooks").append(newRow);
-    }
-
-    function removeRow(id) {
-        var controlToBeRemoved = "#languagesRow" + id;
-        $(controlToBeRemoved).remove();
-    }
-</script>
 
 
 @section Scripts {
+    @Scripts.Render()
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
+    @*@Scripts.Render("~/Scripts/registration_languages.js");*@
 
+    <script language="javascript" type="text/javascript">
+        function addLanguageRow() {
+
+            @{
+                Model.LanguageContainer.Add(new Data.Language());
+        }
+
+            var selectedLang = $('#languageList :selected').text();
+            var index = $("#languagesBody").children("tr").length;
+
+            var indexCell = "<td style='display:none'><input name='LanguageContainer.Index' type='hidden' value='" + index + "' /></td>";
+            var titleCell = "<td><input class='form-control' id='LanguageContainer_" + index + "__Name' name='LanguageContainer[" + index + "].Name' type='text' value='"
+                + selectedLang + "' readonly/></td>";
+
+            var removeCell = "<td><input id='btnRemoveLanguage' type='button' value='Remove' onclick='removeRow(" + index + ");' /></td>";
+
+            var newRow = "<tr id='languagesRow" + index + "'>" + indexCell + titleCell + removeCell + "</tr>";
+            $("#languagesBody").append(newRow);
+        }
+
+        function removeRow(id) {
+            var controlToBeRemoved = "#languagesRow" + id;
+            $(controlToBeRemoved).remove();
+        }
+
+        $("#btnAddLanguage").click(addLanguageRow);
+    </script>
 }
