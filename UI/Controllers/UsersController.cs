@@ -45,11 +45,16 @@ namespace UI.Controllers
                 Value = c.Name.ToString(),
             }).ToList();
 
-            ViewBag.InterestList = interests;
+            var vm = new Models.Registration();
+            
+            foreach (var item in interestContent)
+            {
+                vm.Interests.Add(new Models.InterestModel { Interest = item });
+            }
 
 
             var session = System.Web.HttpContext.Current.Session;
-            return View();
+            return View(vm);
         }
 
         // to handle form submission 

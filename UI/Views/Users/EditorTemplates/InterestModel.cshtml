@@ -1,0 +1,6 @@
+﻿@model UI.Models.InterestModel
+<p>
+    @Html.CheckBoxFor(x => x.IsSelected) 
+    @Html.HiddenFor(x => x.Interest.Name)
+    @Model.Interest.Name
+</p>
