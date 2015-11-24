@@ -7,63 +7,86 @@
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 
 <div class="container-forms">
-@using (Html.BeginForm("Register", "Users", FormMethod.Post, new { @class = "form-signin" }))
-{
-    @Html.ValidationSummary(true)
-    <fieldset>
-        @*<div class="container-forms">
+    @using (Html.BeginForm("Register", "Users", FormMethod.Post, new { @class = "form-signin" }))
+    {
+        @Html.ValidationSummary(true)
+        <fieldset>
+            @*<div class="container-forms">
 
-                <form class="form-signin"></form>
-            </div>*@
+                    <form class="form-signin"></form>
+                </div>*@
 
-        @*<div class="container-forms">*@
-        @Html.AntiForgeryToken()
-        @if (ViewBag.Message != null)
+            @*<div class="container-forms">*@
+            @Html.AntiForgeryToken()
+            @if (ViewBag.Message != null)
                 {
-            <div style="border:solid 1px green">
-                @ViewBag.Message
-            </div>
-        }
-        <form class="form-signin">
-            <h2 class="form-signin-heading">Register</h2>
+                <div style="border:solid 1px green">
+                    @ViewBag.Message
+                </div>
+            }
+            <form class="form-signin">
+                <h2 class="form-signin-heading">Register</h2>
 
-            @Html.TextBoxFor(model => model.User.FirstName, new { @class = "form-control", @placeholder = "First Name" })
-            <p class="help-block">@Html.ValidationMessageFor(model => model.User.FirstName)</p>
+                @Html.TextBoxFor(model => model.User.FirstName, new { @class = "form-control", @placeholder = "First Name" })
+                <p class="help-block">@Html.ValidationMessageFor(model => model.User.FirstName)</p>
 
-            @Html.TextBoxFor(model => model.User.LastName, new { @class = "form-control", @placeholder = "Last Name" })
-            <p class="help-block">@Html.ValidationMessageFor(model => model.User.LastName)</p>
+                @Html.TextBoxFor(model => model.User.LastName, new { @class = "form-control", @placeholder = "Last Name" })
+                <p class="help-block">@Html.ValidationMessageFor(model => model.User.LastName)</p>
 
-            @Html.TextBoxFor(model => model.User.Email, new { @class = "form-control", @placeholder = "Email" })
-            <p class="help-block">@Html.ValidationMessageFor(model => model.User.Email)</p>
+                @Html.TextBoxFor(model => model.User.Email, new { @class = "form-control", @placeholder = "Email" })
+                <p class="help-block">@Html.ValidationMessageFor(model => model.User.Email)</p>
 
-            @Html.TextBoxFor(model => model.User.PwdHash, new { @class = "form-control", @placeholder = "Password", type = "password" })
-            <p class="help-block">@Html.ValidationMessageFor(model => model.User.PwdHash)</p>
+                @Html.TextBoxFor(model => model.User.PwdHash, new { @class = "form-control", @placeholder = "Password", type = "password" })
+                <p class="help-block">@Html.ValidationMessageFor(model => model.User.PwdHash)</p>
 
-            @Html.TextBoxFor(model => model.User.ConfirmPassword, new { @class = "form-control", @placeholder = "Confirm Password", type = "password" })
-            <p class="help-block">@Html.ValidationMessageFor(model => model.User.ConfirmPassword)</p>
+                @Html.TextBoxFor(model => model.User.ConfirmPassword, new { @class = "form-control", @placeholder = "Confirm Password", type = "password" })
+                <p class="help-block">@Html.ValidationMessageFor(model => model.User.ConfirmPassword)</p>
 
-            @Html.EditorFor(model => model.User.BirthDate, new { htmlAttributes = new { @class = "form-control datepicker", id = "datepicker", @placeholder = "BirthDate", type = "date" } })
-            <p class="help-block">@Html.ValidationMessageFor(model => model.User.BirthDate)</p>
+                @Html.EditorFor(model => model.User.BirthDate, new { htmlAttributes = new { @class = "form-control datepicker", id = "datepicker", @placeholder = "BirthDate", type = "date" } })
+                <p class="help-block">@Html.ValidationMessageFor(model => model.User.BirthDate)</p>
 
-            <p>
-                @Html.DropDownListFor(model => model.Languages, ViewBag.LanguageList as IEnumerable<SelectListItem>, new { @class = "form-control form-control-languages", id = "languageList" })
-                <input type="button" name="Add Language" value="Add" id="Button1" class="btn btn-list" onclick="AddtoList()"/>
-            </p>
-            @Html.TextBoxFor(model => model.User.Languages, "languageSelected", new { @class = "form-control", id = "languageSelected" })<br />
-            <ul id="languagelist">
+                <p>
+                    @Html.DropDownListFor(model => model.Languages, ViewBag.LanguageList as IEnumerable<SelectListItem>, new { @class = "form-control form-control-languages", id = "languageList",  })
+                    <input type="button" name="Add Language" value="Add" id="Button1" class="btn btn-list" onclick="addLanguageRow()" />
+                </p>
+                @Html.TextBoxFor(model => model.User.Languages, "languageSelected", new { @class = "form-control", id = "languageSelected" })<br />
+                <table>
+                    <tbody id="languagesBody"></tbody>
+                </table>
+                @Html.LabelFor(model => model.Interests, new { @class = "control-label" })
+                <div class="form-control">
+                    @Html.EditorFor(m => m.Interests, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
 
-            </ul>
-            @Html.LabelFor(model => model.Interests, new { @class = "control-label" })
-            <div class="form-control" >
-                @Html.EditorFor(m => m.Interests, new { htmlAttributes = new { @class = "form-control" } })
-            </div>   
-
-            <button class="btn btn-lg btn-primary btn-block btn-success" type="submit">Register</button>
-        </form>
-        @*</div>*@
-    </fieldset>
-}
+                <button class="btn btn-lg btn-primary btn-block btn-success" type="submit">Register</button>
+            </form>
+            @*</div>*@
+        </fieldset>
+    }
 </div>
+
+<script language="javascript" type="text/javascript">
+    function addLanguageRow() {
+
+        @{
+            Model.User.Languages.Add(new Data.Language());
+        }
+
+        var index = $("#languagesBody").children("tr").length;
+
+        var indexCell = "<td style='display:none'><input name='User.Languages.Index' type='hidden' value='" + index + "' /></td>";
+        var titleCell = "<td><input id='Languages_" + index + "__Name' name='User.Languages[" + index + "].Name' type='text' value='' /></td>";
+        var removeCell = "<td><input id='btnAddLanguage' type='button' value='Remove' onclick='removeRow(" + index + ");' /></td>";
+
+        var newRow = "<tr id='languagesRow" + index + "'>" + indexCell + titleCell + publishedCell + removeCell + "</tr>";
+        $("#tbBooks").append(newRow);
+    }
+
+    function removeRow(id) {
+        var controlToBeRemoved = "#languagesRow" + id;
+        $(controlToBeRemoved).remove();
+    }
+</script>
 
 
 @section Scripts {
