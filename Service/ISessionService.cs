@@ -25,7 +25,11 @@ namespace Service
 
         [OperationContract]
         [WebInvoke(Method = "POST", UriTemplate = "/login", RequestFormat = WebMessageFormat.Xml)]
-        Session Login(LoginWrapper credentials);
+        Session Login(LoginCredentials credentials);
+
+        [OperationContract]
+        [WebGet(UriTemplate = "/session/{token}", RequestFormat = WebMessageFormat.Xml)]
+        Session GetOneByToken(string token);
 
         [OperationContract]
         [WebInvoke(Method = "DELETE", UriTemplate = "/session/{userid}", RequestFormat = WebMessageFormat.Xml)]

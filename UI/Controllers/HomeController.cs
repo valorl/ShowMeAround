@@ -15,7 +15,7 @@ namespace UI.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = $"Your token is {Session["auth_token"]}: ";
 
             return View();
         }

@@ -71,7 +71,12 @@ namespace Service.Utils
                 sessionDA.SaveChanges();
                 return false;
             }
-            else return true;
+            else
+            {
+                session.TimeStamp = DateTime.Now;
+                sessionDA.Update(session);
+                return true;
+            }
         }
 
         public bool ValidateCredentials(string email, string password)

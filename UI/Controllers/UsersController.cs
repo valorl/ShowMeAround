@@ -7,6 +7,7 @@ using Data;
 using UI.Helpers;
 using DataAccess;
 using System.Collections;
+using Data.Utils;
 
 namespace UI.Controllers
 {
@@ -67,24 +68,43 @@ namespace UI.Controllers
 
             var client = new SMARestClient("UserService.svc");
             User createdUser = client.Post<User>("users/", registration.User);
+            if(createdUser == null)
+            {
+                ViewBag.Message = "User registration failed. Please try again later.";
+                return View();
+            }
+            else
+            {
+                TempData["successful_registration_message"] = "Your user account has been successfully created and you are now able to login!";
+                RedirectToAction("Login");
+            }
             return View();
         }
 
         [HttpGet]
         public ActionResult Login()
         {
+            ViewBag.Message = TempData["successful_registration_message"];
             return View();
         }
 
         [HttpPost]
-        public ActionResult Login(Session session)
+        public ActionResult Login(LoginCredentials credentials)
         {
             var client = new SMARestClient("SessionService.svc");
-            Session newsession = client.Post<Session>("/login", session);
+            Session newSession = client.Post<LoginCredentials, Session>("/login", credentials);
 
-            System.Web.HttpContext.Current.Session["anything"] = newsession.Token;
-
-            return View();
+            if(newSession == null)
+            {
+                ViewBag.Message = "Login failed.";
+                return View();
+            }
+            else
+            {
+                System.Web.HttpContext.Current.Session["auth_token"] = newSession.Token;
+                return RedirectToAction("Index", "Dashboard");
+            }
+            
         }
     }
 }

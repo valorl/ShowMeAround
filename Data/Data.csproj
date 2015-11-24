@@ -95,7 +95,7 @@
     <Compile Include="Session.cs" />
     <Compile Include="ShowMeAroundContext.cs" />
     <Compile Include="User.cs" />
-    <Compile Include="Utils\LoginWrapper.cs" />
+    <Compile Include="Utils\LoginCredentials.cs" />
     <Compile Include="Utils\PasswordHasher.cs" />
   </ItemGroup>
   <ItemGroup>

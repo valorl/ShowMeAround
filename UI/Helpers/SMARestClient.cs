@@ -6,6 +6,7 @@ using RestSharp;
 using Data;
 using System.Runtime.Serialization;
 using RestSharp.Serializers;
+using RestSharp.Deserializers;
 
 namespace UI.Helpers
 {
@@ -15,7 +16,7 @@ namespace UI.Helpers
 
     public class SMARestClient
     {
-        private const string XMLNS = "http://schemas.datacontract.org/2004/07/Data";
+        private string xmlns_base = "http://schemas.datacontract.org/2004/07/";
         private const string DATE_FORMAT = "yyyy-MM-ddTHH:mm:ss";
         private RestClient client;
         private RestRequest req;
@@ -43,11 +44,31 @@ namespace UI.Helpers
             req.RequestFormat = DataFormat.Xml;
             req.XmlSerializer = new XmlSerializer() { DateFormat = DATE_FORMAT };
             req.DateFormat = DATE_FORMAT;
-            req.AddBody(model, XMLNS);
+            xmlns_base = xmlns_base + typeof(T).Namespace;
+            string xmlns = string.Concat(xmlns_base, typeof(T).Namespace);
+            req.AddBody(model, xmlns);
             var response = client.Execute<T>(req);
 
             if (response.Data == null) throw new Exception($"Post request on endpoint {endpoint} failed.");
             return response.Data;
+        }
+
+        public V Post<T,V>(string endpoint, T model) 
+            where T : new() 
+            where V : new()
+        {
+            var req = new RestRequest(endpoint, Method.POST);
+            req.RequestFormat = DataFormat.Xml;
+            req.XmlSerializer = new XmlSerializer() { DateFormat = DATE_FORMAT };
+            req.DateFormat = DATE_FORMAT;
+            string xmlns = string.Concat(xmlns_base, typeof(T).Namespace);
+            req.AddBody(model, xmlns);
+            var response = client.Execute(req);
+
+            V objResponse = new XmlDeserializer().Deserialize<V>(response);
+            if (objResponse == null) throw new Exception($"Post request on endpoint {endpoint} failed.");
+            return objResponse;
+            
         }
 
         public T Put<T>(string endpoint, T model) where T : new()
@@ -55,7 +76,7 @@ namespace UI.Helpers
             var req = new RestRequest(endpoint, Method.PUT);
             req.RequestFormat = DataFormat.Xml;
             //req.XmlSerializer = new DataContractSerializer(typeof(T));
-            req.AddBody(model, XMLNS);
+            req.AddBody(model, xmlns_base);
             var response = client.Execute<T>(req);
 
             if (response.Data == null) throw new Exception($"Put request on endpoint {endpoint} failed.");

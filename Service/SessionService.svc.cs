@@ -25,7 +25,7 @@ namespace Service
             auth = new Authentication();
 
         }
-        public Session Login(LoginWrapper credentials)
+        public Session Login(LoginCredentials credentials)
         {
             if (auth.ValidateCredentials(credentials.Email, credentials.Pwd))
             {
@@ -38,6 +38,11 @@ namespace Service
             {
                 throw new WebFaultException(System.Net.HttpStatusCode.Unauthorized);
             }
+        }
+
+        public Session GetOneByToken(string token)
+        {
+            return sessionDA.GetOneByToken(token);
         }
 
         public void Delete(string userid)
