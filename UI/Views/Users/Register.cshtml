@@ -26,39 +26,40 @@
             }
             <form class="form-signin">
                 <h2 class="form-signin-heading">Register</h2>
+                <div class="col-md-6">
+                    @Html.TextBoxFor(model => model.User.FirstName, new { @class = "form-control", @placeholder = "First Name" })
+                    <p class="help-block">@Html.ValidationMessageFor(model => model.User.FirstName)</p>
 
-                @Html.TextBoxFor(model => model.User.FirstName, new { @class = "form-control", @placeholder = "First Name" })
-                <p class="help-block">@Html.ValidationMessageFor(model => model.User.FirstName)</p>
+                    @Html.TextBoxFor(model => model.User.LastName, new { @class = "form-control", @placeholder = "Last Name" })
+                    <p class="help-block">@Html.ValidationMessageFor(model => model.User.LastName)</p>
 
-                @Html.TextBoxFor(model => model.User.LastName, new { @class = "form-control", @placeholder = "Last Name" })
-                <p class="help-block">@Html.ValidationMessageFor(model => model.User.LastName)</p>
+                    @Html.TextBoxFor(model => model.User.Email, new { @class = "form-control", @placeholder = "Email" })
+                    <p class="help-block">@Html.ValidationMessageFor(model => model.User.Email)</p>
 
-                @Html.TextBoxFor(model => model.User.Email, new { @class = "form-control", @placeholder = "Email" })
-                <p class="help-block">@Html.ValidationMessageFor(model => model.User.Email)</p>
+                    @Html.TextBoxFor(model => model.User.PwdHash, new { @class = "form-control", @placeholder = "Password", type = "password" })
+                    <p class="help-block">@Html.ValidationMessageFor(model => model.User.PwdHash)</p>
 
-                @Html.TextBoxFor(model => model.User.PwdHash, new { @class = "form-control", @placeholder = "Password", type = "password" })
-                <p class="help-block">@Html.ValidationMessageFor(model => model.User.PwdHash)</p>
+                    @Html.TextBoxFor(model => model.User.ConfirmPassword, new { @class = "form-control", @placeholder = "Confirm Password", type = "password" })
+                    <p class="help-block">@Html.ValidationMessageFor(model => model.User.ConfirmPassword)</p>
 
-                @Html.TextBoxFor(model => model.User.ConfirmPassword, new { @class = "form-control", @placeholder = "Confirm Password", type = "password" })
-                <p class="help-block">@Html.ValidationMessageFor(model => model.User.ConfirmPassword)</p>
-
-                @Html.EditorFor(model => model.User.BirthDate, new { htmlAttributes = new { @class = "form-control datepicker", id = "datepicker", @placeholder = "BirthDate", type = "date" } })
-                <p class="help-block">@Html.ValidationMessageFor(model => model.User.BirthDate)</p>
-
-                <p>
-                    @Html.DropDownListFor(model => model.Languages, ViewBag.LanguageList as IEnumerable<SelectListItem>, new { @class = "form-control form-control-languages", id = "languageList", })
-                    <input type="button" name="Add Language" value="Add" id="btnAddLanguage" class="btn btn-list" />
-                </p>
-                @Html.TextBoxFor(model => model.User.Languages, "languageSelected", new { @class = "form-control", id = "languageSelected" })<br />
-                <table>
-                    <tbody id="languagesBody"></tbody>
-                </table>
-                @Html.LabelFor(model => model.Interests, new { @class = "control-label" })
-                <div class="form-control">
-                    @Html.EditorFor(m => m.Interests, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.User.BirthDate, new { htmlAttributes = new { @class = "form-control datepicker", id = "datepicker", @placeholder = "BirthDate", type = "date" } })
+                    <p class="help-block">@Html.ValidationMessageFor(model => model.User.BirthDate)</p>
                 </div>
+                <div class="col-md-6">
+                    <p>
+                        @Html.DropDownListFor(model => model.Languages, ViewBag.LanguageList as IEnumerable<SelectListItem>, new { @class = "form-control form-control-languages", id = "languageList", })
+                        <input type="button" name="Add Language" value="Add" id="btnAddLanguage" class="btn btn-list" />
+                    </p>
+                    <table class="table">
+                        <tbody id="languagesBody"></tbody>
+                    </table>
+                    @Html.LabelFor(model => model.Interests, new { @class = "control-label" })
+                    <div class="form-control">
+                        @Html.EditorFor(m => m.Interests, new { htmlAttributes = new { @class = "form-control " } })
+                    </div>
 
-                <button class="btn btn-lg btn-primary btn-block btn-success" type="submit">Register</button>
+                    <button class="btn btn-lg btn-primary btn-block btn-success" type="submit">Register</button>
+                </div>
             </form>
             @*</div>*@
         </fieldset>
@@ -70,6 +71,7 @@
 
 @section Scripts {
     @Scripts.Render()
+    @Scripts.Render("~/Content/css")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
     @*@Scripts.Render("~/Scripts/registration_languages.js");*@
@@ -85,13 +87,20 @@
             var index = $("#languagesBody").children("tr").length;
 
             var indexCell = "<td style='display:none'><input name='LanguageContainer.Index' type='hidden' value='" + index + "' /></td>";
-            var titleCell = "<td><input class='form-control' id='LanguageContainer_" + index + "__Name' name='LanguageContainer[" + index + "].Name' type='text' value='"
-                + selectedLang + "' readonly/></td>";
+            var titleCell = "<td><input class ='form-control registration-listed-language' id='LanguageContainer_" + index + "__Name' name='LanguageContainer[" + index + "].Name' type='text' value='"
+                + selectedLang + "' style='cursor: default; background-color: transparent; border:none; box-shadow:none;' readonly/></td>";
 
-            var removeCell = "<td><input id='btnRemoveLanguage' type='button' value='Remove' onclick='removeRow(" + index + ");' /></td>";
+            //var removeCell = "<td><input id='btnRemoveLanguage' type='button' value='Remove' onclick='removeRow(" + index + ");' /></td>";
+            var removeCell = "<td><button class='btn btn-danger' type='button' onclick='removeRow("
+                + index + ")'><span class='glyphicon glyphicon-trash'></span></button></td>";
 
+            //if ($("input[value~='" + selectedLang + "']").length > 0) {
+            //var htmlString = $(".table").html();
+            //if(htmlString.toLowerCase().indexOf(selectedLang.toLowerCase()) > -1) {
             var newRow = "<tr id='languagesRow" + index + "'>" + indexCell + titleCell + removeCell + "</tr>";
             $("#languagesBody").append(newRow);
+
+
         }
 
         function removeRow(id) {

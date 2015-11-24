@@ -20,7 +20,12 @@ namespace DataAccess
         {
             using (var tempCtx = new ShowMeAroundContext())
             {
-                return tempCtx.Interest.ToList();
+                var interests = tempCtx.Interest.ToList();
+                foreach (var interest in interests)
+                {
+                    interest.Users = null;
+                }
+                return interests;
             }
         }
         public void Delete(Interest model)

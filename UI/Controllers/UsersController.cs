@@ -63,9 +63,16 @@ namespace UI.Controllers
         public ActionResult Register(Models.Registration registration)
         {
             //registration.User.Languages.Add(new Language("English"));
-            registration.User.Interests.Add(new Interest("String content 1"));
+            //registration.User.Interests.Add(new Interest("String content 1"));
+
+            var selectedInterests = new List<Interest>();
+            foreach (var model in registration.Interests)
+            {
+                if (model.IsSelected) selectedInterests.Add(model.Interest);
+            }
 
             registration.User.Languages = registration.LanguageContainer;
+            registration.User.Interests = selectedInterests;
 
             var client = new SMARestClient("UserService.svc");
             User createdUser = client.Post<User>("users/", registration.User);
@@ -85,6 +92,10 @@ namespace UI.Controllers
         public ActionResult Login()
         {
             ViewBag.Message = TempData["successful_registration_message"];
+            if(ViewBag.Message.Length > 0)
+            {
+                ViewBag.MessageClass = "text-success";
+            }
             return View();
         }
 
