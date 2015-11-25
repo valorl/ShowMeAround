@@ -34,6 +34,8 @@ namespace Service
 
         public MeetUp Create(MeetUp meetup)
         {
+            // User u = auth.Authorize(request)
+            // if(u.Id != meetup.Traveler.Id) throw 401
             meetUpDA.Insert(meetup);
             meetUpDA.SaveChanges();
             return meetUpDA.GetOneByID(meetup.Id);
