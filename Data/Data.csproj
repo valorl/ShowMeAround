@@ -116,6 +116,8 @@
     <Compile Include="ShowMeAroundContext.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Utils\LoginCredentials.cs" />
+    <Compile Include="Utils\Match.cs" />
+    <Compile Include="Utils\MatchingProvider.cs" />
     <Compile Include="Utils\PasswordHasher.cs" />
   </ItemGroup>
   <ItemGroup>

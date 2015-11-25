@@ -107,15 +107,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="MatchingService.svc" />
     <Content Include="MeetUpService.svc" />
     <Content Include="SessionService.svc" />
     <Content Include="UserService.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IMatchingService.cs" />
     <Compile Include="IMeetUpService.cs" />
     <Compile Include="ISessionService.cs" />
     <Compile Include="IUserService.cs" />
+    <Compile Include="MatchingService.svc.cs">
+      <DependentUpon>MatchingService.svc</DependentUpon>
+    </Compile>
     <Compile Include="MeetUpService.svc.cs">
       <DependentUpon>MeetUpService.svc</DependentUpon>
     </Compile>
@@ -127,6 +132,7 @@
       <DependentUpon>UserService.svc</DependentUpon>
     </Compile>
     <Compile Include="Utils\Authentication.cs" />
+    <Compile Include="Utils\MatchingProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
