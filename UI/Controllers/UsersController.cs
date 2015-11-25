@@ -92,7 +92,7 @@ namespace UI.Controllers
         public ActionResult Login()
         {
             ViewBag.Message = TempData["successful_registration_message"];
-            if(ViewBag.Message.Length > 0)
+            if(ViewBag.Message != null && ViewBag.Message.Length > 0)
             {
                 ViewBag.MessageClass = "text-success";
             }

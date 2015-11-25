@@ -11,8 +11,12 @@ namespace UI.Controllers
         // GET: Dashboard
         public ActionResult Index()
         {
-            
+            ViewBag.Message = Session["auth_token"];
             return View();
+        }
+        public ActionResult Logout()
+        {
+            return RedirectToAction("Index", "Home");
         }
     }
 }
