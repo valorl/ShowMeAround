@@ -44,6 +44,9 @@
 
                     @Html.EditorFor(model => model.User.BirthDate, new { htmlAttributes = new { @class = "form-control datepicker", id = "datepicker", @placeholder = "BirthDate", type = "date" } })
                     <p class="help-block">@Html.ValidationMessageFor(model => model.User.BirthDate)</p>
+
+                    @Html.EnumDropDownListFor(model => model.User.Gender, new { @class = "form-control" })
+                    <p class="help-block">@Html.ValidationMessageFor(model => model.User.Gender)</p>
                 </div>
                 <div class="col-md-6">
                     <p>
@@ -59,6 +62,7 @@
                     </div>
 
                     <button class="btn btn-lg btn-primary btn-block btn-success" type="submit">Register</button>
+
                 </div>
             </form>
             @*</div>*@

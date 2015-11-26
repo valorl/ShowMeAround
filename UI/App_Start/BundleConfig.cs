@@ -47,7 +47,8 @@ namespace UI
                         "~/Content/bootstrap.css",
                         "~/Content/show-me-around.css",
                         "~/Content/datepicker.min.css",
-                        "~/Content/jquery-ui.theme.css"));
+                        "~/Content/jquery-ui.theme.css",
+                        "~/Content/circle.css"));
         }
     }
 }
