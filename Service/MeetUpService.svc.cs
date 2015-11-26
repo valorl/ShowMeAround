@@ -7,6 +7,7 @@ using System.Text;
 using Data;
 using DataAccess;
 using System.ServiceModel.Web;
+using Service.Utils;
 
 namespace Service
 {
@@ -15,6 +16,8 @@ namespace Service
     public class MeetUpService : IMeetUpService
     {
         private MeetUpDA meetUpDA;
+        private SessionDA sessionDA;
+        private Authentication auth;
 
         public MeetUpService()
         {
@@ -34,6 +37,9 @@ namespace Service
 
         public MeetUp Create(MeetUp meetup)
         {
+            User authUser = auth.Authorize(WebOperationContext.Current.IncomingRequest);
+            if (authUser.Id != meetup.Traveler.Id) throw new WebFaultException(System.Net.HttpStatusCode.Unauthorized);
+
             // User u = auth.Authorize(request)
             // if(u.Id != meetup.Traveler.Id) throw 401
             meetUpDA.Insert(meetup);
