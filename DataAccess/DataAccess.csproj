@@ -70,6 +70,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CityDA.cs" />
+    <Compile Include="CountryDA.cs" />
     <Compile Include="IDataAccess.cs" />
     <Compile Include="InterestDA.cs" />
     <Compile Include="LanguageDA.cs" />
