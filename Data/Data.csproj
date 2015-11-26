@@ -71,6 +71,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="City.cs" />
+    <Compile Include="Country.cs" />
     <Compile Include="Interest.cs" />
     <Compile Include="Language.cs" />
     <Compile Include="MeetUp.cs" />
