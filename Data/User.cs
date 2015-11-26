@@ -87,7 +87,7 @@ namespace Data
         [DataMember]
         public Genders Gender { get; set; }
 
-        [Required]
+        //[Required]
         [DataMember]
         public City City { get; set; }
 
