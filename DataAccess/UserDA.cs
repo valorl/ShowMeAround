@@ -83,7 +83,6 @@ namespace DataAccess
                     }
                 }
 
-
                 if (model.Interests != null)
                 {
                     foreach (var interest in model.Interests)
@@ -94,6 +93,12 @@ namespace DataAccess
                             dbContext.Entry(interest).State = System.Data.Entity.EntityState.Unchanged;
                         }
                     }
+                }
+
+                City dbCity = tempCtx.City.Find(model.City.Name);
+                if(dbCity != null)
+                {
+                    dbContext.Entry(model.City).State = System.Data.Entity.EntityState.Unchanged;
                 }
             }
 

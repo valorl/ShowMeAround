@@ -20,10 +20,10 @@ namespace Data
             this.Interests = new List<Interest>();
         }
 
-        public enum GenderEnum
+        public enum Genders
         {
-            Male,
-            Female
+            Male = 0,
+            Female = 1
         }
 
         [Key]
@@ -85,7 +85,11 @@ namespace Data
 
         [Required]
         [DataMember]
-        public GenderEnum Gender { get; set; }
+        public Genders Gender { get; set; }
+
+        [Required]
+        [DataMember]
+        public City City { get; set; }
 
 
         public void AddLanguage(Language language)
