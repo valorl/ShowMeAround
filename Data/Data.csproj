@@ -112,6 +112,14 @@
     <Compile Include="Migrations\201511211452408_21-11-2015.Designer.cs">
       <DependentUpon>201511211452408_21-11-2015.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511261108568_Countries_Cities_UserCity.cs" />
+    <Compile Include="Migrations\201511261108568_Countries_Cities_UserCity.Designer.cs">
+      <DependentUpon>201511261108568_Countries_Cities_UserCity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511261114369_Countries_Cities_UserCity_fix.cs" />
+    <Compile Include="Migrations\201511261114369_Countries_Cities_UserCity_fix.Designer.cs">
+      <DependentUpon>201511261114369_Countries_Cities_UserCity_fix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Session.cs" />
@@ -155,6 +163,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511211452408_21-11-2015.resx">
       <DependentUpon>201511211452408_21-11-2015.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511261108568_Countries_Cities_UserCity.resx">
+      <DependentUpon>201511261108568_Countries_Cities_UserCity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511261114369_Countries_Cities_UserCity_fix.resx">
+      <DependentUpon>201511261114369_Countries_Cities_UserCity_fix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

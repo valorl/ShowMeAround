@@ -104,6 +104,7 @@ namespace UI.Controllers
         {
             var client = new SMARestClient("SessionService.svc");
             Session newSession = client.Post<LoginCredentials, Session>("/login", credentials);
+             
 
             if(newSession == null)
             {
