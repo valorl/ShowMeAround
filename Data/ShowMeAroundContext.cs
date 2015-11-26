@@ -19,6 +19,8 @@ namespace Data
         public DbSet<Language> Language { get; set; }
         public DbSet<MeetUp> MeetUp { get; set; }
         public DbSet<Session> Session { get; set; }
+        public DbSet<Country> Country { get; set; }
+        public DbSet<City> City { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

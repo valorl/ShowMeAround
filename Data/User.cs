@@ -20,6 +20,12 @@ namespace Data
             this.Interests = new List<Interest>();
         }
 
+        public enum Genders
+        {
+            Male = 0,
+            Female = 1
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [DataMember(Order = 0)]
@@ -66,6 +72,7 @@ namespace Data
         [Column(TypeName = "varchar(MAX)")]
         [DataMember(Order = 7)]
         public string PwdHash { get; set; }
+
         [Column(TypeName = "varchar(MAX)")]
         [DataMember(Order = 8)]
         public string PwDSalt { get; set; }
@@ -75,6 +82,14 @@ namespace Data
         [Display(Name = "Confirm password")]
         [Compare("PwdHash", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [DataMember]
+        public Genders Gender { get; set; }
+
+        [Required]
+        [DataMember]
+        public City City { get; set; }
 
 
         public void AddLanguage(Language language)

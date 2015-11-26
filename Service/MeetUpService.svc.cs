@@ -48,6 +48,9 @@ namespace Service
 
         public MeetUp Update(string id, MeetUp meetUp)
         {
+            User authUser = auth.Authorize(WebOperationContext.Current.IncomingRequest);
+            if (authUser.Id != meetUp.Traveler.Id) throw new WebFaultException(System.Net.HttpStatusCode.Unauthorized);
+
             meetUp.Id = Convert.ToInt32(id);
             meetUpDA.Update(meetUp);
             meetUpDA.SaveChanges();
