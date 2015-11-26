@@ -249,7 +249,7 @@
     <Content Include="Views\Users\EditorTemplates\InterestModel.cshtml" />
     <Content Include="Views\Shared\_DashboardLayout.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
-    <Content Include="Views\Matches\Matching.cshtml" />
+    <Content Include="Views\Matching\Matching.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

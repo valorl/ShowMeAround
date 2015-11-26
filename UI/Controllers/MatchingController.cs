@@ -18,11 +18,11 @@ namespace UI.Controllers
 
         public ActionResult Matching()
         {
-            var client = new SMARestClient("UserService.svc");
-            var matchesContent = client.Get<List<Match>>("matches/");
-            var matches = matchesContent.ToList();
+            //var client = new SMARestClient("UserService.svc");
+            //var matchesContent = client.Get<List<Match>>("matches/");
+            //var matches = matchesContent.ToList();
 
-            ViewBag.MatchesList = matchesContent;
+            //ViewBag.MatchesList = matchesContent;
             return View();
         }
     }
