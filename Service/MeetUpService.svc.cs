@@ -22,6 +22,8 @@ namespace Service
         public MeetUpService()
         {
             meetUpDA = new MeetUpDA();
+            sessionDA = new SessionDA();
+            auth = new Authentication();
         }
         public List<MeetUp> GetAll()
         {
