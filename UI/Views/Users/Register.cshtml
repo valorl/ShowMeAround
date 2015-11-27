@@ -49,24 +49,33 @@
                     <p class="help-block">@Html.ValidationMessageFor(model => model.User.Gender)</p>
                 </div>
                 <div class="col-md-6">
+                    @*<p>
+                            @Html.DropDownListFor(model => model.Languages, ViewBag.LanguageList as IEnumerable<SelectListItem>, new { @class = "form-control form-control-languages", id = "languageList", })
+                            <input type="button" name="Add Language" value="Add" id="btnAddLanguage" class="btn btn-list" />
+                        </p>
+                        @*<table class="table">
+                            <tbody id="languagesBody"></tbody>
+                        </table>*@
+
                     <p>
                         @Html.DropDownListFor(model => model.Languages, ViewBag.LanguageList as IEnumerable<SelectListItem>, new { @class = "form-control form-control-languages", id = "languageList", })
-                        <input type="button" name="Add Language" value="Add" id="btnAddLanguage" class="btn btn-list" />
-                    </p>
-                    <table class="table">
-                        <tbody id="languagesBody"></tbody>
-                    </table>
-                    @Html.LabelFor(model => model.Interests, new { @class = "control-label" })
-                    <div class="form-control">
-                        @Html.EditorFor(m => m.Interests, new { htmlAttributes = new { @class = "form-control " } })
-                    </div>
+                    <input type="button" value="Add" class="btn btn-list" id="btnAddLanguage" />
+                </p>
+                <table class="table" id="languagesBody">
+                    <tr></tr>
+                </table>
 
-                    <button class="btn btn-lg btn-primary btn-block btn-success" type="submit">Register</button>
-
+                @Html.LabelFor(model => model.Interests, new { @class = "control-label" })
+                <div class="form-control">
+                    @Html.EditorFor(m => m.Interests, new { htmlAttributes = new { @class = "form-control " } })
                 </div>
-            </form>
-            @*</div>*@
-        </fieldset>
+
+                <button class="btn btn-lg btn-primary btn-block btn-success" type="submit">Register</button>
+
+            </div>
+        </form>
+        @*</div>*@
+    </fieldset>
     }
 </div>
 
@@ -81,37 +90,72 @@
     @*@Scripts.Render("~/Scripts/registration_languages.js");*@
 
     <script language="javascript" type="text/javascript">
+
+        var addedLanguages = [];
+        var i = $("#languagesBody").children("tr").length;
         function addLanguageRow() {
 
             @{
                 Model.LanguageContainer.Add(new Data.Language());
-        }
+            }
 
-            var selectedLang = $('#languageList :selected').text();
-            var index = $("#languagesBody").children("tr").length;
+            var td_language = $('#languageList :selected').text();
+            var index = $.inArray(td_language, addedLanguages);
 
-            var indexCell = "<td style='display:none'><input name='LanguageContainer.Index' type='hidden' value='" + index + "' /></td>";
-            var titleCell = "<td><input class ='form-control registration-listed-language' id='LanguageContainer_" + index + "__Name' name='LanguageContainer[" + index + "].Name' type='text' value='"
-                + selectedLang + "' style='cursor: default; background-color: transparent; border:none; box-shadow:none;' readonly/></td>";
-
-            //var removeCell = "<td><input id='btnRemoveLanguage' type='button' value='Remove' onclick='removeRow(" + index + ");' /></td>";
+            var indexCell = "<td style='display:none'><input name='LanguageContainer.Index' type='hidden' value='" + i + "' /></td>";
+            var titleCell = "<td><input class ='form-control registration-listed-language' id='LanguageContainer_" + i + "__Name' name='LanguageContainer[" + i + "].Name' type='text' value='"
+                + td_language + "' style='cursor: default; background-color: transparent; border:none; box-shadow:none;' readonly/></td>";
             var removeCell = "<td><button class='btn btn-danger' type='button' onclick='removeRow("
-                + index + ")'><span class='glyphicon glyphicon-trash'></span></button></td>";
+                + i + ")'><span class='glyphicon glyphicon-trash'></span></button></td>";
 
-            //if ($("input[value~='" + selectedLang + "']").length > 0) {
-            //var htmlString = $(".table").html();
-            //if(htmlString.toLowerCase().indexOf(selectedLang.toLowerCase()) > -1) {
-            var newRow = "<tr id='languagesRow" + index + "'>" + indexCell + titleCell + removeCell + "</tr>";
-            $("#languagesBody").append(newRow);
-
+            if (index < 0) {
+                $('#languagesBody tr:last').after("<tr id='languagesRow" + i + "'>" + indexCell + titleCell + removeCell + "</tr>");
+                addedLanguages.push(td_language);
+            }
 
         }
 
         function removeRow(id) {
             var controlToBeRemoved = "#languagesRow" + id;
             $(controlToBeRemoved).remove();
+            addedLanguages.splice(i, 1);
         }
-
         $("#btnAddLanguage").click(addLanguageRow);
+
     </script>
+
+
+    @*<script language="javascript" type="text/javascript">
+            function addLanguageRow() {
+
+                @{
+                    Model.LanguageContainer.Add(new Data.Language());
+            }
+                var selectedLang = $('#languageList :selected').text();
+                var index = $("#languagesBody").children("tr").length;
+
+                var indexCell = "<td style='display:none'><input name='LanguageContainer.Index' type='hidden' value='" + index + "' /></td>";
+                var titleCell = "<td><input class ='form-control registration-listed-language' id='LanguageContainer_" + index + "__Name' name='LanguageContainer[" + index + "].Name' type='text' value='"
+                    + selectedLang + "' style='cursor: default; background-color: transparent; border:none; box-shadow:none;' readonly/></td>";
+
+                //var removeCell = "<td><input id='btnRemoveLanguage' type='button' value='Remove' onclick='removeRow(" + index + ");' /></td>";
+                var removeCell = "<td><button class='btn btn-danger' type='button' onclick='removeRow("
+                    + index + ")'><span class='glyphicon glyphicon-trash'></span></button></td>";
+
+                //if ($("input[value~='" + selectedLang + "']").length > 0) {
+                //var htmlString = $(".table").html();
+                //if(htmlString.toLowerCase().indexOf(selectedLang.toLowerCase()) > -1) {
+
+                var newRow = "<tr id='languagesRow" + index + "'>" + indexCell + titleCell + removeCell + "</tr>";
+                $("#languagesBody").append(newRow);
+
+            }
+
+            function removeRow(id) {
+                var controlToBeRemoved = "#languagesRow" + id;
+                $(controlToBeRemoved).remove();
+            }
+            $("#btnAddLanguage").click(addLanguageRow);
+
+        </script>*@
 }
