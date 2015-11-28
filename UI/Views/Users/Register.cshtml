@@ -61,7 +61,7 @@
                         @Html.DropDownListFor(model => model.Language, ViewBag.LanguageList as IEnumerable<SelectListItem>, new { @class = "form-control form-control-languages", id = "languageList", })
                         <input type="button" value="Add" class="btn btn-list" id="btnAddLanguage" />
                     </p>
-                    <table class="table" id="languagesBody">
+                    <table style="display: none" class="table" id="languagesBody">
                         <tr></tr>
                     </table>
                     <p>
@@ -96,7 +96,9 @@
     <script language="javascript" type="text/javascript">
 
         var addedLanguages = [];
-        var i = $("#languagesBody").children("tr").length;
+        var table = $("#languagesBody");
+        var i = table.children("tr").length;
+        
         function addLanguageRow() {
 
             @{
@@ -116,13 +118,19 @@
                 $('#languagesBody tr:last').after("<tr id='languagesRow" + i + "'>" + indexCell + titleCell + removeCell + "</tr>");
                 addedLanguages.push(td_language);
             }
+            if (addedLanguages.length > 0) {
+                table.show("slow", null);
+            }
 
         }
 
         function removeRow(id) {
-            var controlToBeRemoved = "#languagesRow" + id;
-            $(controlToBeRemoved).remove();
+            var langToBeRemoved = "#languagesRow" + id;
+            $(langToBeRemoved).remove();
             addedLanguages.splice(i, 1);
+            if (addedLanguages.length <= 0) {
+                table.hide("slow", null);
+            }
         }
         $("#btnAddLanguage").click(addLanguageRow);
 
