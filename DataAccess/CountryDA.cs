@@ -22,6 +22,10 @@ namespace DataAccess
             using (var tempCtx = new ShowMeAroundContext())
             {
                 var countries = tempCtx.Country.ToList();
+                foreach (var country in countries)
+                {
+                    tempCtx.Entry(country).Collection(c => c.Cities).Load();
+                }
                 return countries;
             }
         }

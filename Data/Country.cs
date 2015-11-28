@@ -18,9 +18,8 @@ namespace Data
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [DataMember(Order = 0)]
-        public int Id { get; set; }
+        public string Name { get; set; }
         [DataMember(Order = 1)]
         public List<City> Cities { get; set; }
     }

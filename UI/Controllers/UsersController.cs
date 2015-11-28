@@ -27,8 +27,8 @@ namespace UI.Controllers
         public ActionResult Register()
         {
             //Languages
-            var client = new SMARestClient("UserService.svc");
-            var languageContent = client.Get<List<Language>>("languages/");
+            var uClient = new SMARestClient("UserService.svc");
+            var languageContent = uClient.Get<List<Language>>("languages/");
             var languages = languageContent.ToList().Select(c => new SelectListItem
             {
                 Text = c.Name,
@@ -37,8 +37,19 @@ namespace UI.Controllers
 
             ViewBag.LanguageList = languages;
 
+            var cClient = new SMARestClient("CountryService.svc");
+            var countryContent = cClient.Get<List<Country>>("countries/");
+            var countries = countryContent.ToList().Select(c => new SelectListItem
+            {
+                Text = c.Name,
+                Value = c.Name.ToString()
+            }).ToList();
+
+            
+            ViewBag.CountryList = countries;
+
             //Interest
-            var interestContent = client.Get<List<Interest>>("interests/");
+            var interestContent = uClient.Get<List<Interest>>("interests/");
             var interests = interestContent.ToList().Select(c => new SelectListItem
             {
                 Text = c.Name,

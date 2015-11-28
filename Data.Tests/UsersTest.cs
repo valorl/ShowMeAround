@@ -12,23 +12,28 @@ namespace Data.Tests
         public void Init()
         {
             ShowMeAroundContext ctx = new ShowMeAroundContext();
-            ctx.Language.Add(new Language("spanish"));
-            ctx.Language.Add(new Language("english"));
 
-            ctx.Interest.Add(new Interest("kickbox"));
-            ctx.Interest.Add(new Interest("metal"));
+            if (ctx.Language.Any(l => l.Name == "english" || l.Name == "spanish"))
+            {
+                ctx.Language.Add(new Language("spanish"));
+                ctx.Language.Add(new Language("english"));
+            }
+            
+            if(ctx.Interest.Any(i => i.Name == "kickbox" || i.Name == "metal"))
+            {
+                ctx.Interest.Add(new Interest("kickbox"));
+                ctx.Interest.Add(new Interest("metal"));
+                ctx.SaveChanges();
+            }
+           
+            
 
-            ctx.SaveChanges();
+            
         }
         [TestCleanup]
         public void CleanUp()
         {
             ShowMeAroundContext ctx = new ShowMeAroundContext();
-            if (ctx.Language.Find("spanish") != null) ctx.Language.Remove(ctx.Language.Find("spanish"));
-            if (ctx.Language.Find("english") != null) ctx.Language.Remove(ctx.Language.Find("english"));
-
-            if (ctx.Interest.Find("kickbox") != null) ctx.Interest.Remove(ctx.Interest.Find("kickbox"));
-            if (ctx.Interest.Find("metal") != null) ctx.Interest.Remove(ctx.Interest.Find("metal"));
 
             User mauro = ctx.User.Where(u => u.FirstName == "Mauro").FirstOrDefault();
             if (mauro != null) ctx.User.Remove(mauro);

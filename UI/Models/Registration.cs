@@ -12,9 +12,12 @@ namespace UI.Models
     public class Registration
     {
         public User User { get; set; }
-        public Language Languages { get; set; }
+        public Language Language { get; set; }
         public List<InterestModel> Interests { get; set; }
         public List<Language> LanguageContainer { get; set; }
+        public Country Country { get; set; }
+        public City City { get; set; }
+        
 
         public Registration()
         {

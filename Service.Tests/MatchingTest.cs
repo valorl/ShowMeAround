@@ -69,23 +69,17 @@ namespace Service.Tests
         public void Check_that_matching_returns_a_score()
         {
             var mp = new MatchingProvider();
-            var matchingscore = mp.GetMatch(traveler, guide);
-            Assert.IsNotNull(matchingscore);
-            // get a score from MatchingProvider for traveler and guide
-            // Assert that score isnt null
-
+            var matchingScore = mp.GetMatch(traveler, guide);
+            Assert.IsNotNull(matchingScore);
         }
 
         [TestMethod]
         public void Check_that_score_is_expected()
         {
             var mp = new MatchingProvider();
-            var matchingscore = mp.GetMatch(traveler, guide).Score;
-            var expectedscore = 18;
-            Assert.IsTrue(expectedscore == matchingscore);
-            // get a score from MatchingProvider for traveler and guide
-            // Calculate the score manually
-            // Assert true if returned score matches the expected score
+            var matchingScore = mp.GetMatch(traveler, guide).Score;
+            var expectedScore = 210;
+            Assert.AreEqual(expectedScore, matchingScore);
         }
 
         [TestCleanup]

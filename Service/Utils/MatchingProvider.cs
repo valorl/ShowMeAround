@@ -31,7 +31,7 @@ namespace Service.Utils
             return match;
         }
 
-        private double CalculateScore(User traveler, User guide)
+        private int CalculateScore(User traveler, User guide)
         {
             int l_score = GetLangScore(traveler, guide);
             // Condition: At least 1 common language
@@ -40,8 +40,11 @@ namespace Service.Utils
             int age_score = GetAgeScore(traveler, guide);
 
             // apply weight
-            int final = (int)Math.Round(age_score * AGE_WEIGHT + l_score * LANG_WEIGHT + i_score * INTEREST_WEIGHT);
-            return final;
+            int l_score_with_weight = (int)Math.Round(l_score * LANG_WEIGHT);
+            int i_score_with_weight = (int)Math.Round(i_score * INTEREST_WEIGHT);
+            int age_score_with_weight = (int)Math.Round(age_score * AGE_WEIGHT);
+
+            return l_score_with_weight + i_score_with_weight + age_score_with_weight;
         }
 
         private int GetLangScore(User traveler, User guide)
@@ -49,20 +52,20 @@ namespace Service.Utils
             int commonCount = traveler.Languages.Intersect(guide.Languages).ToList().Count;
             // 1 language is mandatory -> if 0 common languages: make the score negative , then check during calculation
             commonCount--;
-            int score = (int)Math.Round((double)(commonCount / traveler.Languages.Count) * 100);
+            int score = (int)Math.Round((double)commonCount / (traveler.Languages.Count-1) * 100);
             return score;
         }
         private int GetInterestScore(User traveler, User guide)
         {
             int commonCount = traveler.Interests.Intersect(guide.Interests).ToList().Count;
-            int score = (int)Math.Round((double)(commonCount / traveler.Interests.Count) * 100) ;
+            int score = (int)Math.Round((double)commonCount / traveler.Interests.Count * 100) ;
             return score;
         }
         private int GetAgeScore(User traveler, User guide)
         {
             int ageDiff = GetAgeDifference(traveler.BirthDate, guide.BirthDate);
             int partialScore = -(ageDiff) + MAX_AGE_GAP;
-            int score = (int)Math.Round((double)(partialScore / MAX_AGE_GAP) * 100) ;
+            int score = (int)Math.Round((double)partialScore / MAX_AGE_GAP * 100) ;
             return score;
         }
 

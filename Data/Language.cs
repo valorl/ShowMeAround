@@ -21,5 +21,19 @@ namespace Data
         [Key]
         public string Name { get; set; }
         public List<User> Users { get; set; }
+
+        public override bool Equals(Object obj)
+        {
+            // Check for null values and compare run-time types.
+            if (obj == null || GetType() != obj.GetType())
+                return false;
+
+            Language lang = (Language)obj;
+            return lang.Name == this.Name;
+        }
+        public override int GetHashCode()
+        {
+            return this.Name.GetHashCode();
+        }
     }
 }

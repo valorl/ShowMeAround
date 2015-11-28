@@ -19,5 +19,10 @@ namespace Service
         [WebGet(UriTemplate = "/countries/",
             ResponseFormat = WebMessageFormat.Xml)]
         List<Country> GetAll();
+
+        [OperationContract]
+        [WebGet(UriTemplate = "/cities/{country}/",
+            ResponseFormat = WebMessageFormat.Json)]
+        List<City> GetCitiesByCountry(string country);
     }
 }

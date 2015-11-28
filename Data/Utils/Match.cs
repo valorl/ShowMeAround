@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Data.Utils
 {   
     [DataContract]
-    public class Match : IComparable
+    public class Match
     {
         public Match()
         {
@@ -19,12 +19,7 @@ namespace Data.Utils
         [DataMember]
         public User Guide { get; set; }
         [DataMember]
-        public double Score { get; set; }
+        public int Score { get; set; }
 
-        public int CompareTo(object obj)
-        {
-            Match m = (Match)obj;
-            return (int) (Math.Round(m.Score) - Math.Round(this.Score));
-        }
     }
 }
