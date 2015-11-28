@@ -119,7 +119,7 @@
                 addedLanguages.push(td_language);
             }
             if (addedLanguages.length > 0) {
-                table.show("slow", null);
+                table.show("fast", null);
             }
 
         }
@@ -129,7 +129,7 @@
             $(langToBeRemoved).remove();
             addedLanguages.splice(i, 1);
             if (addedLanguages.length <= 0) {
-                table.hide("slow", null);
+                table.hide("fast", null);
             }
         }
         $("#btnAddLanguage").click(addLanguageRow);
