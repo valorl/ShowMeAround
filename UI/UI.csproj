@@ -253,6 +253,7 @@
     <Content Include="Views\Shared\_DashboardLayout.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Matching\Matching.cshtml" />
+    <Content Include="Views\Matching\EditorTemplates\MatchingModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

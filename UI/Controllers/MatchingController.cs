@@ -1,4 +1,5 @@
-﻿using Data.Utils;
+﻿using Data;
+using Data.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,11 +19,19 @@ namespace UI.Controllers
 
         public ActionResult Matching()
         {
-            //var client = new SMARestClient("UserService.svc");
-            //var matchesContent = client.Get<List<Match>>("matches/");
-            //var matches = matchesContent.ToList();
+            //var sessionClient = new SMARestClient("SessionService.svc");
+            //Session session = sessionClient.Get<Session>("session/");
+            //var userid = session.UserID;
 
-            //ViewBag.MatchesList = matchesContent;
+            var client = new SMARestClient("MatchingService.svc");
+            var matchesContent = client.Get<List<Match>>("matches/{userid}?city={city}");
+            var vm = new Models.Matching();
+
+            foreach (var item in matchesContent)
+            {
+                vm.Matches.Add(new Models.MatchingModel { Match = item });
+            }
+            
             return View();
         }
     }
