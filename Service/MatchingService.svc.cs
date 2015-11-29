@@ -32,8 +32,10 @@ namespace Service
 
         public IEnumerable<Match> GetMatchesAsync(string userid, string city)
         {
-            User user = auth.Authorize(WebOperationContext.Current.IncomingRequest);
-            if (user.Id != Convert.ToInt32(userid)) throw new WebFaultException(System.Net.HttpStatusCode.Unauthorized);
+            //User user = auth.Authorize(WebOperationContext.Current.IncomingRequest);
+            //if (user.Id != Convert.ToInt32(userid)) throw new WebFaultException(System.Net.HttpStatusCode.Unauthorized);
+
+            var user = userDA.GetOneByID(Convert.ToInt32(userid));
 
             var guides = userDA.GetAll().Where(u => u.Id != user.Id /*&& u.City.ToLower() == city.ToLower()*/).ToList();
 

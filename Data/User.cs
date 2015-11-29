@@ -18,6 +18,7 @@ namespace Data
         {
             this.Languages = new List<Language>();
             this.Interests = new List<Interest>();
+            this.City = new City();
         }
 
         public enum Genders
@@ -88,7 +89,7 @@ namespace Data
         public Genders Gender { get; set; }
 
         //[Required]
-        [DataMember]
+        [DataMember(Order = 9)]
         public City City { get; set; }
 
 

@@ -68,7 +68,7 @@
                         @Html.DropDownListFor(model => model.Country, ViewBag.CountryList as IEnumerable<SelectListItem>, new { @class = "form-control form-control-languages", id = "countryList" })
                     </p>
                     <p>
-                        <select id="User_City" class="form-control form-control-languages" name="User.City"></select>
+                        <select id="User_City_Name" class="form-control form-control-languages" name="User.City.Name"></select>
                     </p>
                     @Html.LabelFor(model => model.Interests, new { @class = "control-label" })
                     <div class="form-control">
@@ -97,14 +97,15 @@
 
         var addedLanguages = [];
         var table = $("#languagesBody");
-        var i = table.children("tr").length;
+        
         
         function addLanguageRow() {
 
             @{
                 Model.LanguageContainer.Add(new Data.Language());
             }
-
+            //var i = table.children("tr").length;
+            var i = addedLanguages.length;
             var td_language = $('#languageList :selected').text();
             var index = $.inArray(td_language, addedLanguages);
 
@@ -160,7 +161,7 @@
                         console.log(cities);
                     });
 
-                    var cityDropDown = $("#User_City");
+                    var cityDropDown = $("#User_City_Name");
                     cityDropDown.html(cities);
                     //}
 
