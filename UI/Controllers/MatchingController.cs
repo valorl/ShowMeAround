@@ -27,12 +27,14 @@ namespace UI.Controllers
 
             var client = new SMARestClient("MatchingService.svc");
             var matchesContent = client.Get<List<Match>>($"matches/{userid}?city={city}");
-            var vm = new Models.Matching();
 
-            foreach (var item in matchesContent)
-            {
-                vm.Matches.Add(new Models.MatchingModel { Match = item });
-            }
+            ViewBag.MatchList = matchesContent.ToList<Match>();
+            //var vm = new Models.Matching();
+
+            //foreach (var item in matchesContent)
+            //{
+            //    vm.Matches.Add(new Models.MatchingModel { Match = item });
+            //}
             
             return View();
         }

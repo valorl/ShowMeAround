@@ -19,7 +19,8 @@ namespace UI
             "~/Scripts/jquery.unobtrusive*"));
 
             bundles.Add(new ScriptBundle("~/Scripts/js").Include(
-                "~/Scripts/jquery-ui.js"));
+                "~/Scripts/jquery-ui.js",
+                "~/Scripts/percicle.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
@@ -48,7 +49,7 @@ namespace UI
                         "~/Content/show-me-around.css",
                         "~/Content/datepicker.min.css",
                         "~/Content/jquery-ui.theme.css",
-                        "~/Content/circle.css"));
+                        "~/Content/percircle.css"));
         }
     }
 }

@@ -114,7 +114,7 @@
         function removeRow(id) {
             var langToBeRemoved = "#languagesRow" + id;
             $(langToBeRemoved).remove();
-            addedLanguages.splice(i, 1);
+            addedLanguages.splice(id, 1);
             if (addedLanguages.length <= 0) {
                 table.hide("fast", null);
             }

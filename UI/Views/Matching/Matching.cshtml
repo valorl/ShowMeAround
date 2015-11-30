@@ -2,5 +2,64 @@
 @{
     ViewBag.Title = "Matching";
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
-}    
-    @Html.DisplayFor(m => m.Matches, new { htmlAttributes = new { @class = "form-control " } })
+}
+
+<div class="container-forms">
+    @foreach (var item in ViewBag.MatchList as List<Data.Utils.Match>)
+    {
+        <br />
+        <div class="container-fluid well">
+            <div class="row">
+                <div class="col-md-2">
+                    <img src="http://www.gravatar.com/avatar/bbe8907c4b1ff6229e0ee5e140d7ce04?s=47&d=http%3A%2F%2Fwww.techrepublic.com%2Fbundles%2Ftechrepubliccore%2Fimages%2Ficons%2Fstandard%2Ficon-user-default.png" width="100" height="100" class="img-circle">
+                </div>
+
+                <div class="col-md-4" style="padding-left:40px;">
+                    <h2>@Html.DisplayName(item.Guide.FirstName) @Html.DisplayName(item.Guide.LastName)</h2>
+                    <h3>@Html.DisplayName(item.Guide.Gender.ToString())</h3>
+                    <h3>Age: @Html.DisplayName(item.Guide.Age.ToString())</h3>
+
+                </div>
+
+                <div class="col-md-4">
+                    
+                    <h2>Language(s)</h2>
+                    @foreach (var language in item.Guide.Languages)
+                    {
+                        <h3> <li>@Html.DisplayName(language.Name)</li></h3>
+                    }
+
+                </div>
+
+                <div class="col-md-1">
+                    <div class="clearfix">
+                        <div id="bluecircle" data-percent="@item.Score.ToString()" class="small">
+                        </div>
+                    </div>
+                    <br />
+                    <input type="button" name="Send request" value="Send request" id="btnSendRequest" class="btn btn-primary btn-xs gradient center-block" />
+
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
+@section Scripts {
+    @Scripts.Render()
+    @Scripts.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/percircle.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("[id$='circle']").perCircle();
+            $("#custom").perCircle({
+                text: "custom",
+                percent: 27
+            });
+        });
+    </script>
+}
