@@ -156,7 +156,7 @@ body {
 .form-control-languages {
     width: 80%;
 }
-
+/* MATCHES UI */
 /*request button in matches*/
 .btn-primary.gradient {
     background: -moz-linear-gradient(top,  #33a6cc 50%, #0099cc 50%); /* FF3.6+ */
@@ -193,4 +193,8 @@ body {
       -webkit-border-radius: 4px 4px 4px 4px;
      -moz-border-radius: 4px 4px 4px 4px;
           border-radius: 4px 4px 4px 4px;
+}
+
+h2 {
+    margin-top: 2px;
 }
