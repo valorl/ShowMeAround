@@ -29,7 +29,17 @@ namespace Service
         {
             if (auth.ValidateCredentials(credentials.Email, credentials.Pwd))
             {
-                var session = new Session(userDA.GetOneByEmail(credentials.Email));
+                var user = userDA.GetOneByEmail(credentials.Email);
+                var userSession = sessionDA.GetAll().Where(s => s.UserID == user.Id).FirstOrDefault();
+                Session session = null;
+                if (userSession != null && auth.ValidateToken(userSession.Token))
+                {
+                    session = userSession;
+                }
+                else
+                {
+                    session = new Session(user);
+                }
                 sessionDA.Insert(session);
                 sessionDA.SaveChanges();
                 return session;
@@ -48,14 +58,15 @@ namespace Service
         public void Delete(string userid)
         {
             int intID = Convert.ToInt32(userid);
-            if (sessionDA.GetAll().SingleOrDefault(s => s.UserID == intID) == null)
+            var session = sessionDA.GetAll().SingleOrDefault(s => s.UserID == intID);
+            if (session == null)
                 throw new ArgumentException("SessionService.Delete: No such session. [UserId: " + userid + "]");
         
             User authUser = auth.Authorize(WebOperationContext.Current.IncomingRequest);
             if (authUser.Id != intID) throw new WebFaultException(System.Net.HttpStatusCode.Unauthorized);
 
-            userDA.Delete(userDA.GetOneByID(intID));
-            userDA.SaveChanges();
+            sessionDA.Delete(session);
+            sessionDA.SaveChanges();
             
         }
 

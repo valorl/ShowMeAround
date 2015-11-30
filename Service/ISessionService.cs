@@ -28,8 +28,7 @@ namespace Service
         Session Login(LoginCredentials credentials);
 
         [OperationContract]
-        [WebInvoke(Method = "POST",UriTemplate = "/session/", 
-            ResponseFormat = WebMessageFormat.Xml, RequestFormat = WebMessageFormat.Xml)]
+        [WebGet(UriTemplate = "/session/{token}", ResponseFormat = WebMessageFormat.Xml)]
         Session GetOneByToken(string token);
 
         [OperationContract]

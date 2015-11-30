@@ -190,7 +190,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\SMARestClient.cs" />
     <Compile Include="Models\Matching.cs" />
     <Compile Include="Models\Registration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -274,6 +273,10 @@
     <ProjectReference Include="..\Data\Data.csproj">
       <Project>{3d9abe1d-29fa-45b6-94cd-497fe0897068}</Project>
       <Name>Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{fca051bf-0a9e-42af-bbe9-1c25ddc535ae}</Project>
+      <Name>Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

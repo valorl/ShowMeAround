@@ -50,7 +50,7 @@ namespace Service.Utils
         public User Authorize(IncomingWebRequestContext request)
         {
             var headers = request.Headers;
-            var auth_header = headers.Get("Authorization");
+            var auth_header = headers.Get("sma_auth");
             if (auth_header == null) throw new WebFaultException(System.Net.HttpStatusCode.Unauthorized);  // Return 401
 
             string token = auth_header.Split()[1];
@@ -75,6 +75,7 @@ namespace Service.Utils
             {
                 session.TimeStamp = DateTime.Now;
                 sessionDA.Update(session);
+                sessionDA.SaveChanges();
                 return true;
             }
         }

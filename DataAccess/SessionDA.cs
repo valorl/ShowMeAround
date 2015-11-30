@@ -37,8 +37,14 @@ namespace DataAccess
         {
             if (model == null) throw new ArgumentNullException("SessionDA.Insert: 'model' null");
             if (GetOneByToken(model.Token) != null)
-                throw new ArgumentException("SessionDA.Insert: Session[" + model.Token + "] already exists in the database.");
-            dbContext.Session.Add(model);
+            {
+                Update(model);
+            }
+            else
+            {
+                dbContext.Session.Add(model);
+            }  
+           
         }
 
         public void Update(Session model)
@@ -54,7 +60,7 @@ namespace DataAccess
         {
             if (model == null) throw new ArgumentNullException("SessionDA.Update: 'model'null");
             if (GetOneByToken(model.Token) == null)
-                throw new ArgumentException("SessionDA.Update: Session[" + model.Token + "] doesn't exists.");
+                throw new ArgumentException("SessionDA.Update: Session[" + model.Token + "] doesn't exist.");
             dbContext.Session.Remove(model);
         }
 

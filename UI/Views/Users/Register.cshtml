@@ -11,12 +11,6 @@
     {
         @Html.ValidationSummary(true)
         <fieldset>
-            @*<div class="container-forms">
-
-                    <form class="form-signin"></form>
-                </div>*@
-
-            @*<div class="container-forms">*@
             @Html.AntiForgeryToken()
             @if (ViewBag.Message != null)
                 {
@@ -49,14 +43,6 @@
                     <p class="help-block">@Html.ValidationMessageFor(model => model.User.Gender)</p>
                 </div>
                 <div class="col-md-6">
-                    @*<p>
-                            @Html.DropDownListFor(model => model.Languages, ViewBag.LanguageList as IEnumerable<SelectListItem>, new { @class = "form-control form-control-languages", id = "languageList", })
-                            <input type="button" name="Add Language" value="Add" id="btnAddLanguage" class="btn btn-list" />
-                        </p>
-                        @*<table class="table">
-                            <tbody id="languagesBody"></tbody>
-                        </table>*@
-
                     <p>
                         @Html.DropDownListFor(model => model.Language, ViewBag.LanguageList as IEnumerable<SelectListItem>, new { @class = "form-control form-control-languages", id = "languageList", })
                         <input type="button" value="Add" class="btn btn-list" id="btnAddLanguage" />

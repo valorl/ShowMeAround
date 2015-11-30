@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 using RestSharp.Serializers;
 using RestSharp.Deserializers;
 
-namespace UI.Helpers
+namespace Utilities
 {
     // Wrapper around the RestSharp library adjusted to using SMA WCF Service
     // 1. Provide the service name (f.x. UserService.svc) as a string to constructor
@@ -20,7 +20,7 @@ namespace UI.Helpers
         private const string DATE_FORMAT = "yyyy-MM-ddTHH:mm:ss";
         private RestClient client;
         private RestRequest req;
-        private string endpoint;
+        private string auth_token;
 
         public SMARestClient(string svc)
         {
@@ -28,9 +28,17 @@ namespace UI.Helpers
 
         }
 
+        public string AuthToken
+        {
+            get { return auth_token; }
+            set { auth_token = "Bearer " + value; }
+        }
+
+
         public T Get<T>(string endpoint) where T : new()
         {
             var req = new RestRequest(endpoint, Method.GET);
+            req.AddHeader("Authorization", AuthToken);
             req.RequestFormat = DataFormat.Xml;
             var response = client.Execute<T>(req);
 
@@ -41,6 +49,7 @@ namespace UI.Helpers
         public T Post<T>(string endpoint, T model) where T : new()
         {
             var req = new RestRequest(endpoint, Method.POST);
+            req.AddHeader("Authorization", AuthToken);
             req.RequestFormat = DataFormat.Xml;
             req.XmlSerializer = new XmlSerializer() { DateFormat = DATE_FORMAT };
             req.DateFormat = DATE_FORMAT;
@@ -68,11 +77,12 @@ namespace UI.Helpers
             where V : new()
         {
             var req = new RestRequest(endpoint, Method.POST);
+            req.AddHeader("Authorization", AuthToken);
             req.RequestFormat = DataFormat.Xml;
             req.XmlSerializer = new XmlSerializer() { DateFormat = DATE_FORMAT };
             req.DateFormat = DATE_FORMAT;
             string xmlns = string.Concat(xmlns_base, typeof(T).Namespace);
-            if (typeof(T).IsPrimitive) xmlns = "http://schemas.microsoft.com/2003/10/Serialization/";
+            //if (typeof(T).IsPrimitive) xmlns = "http://schemas.microsoft.com/2003/10/Serialization/";
             req.AddBody(model, xmlns);
             var response = client.Execute(req);
 
@@ -81,25 +91,26 @@ namespace UI.Helpers
             return objResponse;  
         }
 
-        public V Post<T, V>(string endpoint, T model, string xmlns)
-            where V : new()
-        {
-            var req = new RestRequest(endpoint, Method.POST);
-            req.RequestFormat = DataFormat.Xml;
-            req.XmlSerializer = new XmlSerializer() { DateFormat = DATE_FORMAT };
-            req.DateFormat = DATE_FORMAT;
-            req.AddBody(model, xmlns);
-            var response = client.Execute(req);
+        //public V Post<T, V>(string endpoint, T model, string xmlns)
+        //    where V : new()
+        //{
+        //    var req = new RestRequest(endpoint, Method.POST);
+        //    req.RequestFormat = DataFormat.Xml;
+        //    req.XmlSerializer = new XmlSerializer() { DateFormat = DATE_FORMAT };
+        //    req.DateFormat = DATE_FORMAT;
+        //    req.AddBody(model, xmlns);
+        //    var response = client.Execute(req);
 
-            V objResponse = new XmlDeserializer().Deserialize<V>(response);
-            if (objResponse == null) throw new Exception($"Post request on endpoint {endpoint} failed.");
-            return objResponse;
+        //    V objResponse = new XmlDeserializer().Deserialize<V>(response);
+        //    if (objResponse == null) throw new Exception($"Post request on endpoint {endpoint} failed.");
+        //    return objResponse;
 
-        }
+        //}
 
         public T Put<T>(string endpoint, T model) where T : new()
         {
             var req = new RestRequest(endpoint, Method.PUT);
+            req.AddHeader("Authorization", AuthToken);
             req.RequestFormat = DataFormat.Xml;
             //req.XmlSerializer = new DataContractSerializer(typeof(T));
             req.AddBody(model, xmlns_base);
@@ -111,8 +122,11 @@ namespace UI.Helpers
 
         public void Delete(string endpoint, int id)
         {
-            var req = new RestRequest(endpoint + id.ToString(), Method.DELETE);
+            if (endpoint.Last() == '/') endpoint = endpoint.Substring(0, endpoint.Length - 1);
+
+            var req = new RestRequest(endpoint + "/" + id.ToString(), Method.DELETE);
             req.RequestFormat = DataFormat.Xml;
+            req.AddParameter("sma_auth", AuthToken, ParameterType.HttpHeader);
             var response = client.Execute(req);
             if (response.StatusCode != System.Net.HttpStatusCode.OK) throw new Exception($"Delete request on endpoint {endpoint} failed.");
         }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Data;
-using UI.Helpers;
+using Utilities;
 using DataAccess;
 using System.Collections;
 using Data.Utils;
@@ -102,6 +102,8 @@ namespace UI.Controllers
         [HttpGet]
         public ActionResult Login()
         {
+            if (Session["logged_in_user_obj"] != null) return RedirectToAction("Index", "Dashboard");
+
             ViewBag.Message = TempData["successful_registration_message"];
             if(ViewBag.Message != null && ViewBag.Message.Length > 0)
             {
@@ -113,6 +115,8 @@ namespace UI.Controllers
         [HttpPost]
         public ActionResult Login(LoginCredentials credentials)
         {
+
+
             var client = new SMARestClient("SessionService.svc");
             Session newSession = client.Post<LoginCredentials, Session>("/login", credentials);
              
@@ -124,10 +128,13 @@ namespace UI.Controllers
             }
             else
             {
+                var user = new SMARestClient("UserService.svc").Get<User>($"/user/{newSession.UserID}");
+                if (user != null) System.Web.HttpContext.Current.Session["logged_in_user_obj"] = user;
                 System.Web.HttpContext.Current.Session["auth_token"] = newSession.Token;
+
                 return RedirectToAction("Index", "Dashboard");
             }
             
-        }
+        }        
     }
 }
