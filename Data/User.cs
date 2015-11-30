@@ -92,6 +92,16 @@ namespace Data
         [DataMember(Order = 9)]
         public City City { get; set; }
 
+        [NotMapped]
+        public int Age
+        {
+            get
+            {
+                var yearNow = DateTime.Now.Year;
+                int age = yearNow - this.BirthDate.Year;
+                return age;
+            }
+        }
 
         public void AddLanguage(Language language)
         {
