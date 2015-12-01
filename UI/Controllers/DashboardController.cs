@@ -14,6 +14,15 @@ namespace UI.Controllers
         // GET: Dashboard
         public ActionResult Index()
         {
+            var cClient = new SMARestClient("CountryService.svc");
+            var countryContent = cClient.Get<List<Country>>("countries/");
+            var countries = countryContent.ToList().Select(c => new SelectListItem
+            {
+                Text = c.Name,
+                Value = c.Name.ToString()
+            }).ToList();
+            ViewBag.CountryList = countries;
+
             ViewBag.Message = Session["auth_token"];
             return View();
         }
