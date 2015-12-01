@@ -191,7 +191,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Matching.cs" />
-    <Compile Include="Models\MeetUp.cs" />
+    <Compile Include="Models\MeetUpModel.cs" />
     <Compile Include="Models\Registration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

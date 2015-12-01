@@ -26,6 +26,7 @@ namespace UI.Controllers
             ViewBag.Message = Session["auth_token"];
             return View();
         }
+
         public ActionResult Logout()
         {
             var user = (User)Session["logged_in_user_obj"];

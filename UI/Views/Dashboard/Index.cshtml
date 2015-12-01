@@ -1,4 +1,4 @@
-﻿@model UI.Models.MeetUp
+﻿@model UI.Models.MeetUpModel
 @{
     ViewBag.Title = "My Dashboard - Show Me Around";
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
@@ -10,7 +10,9 @@
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li class="active"><a href="#"><span class="span1 glyphicon glyphicon-dashboard"></span>Dashboard<span class="sr-only">(current)</span></a></li>
+                <li><a href="@Url.Action("Matching", "Matching")"><span class="span1 glyphicon glyphicon-envelope"></span>Messages</a></li>
                 <li><a href="@Url.Action("Matching", "Matching")"><span class="span1 glyphicon glyphicon-globe"></span>Your Matches</a></li>
+                <li><a href="@Url.Action("", "")"><span class="span1 glyphicon glyphicon-user"></span>Edit profile</a></li>
             </ul>
         </div>
     </div>
@@ -18,44 +20,37 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h1 class="page-header text-center">Welcome to your DASHBOARD!</h1>
 
-    <div class="form-signin col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <h2>Select your destination</h2>
-                <p>
-                    @Html.DropDownListFor(model => model.Country, ViewBag.CountryList as IEnumerable<SelectListItem>, new { @class = "form-control", id = "countryList" })
-                </p>
-                <p>
-                    <select id="City_Name" class="form-control" name="City.Name"></select>
-                </p>
-            </div>
-            <div class="panel-footer clearfix">
-                <div class="pull-right">
-                    <button class="btn btn-success" type="submit">Save</button>
+    <form>
+        <div class="form-signin col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h2>Select your destination</h2>
+                    <p>
+                        @Html.DropDownListFor(model => model.Country, ViewBag.CountryList as IEnumerable<SelectListItem>, new { @class = "form-control", id = "countryList" })
+                    </p>
+                    <p>
+                        <select id="City_Name" class="form-control" name="City.Name"></select>
+                    </p>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="form-signin col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <h2>When will you travel?</h2>
-                <p class="col-md-2 h4" style="padding:0px;">From: </p>
-                <p class="col-md-10">
-                    @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", id = "datepickerStart", @placeholder = "StartDate", type = "date", style = "height:42px" } })
-                </p>
-                <p class="col-md-2 h4" style="padding-left:0px;">To: </p>
-                <p class="col-md-10">
-                    @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control", id = "datepickerEnd", @placeholder = "EndDate", type = "date", style = "height:42px" } })
-                </p>
-            </div>
-            <div class="panel-footer clearfix">
-                <div class="pull-right">
-                    <button class="btn btn-success" type="submit">Save</button>
+        <div class="form-signin col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h2>When will you travel?</h2>
+                    <p class="col-md-2 h4" style="padding:0px;">From: </p>
+                    <p class="col-md-10">
+                        @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", id = "datepickerStart", @placeholder = "StartDate", type = "date", style = "height:42px" } })
+                    </p>
+                    <p class="col-md-2 h4" style="padding-left:0px;">To: </p>
+                    <p class="col-md-10">
+                        @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control", id = "datepickerEnd", @placeholder = "EndDate", type = "date", style = "height:42px" } })
+                    </p>
                 </div>
             </div>
         </div>
-    </div>
+        <div class="pull-right" style="margin-right:16px;"><button class="btn btn-success" type="submit">Save</button></div>
+    </form>
 </div>
 @section Scripts {
     @Scripts.Render()
@@ -87,7 +82,7 @@
                         console.log(cities);
                     });
 
-                    var cityDropDown = $("#User_City_Name");
+                    var cityDropDown = $("#City_Name");
                     cityDropDown.html(cities);
                     //}
 
