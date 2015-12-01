@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using UI.Helpers;
 using Utilities;
 namespace UI.Controllers
 {
@@ -13,29 +14,27 @@ namespace UI.Controllers
         // GET: Matching
         public ActionResult Index()
         {
+            // Check if user is logged in
+            if (!PageAuthorization.Authorize()) return RedirectToAction("Login", "Users");
             return View();
         }
 
-        public ActionResult Matching()
+        public ActionResult Matching(string city, DateTime start, DateTime end)
         {
-            //var sessionClient = new SMARestClient("SessionService.svc");
-            //var token = Session["auth_token"];
-            //Session session = sessionClient.Post<string,Session>($"session/", (string)token, "http://schemas.microsoft.com/2003/10/Serialization/");
-            //var userid = session.UserID;
-            var userid = "72";
-            var city = "Coppenhagen";
+            // Check if user is logged in
+            if (!PageAuthorization.Authorize()) return RedirectToAction("Login", "Users");
+
+            var user = (User)Session["logged_in_user_obj"];
+            //var city = (string)TempData["matching_city"];
+
+            //var start = (DateTime)TempData["matching_start"];
+            //var end = (DateTime)TempData["matching_end"];
+
 
             var client = new SMARestClient("MatchingService.svc");
-            var matchesContent = client.Get<List<Match>>($"matches/{userid}?city={city}");
+            var matchesContent = client.Get<List<Match>>($"matches/{user.Id}?city={city}");
 
             ViewBag.MatchList = matchesContent.ToList<Match>();
-            //var vm = new Models.Matching();
-
-            //foreach (var item in matchesContent)
-            //{
-            //    vm.Matches.Add(new Models.MatchingModel { Match = item });
-            //}
-            
             return View();
         }
     }
