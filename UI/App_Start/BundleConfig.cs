@@ -50,7 +50,6 @@ namespace UI
                         "~/Content/datepicker.min.css",
                         "~/Content/jquery-ui.theme.css",
                         "~/Content/percircle.css",
-                        "~/Content/dashboard.css",
                         "~/Content/homepage.css"));
         }
     }

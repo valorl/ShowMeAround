@@ -190,8 +190,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\PageAuthorization.cs" />
     <Compile Include="Models\Matching.cs" />
-    <Compile Include="Models\MeetUp.cs" />
+    <Compile Include="Models\MeetUpModel.cs" />
     <Compile Include="Models\Registration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

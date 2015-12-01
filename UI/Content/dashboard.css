@@ -48,6 +48,7 @@ body {
   color: #fff;
   background-color: #428bca;
 }
+
 .span1 {
   padding-right:15px;
 }
@@ -67,4 +68,18 @@ body {
 }
 .main .page-header {
   margin-top: 0;
+}
+
+#nav-container {
+    width: auto;
+    max-width: 100%;
+}
+
+.navbar-brand
+{
+    padding-left:30px;
+}
+.navbar-right
+{
+    padding-right:12%;
 }

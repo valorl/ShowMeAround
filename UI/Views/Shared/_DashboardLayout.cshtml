@@ -7,31 +7,35 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
+    <link href="~/Content/dashboard.css" rel="stylesheet" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div id="nav-container" class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="~/">ShowMeAround</a>
+                <a class="navbar-brand" href="@Url.Action("Index", "Dashboard")">ShowMeAround</a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact")</li>
-                </ul>
                 <ul class="nav navbar-nav navbar-right">
+                    <li><a href="@Url.Action()"><span class="glyphicon glyphicon-user"></span></a></li>
                     <li>@Html.ActionLink("Logout", "Logout", "Dashboard")</li>
                 </ul>
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar">
+                    <li><a href="@Url.Action("Index", "Dashboard")"><span class="span1 glyphicon glyphicon-dashboard"></span>Dashboard</a></li>
+                    <li><a href="@Url.Action("Matching", "Matching")"><span class="span1 glyphicon glyphicon-envelope"></span>Messages</a></li>
+                    <li><a href="@Url.Action("Matching", "Matching")"><span class="span1 glyphicon glyphicon-globe"></span>Your Matches</a></li>
+                    <li><a href="@Url.Action("", "")"><span class="span1 glyphicon glyphicon-user"></span>Edit profile</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         @RenderBody()
     </div>
     <footer class="footer">
