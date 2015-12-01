@@ -23,10 +23,12 @@ namespace DataAccess
         {
 
             var users = dbContext.User.ToList();
+
             foreach (var user in users)
             {
                 dbContext.Entry(user).Collection(u => u.Languages).Load();
                 dbContext.Entry(user).Collection(u => u.Interests).Load();
+                dbContext.Entry(user).Reference(u => u.City).Load();
             }
             return users;
 
@@ -42,6 +44,7 @@ namespace DataAccess
                 var user = tempCtx.User.Find(id);
                 tempCtx.Entry(user).Collection(u => u.Languages).Load();
                 tempCtx.Entry(user).Collection(u => u.Interests).Load();
+                tempCtx.Entry(user).Reference(u => u.City).Load();
                 return user;
             }
             

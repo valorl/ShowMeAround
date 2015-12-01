@@ -10,7 +10,7 @@
     height: 500px;
 }
 
-h1 {
+.jumbotron h1 {
     font-size: 25px;
     line-height: 21px;
     font-weight: bold;

@@ -18,5 +18,7 @@ namespace Data
         [Key]
         [DataMember]
         public string Name { get; set; }
+
+        public List<User> Users { get; set; }
     }
 }

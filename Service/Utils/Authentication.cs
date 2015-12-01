@@ -58,6 +58,7 @@ namespace Service.Utils
             var auth = new Utils.Authentication();
             if (!auth.ValidateToken(token)) throw new WebFaultException(System.Net.HttpStatusCode.Unauthorized);  // Return 401
             return userDA.GetOneByID(sessionDA.GetOneByToken(token).UserID);
+
         }
 
         public bool ValidateToken(string token)
@@ -86,7 +87,7 @@ namespace Service.Utils
             if (user == null) return false;
             var salt = user.PwDSalt;
 
-            
+
             if (PasswordHasher.HashPwd(password, salt) == user.PwdHash) return true;
             return false;
         }

@@ -34,11 +34,14 @@ namespace Utilities
             set { auth_token = "Bearer " + value; }
         }
 
+        public string AdminToken { get; set; }
+
 
         public T Get<T>(string endpoint) where T : new()
         {
             var req = new RestRequest(endpoint, Method.GET);
-            req.AddHeader("Authorization", AuthToken);
+            req.AddHeader("sma_auth", AuthToken);
+            if (AdminToken != null) req.AddHeader("sma_admin_pass", AdminToken);
             req.RequestFormat = DataFormat.Xml;
             var response = client.Execute<T>(req);
 
@@ -49,7 +52,7 @@ namespace Utilities
         public T Post<T>(string endpoint, T model) where T : new()
         {
             var req = new RestRequest(endpoint, Method.POST);
-            req.AddHeader("Authorization", AuthToken);
+            req.AddHeader("sma_auth", AuthToken);
             req.RequestFormat = DataFormat.Xml;
             req.XmlSerializer = new XmlSerializer() { DateFormat = DATE_FORMAT };
             req.DateFormat = DATE_FORMAT;
@@ -77,7 +80,7 @@ namespace Utilities
             where V : new()
         {
             var req = new RestRequest(endpoint, Method.POST);
-            req.AddHeader("Authorization", AuthToken);
+            req.AddHeader("sma_auth", AuthToken);
             req.RequestFormat = DataFormat.Xml;
             req.XmlSerializer = new XmlSerializer() { DateFormat = DATE_FORMAT };
             req.DateFormat = DATE_FORMAT;
@@ -110,7 +113,7 @@ namespace Utilities
         public T Put<T>(string endpoint, T model) where T : new()
         {
             var req = new RestRequest(endpoint, Method.PUT);
-            req.AddHeader("Authorization", AuthToken);
+            req.AddHeader("sma_auth", AuthToken);
             req.RequestFormat = DataFormat.Xml;
             //req.XmlSerializer = new DataContractSerializer(typeof(T));
             req.AddBody(model, xmlns_base);

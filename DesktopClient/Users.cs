@@ -8,46 +8,108 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Service;
+using Utilities;
+using Data;
 
 namespace DesktopClient
 {
     public partial class Users : Form
     {
+        private SMARestClient client;
+        private List<User> users;
+
         public Users()
         {
             InitializeComponent();
-            //UserDA.GetAll();
+            client = new SMARestClient("UserService.svc");
+            users = new List<User>();
+
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            client.AdminToken = "T1mU2YUBjCLUrkhmI4UV";
+
+            lblNameContent.MaximumSize = new Size(200, 0);
+            lblNameContent.AutoSize = true;
+
+            lblInterestedContent.MaximumSize = new Size(200, 0);
+            lblInterestedContent.AutoSize = true;
+
+
 
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            //users.Clear();
+            //users.AddRange(client.Get<List<User>>("/users"));
+            //listUsers.DataSource = users;
+
+            listUsers.DataSource = null;
+            listUsers.DisplayMember = "FirstName";
+            listUsers.DataSource = client.Get<List<User>>("/users");
+            
+
+        }
+
+        private void btnViewEdit_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnDelete_Click(object sender, EventArgs e)
         {
-            UserService.Create(User user);
+
         }
 
-        private void EditButton_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
-            //no action for now
+
         }
 
-        private void DeleteButton_Click(object sender, EventArgs e)
+        private void listUsers_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //no action for now
+            var list = (ListBox)sender;
+            var index = list.SelectedIndices[0];
+            User user = (User)list.SelectedItem;
+
+            lblNameContent.Text = user.FirstName + " " + user.LastName;
+            tboxEmail.Text = user.Email;
+            tboxBirthDate.Text = user.BirthDate.ToString("dd/MM/yyyy");
+            tboxCity.Text = user.City.Name;
+
+            if(user.Languages != null && user.Languages.Count > 0)
+            {
+                string speaks = "";
+                foreach (var lang in user.Languages)
+                {
+                    speaks += lang.Name + ", ";
+                }
+                speaks.Substring(0, speaks.Length - 2);
+                lblSpeaksContent.Text = speaks;
+            }
+
+            if(user.Interests != null && user.Interests.Count > 0)
+            {
+                string interests = "";
+                foreach (var interest in user.Interests)
+                {
+                    interests += interest.Name + ", ";
+                }
+                interests.Substring(0, interests.Length - 2);
+                lblInterestedContent.Text = interests;
+            }
+
+            lblMeetups.Text = "0";
         }
 
-        private void FillButton_Click(object sender, EventArgs e)
+        private void listUsers_Format(object sender, ListControlConvertEventArgs e)
         {
-            UserService.GetAll();
+            string first = ((User)e.ListItem).FirstName;
+            string last = ((User)e.ListItem).LastName;
+            e.Value = first + " " + last;
         }
     }
 }

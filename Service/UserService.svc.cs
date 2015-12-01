@@ -32,8 +32,13 @@ namespace Service
 
         public List<User> GetAll()
         {
+            var incReq = WebOperationContext.Current.IncomingRequest;
             // authenticate current user
-            //auth.Authorize(WebOperationContext.Current.IncomingRequest);
+            if (!(incReq.Headers.Get("sma_admin_pass") != null && incReq.Headers.Get("sma_admin_pass") == "T1mU2YUBjCLUrkhmI4UV"))
+            {
+                auth.Authorize(WebOperationContext.Current.IncomingRequest);
+            }
+            
 
             // Actual functionality
             return userDA.GetAll().ToList();
