@@ -1,0 +1,29 @@
+﻿@import url(https://fonts.googleapis.com/css?family=Satisfy);
+
+
+
+.jumbotron {
+   
+    background-image: url(http://i.huffpost.com/gen/2006764/images/o-TOURIST-facebook.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+}
+
+h1 {
+    font-size: 25px;
+    line-height: 21px;
+    font-weight: bold;
+    color: white !important;
+    text-shadow: 3px 3px 1px #333;
+    font-family: 'Satisfy', cursive;
+}
+
+.lead {
+    margin-top: 10px;
+    font-size: 1.1em !important;
+    width: 30%;
+    font-weight: bold;
+    color: white !important;
+    text-shadow: 1px 1px 1px #333;
+}
