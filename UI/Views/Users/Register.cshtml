@@ -19,51 +19,53 @@
                 </div>
             }
             <form class="form-signin">
-                <h2 class="form-signin-heading">Register</h2>
-                <div class="col-md-6">
-                    @Html.TextBoxFor(model => model.User.FirstName, new { @class = "form-control", @placeholder = "First Name" })
-                    <p class="help-block">@Html.ValidationMessageFor(model => model.User.FirstName)</p>
+                        <h2 class="form-signin-heading">Register</h2>
+                        <div class="col-md-6">
+                            @Html.Label("Hey there! Please enter your details")
+                            @Html.TextBoxFor(model => model.User.FirstName, new { @class = "form-control", @placeholder = "First Name" })
+                            <p class="help-block">@Html.ValidationMessageFor(model => model.User.FirstName)</p>
 
-                    @Html.TextBoxFor(model => model.User.LastName, new { @class = "form-control", @placeholder = "Last Name" })
-                    <p class="help-block">@Html.ValidationMessageFor(model => model.User.LastName)</p>
+                            @Html.TextBoxFor(model => model.User.LastName, new { @class = "form-control", @placeholder = "Last Name" })
+                            <p class="help-block">@Html.ValidationMessageFor(model => model.User.LastName)</p>
 
-                    @Html.TextBoxFor(model => model.User.Email, new { @class = "form-control", @placeholder = "Email" })
-                    <p class="help-block">@Html.ValidationMessageFor(model => model.User.Email)</p>
+                            @Html.TextBoxFor(model => model.User.Email, new { @class = "form-control", @placeholder = "Email" })
+                            <p class="help-block">@Html.ValidationMessageFor(model => model.User.Email)</p>
 
-                    @Html.TextBoxFor(model => model.User.PwdHash, new { @class = "form-control", @placeholder = "Password", type = "password" })
-                    <p class="help-block">@Html.ValidationMessageFor(model => model.User.PwdHash)</p>
+                            @Html.TextBoxFor(model => model.User.PwdHash, new { @class = "form-control", @placeholder = "Password", type = "password" })
+                            <p class="help-block">@Html.ValidationMessageFor(model => model.User.PwdHash)</p>
 
-                    @Html.TextBoxFor(model => model.User.ConfirmPassword, new { @class = "form-control", @placeholder = "Confirm Password", type = "password" })
-                    <p class="help-block">@Html.ValidationMessageFor(model => model.User.ConfirmPassword)</p>
+                            @Html.TextBoxFor(model => model.User.ConfirmPassword, new { @class = "form-control", @placeholder = "Confirm Password", type = "password" })
+                            <p class="help-block">@Html.ValidationMessageFor(model => model.User.ConfirmPassword)</p>
+                            @Html.Label("When were you born?")
+                            @Html.EditorFor(model => model.User.BirthDate, new { htmlAttributes = new { @class = "form-control", id = "datepicker", @placeholder = "BirthDate", type = "date", style = "height:42px" } })
+                            <p class="help-block">@Html.ValidationMessageFor(model => model.User.BirthDate)</p>
+                            @Html.Label("How do you think of yourself?")
+                            @Html.EnumDropDownListFor(model => model.User.Gender, new { @class = "form-control" })
+                            <p class="help-block">@Html.ValidationMessageFor(model => model.User.Gender)</p>
+                        </div>
+                        <div class="col-md-6">
+                            @Html.Label("Tell us what languages you speak")
+                            <p>
+                                @Html.DropDownListFor(model => model.Language, ViewBag.LanguageList as IEnumerable<SelectListItem>, new { @class = "form-control form-control-languages", id = "languageList", })
+                                <input type="button" value="Add" class="btn btn-list" id="btnAddLanguage" />
+                            </p>
+                            <table style="display: none" class="table" id="languagesBody">
+                                <tr></tr>
+                            </table>
+                            @Html.Label("Now tell us where do you live")
+                            <p>
+                                @Html.DropDownListFor(model => model.Country, ViewBag.CountryList as IEnumerable<SelectListItem>, new { @class = "form-control form-control-languages", id = "countryList" })
+                            </p>
+                            <p>
+                                <select id="User_City_Name" class="form-control form-control-languages" name="User.City.Name"></select>
+                            </p>
+                            @Html.Label("What are some of the things you are interested in?")
+                            <div class="form-control">
+                                @Html.EditorFor(m => m.Interests, new { htmlAttributes = new { @class = "form-control " } })
+                            </div>
 
-                    @Html.EditorFor(model => model.User.BirthDate, new { htmlAttributes = new { @class = "form-control datepicker", id = "datepicker", @placeholder = "BirthDate", type = "date" } })
-                    <p class="help-block">@Html.ValidationMessageFor(model => model.User.BirthDate)</p>
-
-                    @Html.EnumDropDownListFor(model => model.User.Gender, new { @class = "form-control" })
-                    <p class="help-block">@Html.ValidationMessageFor(model => model.User.Gender)</p>
-                </div>
-                <div class="col-md-6">
-                    <p>
-                        @Html.DropDownListFor(model => model.Language, ViewBag.LanguageList as IEnumerable<SelectListItem>, new { @class = "form-control form-control-languages", id = "languageList", })
-                        <input type="button" value="Add" class="btn btn-list" id="btnAddLanguage" />
-                    </p>
-                    <table style="display: none" class="table" id="languagesBody">
-                        <tr></tr>
-                    </table>
-                    <p>
-                        @Html.DropDownListFor(model => model.Country, ViewBag.CountryList as IEnumerable<SelectListItem>, new { @class = "form-control form-control-languages", id = "countryList" })
-                    </p>
-                    <p>
-                        <select id="User_City_Name" class="form-control form-control-languages" name="User.City.Name"></select>
-                    </p>
-                    @Html.LabelFor(model => model.Interests, new { @class = "control-label" })
-                    <div class="form-control">
-                        @Html.EditorFor(m => m.Interests, new { htmlAttributes = new { @class = "form-control " } })
-                    </div>
-
-                    <button class="btn btn-lg btn-primary btn-block btn-success" type="submit">Register</button>
-
-                </div>
+                            <button class="btn btn-lg btn-primary btn-block btn-success" type="submit">Register</button>
+                        </div>
             </form>
             @*</div>*@
         </fieldset>

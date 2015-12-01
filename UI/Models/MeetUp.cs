@@ -15,7 +15,7 @@ namespace UI.Models
 
         public MeetUp()
         {
-            city = new City();
+            City = new City();
         }
 
     }
