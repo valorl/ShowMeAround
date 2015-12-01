@@ -21,7 +21,7 @@
             <form class="form-signin">
                         <h2 class="form-signin-heading">Register</h2>
                         <div class="col-md-6">
-                            @Html.Label("Hey there! Please enter your details")
+                            @Html.Label("Hey there! Start by entering your details")
                             @Html.TextBoxFor(model => model.User.FirstName, new { @class = "form-control", @placeholder = "First Name" })
                             <p class="help-block">@Html.ValidationMessageFor(model => model.User.FirstName)</p>
 
@@ -39,12 +39,12 @@
                             @Html.Label("When were you born?")
                             @Html.EditorFor(model => model.User.BirthDate, new { htmlAttributes = new { @class = "form-control", id = "datepicker", @placeholder = "BirthDate", type = "date", style = "height:42px" } })
                             <p class="help-block">@Html.ValidationMessageFor(model => model.User.BirthDate)</p>
-                            @Html.Label("How do you think of yourself?")
+                            @Html.Label("How do you identify yourself as?")
                             @Html.EnumDropDownListFor(model => model.User.Gender, new { @class = "form-control" })
                             <p class="help-block">@Html.ValidationMessageFor(model => model.User.Gender)</p>
                         </div>
                         <div class="col-md-6">
-                            @Html.Label("Tell us what languages you speak")
+                            @Html.Label("Gloat about your language skills here")
                             <p>
                                 @Html.DropDownListFor(model => model.Language, ViewBag.LanguageList as IEnumerable<SelectListItem>, new { @class = "form-control form-control-languages", id = "languageList", })
                                 <input type="button" value="Add" class="btn btn-list" id="btnAddLanguage" />
@@ -59,7 +59,8 @@
                             <p>
                                 <select id="User_City_Name" class="form-control form-control-languages" name="User.City.Name"></select>
                             </p>
-                            @Html.Label("What are some of the things you are interested in?")
+                            @Html.Label("Help us find you good matches for your travels, by picking some of the things you are interested in")
+                     
                             <div class="form-control">
                                 @Html.EditorFor(m => m.Interests, new { htmlAttributes = new { @class = "form-control " } })
                             </div>
