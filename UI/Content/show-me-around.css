@@ -26,7 +26,7 @@ body {
 
 #nav-container {
     width: auto;
-    max-width: 70%;
+    max-width: 100%;
 }
 
 #foot-container {
@@ -41,6 +41,12 @@ body {
 
 .navbar-brand {
     font-size: 28px;
+    padding-left:150px;
+}
+
+.navbar-right
+{
+    padding-right:12%;
 }
 
 .bg-grey {
