@@ -21,5 +21,13 @@ namespace Data.Utils
         [DataMember]
         public int Score { get; set; }
 
+        public int ScorePercentage
+        {
+            get
+            {
+                return (int)Math.Round(((double)Score / 300) * 100);
+            }
+        }
+
     }
 }
