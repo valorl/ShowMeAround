@@ -39,7 +39,7 @@
                             @Html.Label("When were you born?")
                             @Html.EditorFor(model => model.User.BirthDate, new { htmlAttributes = new { @class = "form-control", id = "datepicker", @placeholder = "BirthDate", type = "date", style = "height:42px" } })
                             <p class="help-block">@Html.ValidationMessageFor(model => model.User.BirthDate)</p>
-                            @Html.Label("How do you identify yourself as?")
+                            @Html.Label("How do you identify yourself?")
                             @Html.EnumDropDownListFor(model => model.User.Gender, new { @class = "form-control" })
                             <p class="help-block">@Html.ValidationMessageFor(model => model.User.Gender)</p>
                         </div>
@@ -52,14 +52,14 @@
                             <table style="display: none" class="table" id="languagesBody">
                                 <tr></tr>
                             </table>
-                            @Html.Label("Now tell us where do you live")
+                            @Html.Label("Now tell us where you live")
                             <p>
                                 @Html.DropDownListFor(model => model.Country, ViewBag.CountryList as IEnumerable<SelectListItem>, new { @class = "form-control form-control-languages", id = "countryList" })
                             </p>
                             <p>
                                 <select id="User_City_Name" class="form-control form-control-languages" name="User.City.Name"></select>
                             </p>
-                            @Html.Label("Help us find you good matches for your travels, by picking some of the things you are interested in")
+                            @Html.Label("Help us find you good matches for your travels by picking some of the things you are interested in")
                      
                             <div class="form-control">
                                 @Html.EditorFor(m => m.Interests, new { htmlAttributes = new { @class = "form-control " } })
