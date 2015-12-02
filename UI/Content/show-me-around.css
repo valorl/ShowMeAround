@@ -15,7 +15,7 @@ body {
 }
 
 .footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
     /* Set the fixed height of the footer here */
@@ -31,7 +31,8 @@ body {
 
 #foot-container {
     width: auto;
-    max-width: 70%;
+    padding-left:22px;
+    max-width: 100%;
 }
 
 #intro-container {
