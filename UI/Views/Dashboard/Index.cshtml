@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
 
-<div class="container-forms">
+<div class="dashboard-container">
     <h1 class="page-header text-center" >Welcome to your dashboard!</h1>
     <h3 class="header text-center"> Here you can start a new trip!<br>Just pick where and when, and we will take care of the rest</h3>
     @using (Html.BeginForm("GetMatches", "Dashboard", FormMethod.Post))

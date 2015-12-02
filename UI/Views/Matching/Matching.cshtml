@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
 
-<div class="container-forms">
+<div class="matches-container">
     @foreach (var item in ViewBag.MatchList as List<Data.Utils.Match>)
     {
         <br />
@@ -14,24 +14,20 @@
                     <img src="http://www.gravatar.com/avatar/bbe8907c4b1ff6229e0ee5e140d7ce04?s=47&d=http%3A%2F%2Fwww.techrepublic.com%2Fbundles%2Ftechrepubliccore%2Fimages%2Ficons%2Fstandard%2Ficon-user-default.png" width="100" height="100" class="img-circle">
                 </div>
 
-                <div class="col-md-4" style="padding-left:40px;">
-                    <h2>@Html.DisplayName(item.Guide.FirstName) @Html.DisplayName(item.Guide.LastName)</h2>
-                    <h3>@Html.DisplayName(item.Guide.Gender.ToString())</h3>
-                    <h3>Age: @Html.DisplayName(item.Guide.Age.ToString())</h3>
+                <div class="col-md-7 match-col-md-1" style="padding-left:40px;">
+                    <h2>@Html.DisplayName(item.Guide.FirstName) @Html.DisplayName(item.Guide.LastName) (@Html.DisplayName(item.Guide.Age.ToString()))</h2>
+                    <p>
+                        <b>Speaks:</b> @String.Join(", ", item.Guide.Languages.Select(i => i.Name).ToArray())
+                    </p>
+
+                    <p>
+                        <b>Interests:</b>
+                        @String.Join(", ", item.Guide.Interests.Select(i => i.Name).ToArray())
+                    </p>
 
                 </div>
 
-                <div class="col-md-4">
-                    
-                    <h2>Language(s)</h2>
-                    @foreach (var language in item.Guide.Languages)
-                    {
-                        <h3> <li>@Html.DisplayName(language.Name)</li></h3>
-                    }
-
-                </div>
-
-                <div class="col-md-1">
+                <div class="col-md-1 match-col-md-1">
                     <div class="clearfix">
                         <div id="bluecircle" data-percent="@item.ScorePercentage.ToString()" class="small">
                         </div>
