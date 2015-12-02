@@ -7,7 +7,7 @@ html {
 
 body {
     /* Margin bottom by footer height & padding for the sticky header */
-    padding-top: 40px;
+    padding-top: 50px;
     margin-bottom: 60px;
     font: 400 15px Lato, sans-serif;
     line-height: 1.8;
