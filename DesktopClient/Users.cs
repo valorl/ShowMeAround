@@ -72,8 +72,10 @@ namespace DesktopClient
         private void listUsers_SelectedIndexChanged(object sender, EventArgs e)
         {
             var list = (ListBox)sender;
-            var index = list.SelectedIndices[0];
+            //var index = list.SelectedIndices[0];
             User user = (User)list.SelectedItem;
+
+            if (user == null) return;
 
             lblNameContent.Text = user.FirstName + " " + user.LastName;
             tboxEmail.Text = user.Email;
