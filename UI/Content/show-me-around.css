@@ -12,6 +12,7 @@ body {
     font: 400 15px Lato, sans-serif;
     line-height: 1.8;
     color: #818181;
+    padding-bottom:40px;
 }
 
 .footer {
@@ -91,6 +92,7 @@ body {
     font-size: 18px;
     line-height: 1.3333333;
     border-radius: 6px;
+ 
 }
 
 .sma-login {
