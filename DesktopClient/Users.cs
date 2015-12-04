@@ -43,15 +43,11 @@ namespace DesktopClient
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            //users.Clear();
-            //users.AddRange(client.Get<List<User>>("/users"));
-            //listUsers.DataSource = users;
 
             listUsers.DataSource = null;
             listUsers.DisplayMember = "FirstName";
             listUsers.DataSource = client.Get<List<User>>("/users");
             
-
         }
 
         private void btnViewEdit_Click(object sender, EventArgs e)
@@ -61,8 +57,20 @@ namespace DesktopClient
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            //commented text is code Miro tried
+            //client.AdminToken = "T1mU2YUBjCLUrkhmI4UV";
+            var listItems = (List<User>)listUsers.DataSource;
+            User user = (User)listUsers.SelectedItem;
+            //int id = user.Id;
+            if (user != null)
+            { 
+                listItems.Remove(user);
+                listUsers.DataSource = null;
+                listUsers.DataSource = listItems;
+                //client.Delete("/users", id);
 
-        }
+            }
+          }
 
         private void btnSave_Click(object sender, EventArgs e)
         {

@@ -5,8 +5,8 @@
 }
 
 <div class="dashboard-container">
-    <h1 class="page-header text-center" >Welcome to your dashboard!</h1>
-    <h3 class="header text-center"> Here you can start a new trip!<br>Just pick where and when, and we will take care of the rest</h3>
+    <h1 class="page-header text-center" >Welcome to your dashboard, @ViewBag.User.FirstName!</h1>
+    <p class="header text-center" style="font-size:20px !important"> Here you can start a new trip! Just pick where and when, and we will take care of the rest.</p>
     @using (Html.BeginForm("GetMatches", "Dashboard", FormMethod.Post))
     {
         <div class="form-signin col-md-6">
