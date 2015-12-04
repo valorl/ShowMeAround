@@ -163,6 +163,18 @@
     <Compile Include="Migrations\201512030932247_User_City_fix_attempt_n2.Designer.cs">
       <DependentUpon>201512030932247_User_City_fix_attempt_n2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201512041637364_MeetUp_cascade_fix.cs" />
+    <Compile Include="Migrations\201512041637364_MeetUp_cascade_fix.Designer.cs">
+      <DependentUpon>201512041637364_MeetUp_cascade_fix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512041646116_Meetup_cycle_fix_again.cs" />
+    <Compile Include="Migrations\201512041646116_Meetup_cycle_fix_again.Designer.cs">
+      <DependentUpon>201512041646116_Meetup_cycle_fix_again.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512041650302_Meetup_cycle_fix_again_v2.cs" />
+    <Compile Include="Migrations\201512041650302_Meetup_cycle_fix_again_v2.Designer.cs">
+      <DependentUpon>201512041650302_Meetup_cycle_fix_again_v2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Session.cs" />
@@ -224,6 +236,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201512030932247_User_City_fix_attempt_n2.resx">
       <DependentUpon>201512030932247_User_City_fix_attempt_n2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512041637364_MeetUp_cascade_fix.resx">
+      <DependentUpon>201512041637364_MeetUp_cascade_fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512041646116_Meetup_cycle_fix_again.resx">
+      <DependentUpon>201512041646116_Meetup_cycle_fix_again.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512041650302_Meetup_cycle_fix_again_v2.resx">
+      <DependentUpon>201512041650302_Meetup_cycle_fix_again_v2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

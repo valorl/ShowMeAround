@@ -49,6 +49,15 @@ namespace Data
                      m.MapRightKey("InterestName");
                      m.ToTable("UserInterests");
                  });
+
+            // Cascade cycling fix
+            modelBuilder.Entity<MeetUp>()
+                .HasOptional(m => m.Traveler)
+                .WithMany();
+
+            modelBuilder.Entity<MeetUp>()
+                .HasOptional(m => m.Guide)
+                .WithMany();
         }
     }
 }

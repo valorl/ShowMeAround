@@ -67,7 +67,7 @@ namespace DesktopClient
                 listItems.Remove(user);
                 listUsers.DataSource = null;
                 listUsers.DataSource = listItems;
-                //client.Delete("/users", id);
+                client.Delete("/user", user.Id);
 
             }
           }

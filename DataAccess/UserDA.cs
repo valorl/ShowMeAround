@@ -146,9 +146,11 @@ namespace DataAccess
         public void Delete(User model)
         {
             if (model == null) throw new ArgumentNullException("UserDA.Delete: 'model' null");
+            var user = GetOneByEmail(model.Email);
             if (GetOneByEmail(model.Email) == null)
                 throw new ArgumentException("UserDA.Remove: No such user in the database [e-mail: " + model.Email + "]");
-            dbContext.User.Remove(model);
+            dbContext.User.Attach(user);
+            dbContext.User.Remove(user);
         }
 
 

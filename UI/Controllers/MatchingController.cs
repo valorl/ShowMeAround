@@ -54,8 +54,9 @@ namespace UI.Controllers
             meetUp.City = (string)TempData["City"];
 
             var client = new SMARestClient("MeetUpService.svc");
+            client.AuthToken = (string)Session["auth_token"];
             MeetUp createdMeetUp = client.Post<MeetUp>("meetups/", meetUp);
-            //client.AuthToken = (string)Session["auth_token"];
+            
 
             if (createdMeetUp == null)
             {
