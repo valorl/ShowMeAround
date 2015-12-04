@@ -155,6 +155,14 @@
     <Compile Include="Migrations\201512012255213_City-User relationship fix.Designer.cs">
       <DependentUpon>201512012255213_City-User relationship fix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201512030925585_User_City_fix_attempt.cs" />
+    <Compile Include="Migrations\201512030925585_User_City_fix_attempt.Designer.cs">
+      <DependentUpon>201512030925585_User_City_fix_attempt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512030932247_User_City_fix_attempt_n2.cs" />
+    <Compile Include="Migrations\201512030932247_User_City_fix_attempt_n2.Designer.cs">
+      <DependentUpon>201512030932247_User_City_fix_attempt_n2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Session.cs" />
@@ -210,6 +218,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201512012255213_City-User relationship fix.resx">
       <DependentUpon>201512012255213_City-User relationship fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512030925585_User_City_fix_attempt.resx">
+      <DependentUpon>201512030925585_User_City_fix_attempt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512030932247_User_City_fix_attempt_n2.resx">
+      <DependentUpon>201512030932247_User_City_fix_attempt_n2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

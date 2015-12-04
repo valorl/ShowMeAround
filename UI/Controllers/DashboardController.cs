@@ -27,6 +27,8 @@ namespace UI.Controllers
             }).ToList();
             ViewBag.CountryList = countries;
 
+            ViewBag.User = Session["logged_in_user_obj"];
+
             ViewBag.Message = Session["auth_token"];
             return View();
         }
