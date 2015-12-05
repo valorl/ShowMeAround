@@ -44,9 +44,19 @@ namespace UI.Controllers
                 }
             }
 
-
             ViewBag.ReceivedRequest = received;
             ViewBag.SentRequest= sent;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Index(int id)
+        {
+            var client = new SMARestClient("MeetUpService.svc");
+            client.AuthToken = (string)Session["auth_token"];
+            //client.Delete("meetup/", id);
+
+            //return RedirectToAction("Index", "MeetUp", new { area = "" });
             return View();
         }
     }
