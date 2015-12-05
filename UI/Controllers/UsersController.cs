@@ -49,18 +49,18 @@ namespace UI.Controllers
             ViewBag.CountryList = countries;
 
             //Interest
-            var interestContent = uClient.Get<List<Interest>>("interests/");
-            var interests = interestContent.ToList().Select(c => new SelectListItem
+            var interestContent = uClient.Get<List<InterestPopularity>>("interests/popular");
+            var interests = interestContent.ToList().Select(i => new SelectListItem
             {
-                Text = c.Name,
-                Value = c.Name.ToString(),
+                Text = i.Interest.Name,
+                Value = i.Interest.Name.ToString(),
             }).ToList();
 
             var vm = new Models.Registration();
             
             foreach (var item in interestContent)
             {
-                vm.Interests.Add(new Models.InterestModel { Interest = item });
+                vm.Interests.Add(new Models.InterestModel { Interest = item.Interest, Popularity = item.Popularity });
             }
 
 

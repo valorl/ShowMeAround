@@ -30,6 +30,7 @@ namespace UI.Models
     public class InterestModel
     {
         public Interest Interest { get; set; }
+        public int Popularity { get; set; }
         public bool IsSelected { set; get; }
     }
 }

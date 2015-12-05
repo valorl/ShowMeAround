@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 using Data;
+using Data.Utils;
 
 namespace Service
 {
@@ -59,6 +60,11 @@ namespace Service
         [WebGet(UriTemplate = "/interests/",
            ResponseFormat = WebMessageFormat.Xml)]
         List<Interest> GetAllInterests();
+
+        [OperationContract]
+        [WebGet(UriTemplate = "/interests/popular",
+          ResponseFormat = WebMessageFormat.Xml)]
+        List<InterestPopularity> GetAllTrendingInterestsAsync();
 
         [OperationContract]
         [WebGet(UriTemplate = "/languages/",

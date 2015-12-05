@@ -1,6 +1,22 @@
 ﻿@model UI.Models.InterestModel
-<p>
-    @Html.CheckBoxFor(x => x.IsSelected) 
+@*<p>
+    @Html.CheckBoxFor(x => x.IsSelected)
     @Html.HiddenFor(x => x.Interest.Name)
     @Model.Interest.Name
-</p>
+
+
+</p>*@
+
+<tr>
+    <td style="text-align:center">
+        @Html.CheckBoxFor(model => model.IsSelected)
+    </td>
+    <td style="text-align:center">
+        @Html.HiddenFor(model => model.Interest.Name)
+        @Model.Interest.Name
+    </td>
+    <td style="text-align:center">
+        @Html.HiddenFor(model => model.Popularity)
+        @Model.Popularity%
+    </td>
+</tr>
