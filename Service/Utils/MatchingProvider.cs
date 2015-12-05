@@ -37,14 +37,14 @@ namespace Service.Utils
             // Condition: At least 1 common language
             if (l_score < 0) return 0;  
             int i_score = GetInterestScore(traveler, guide);
-            int age_score = GetAgeScore(traveler, guide);
+            //int age_score = GetAgeScore(traveler, guide);
 
             // apply weight
             int l_score_with_weight = (int)Math.Round(l_score * LANG_WEIGHT);
             int i_score_with_weight = (int)Math.Round(i_score * INTEREST_WEIGHT);
-            int age_score_with_weight = (int)Math.Round(age_score * AGE_WEIGHT);
+            //int age_score_with_weight = (int)Math.Round(age_score * AGE_WEIGHT);
 
-            return l_score_with_weight + i_score_with_weight + age_score_with_weight;
+            return l_score_with_weight + i_score_with_weight;
         }
 
         private int GetLangScore(User traveler, User guide)
@@ -61,23 +61,23 @@ namespace Service.Utils
             int score = (int)Math.Round((double)commonCount / traveler.Interests.Count * 100) ;
             return score;
         }
-        private int GetAgeScore(User traveler, User guide)
-        {
-            int ageDiff = GetAgeDifference(traveler.BirthDate, guide.BirthDate);
-            int partialScore = -(ageDiff) + MAX_AGE_GAP;
-            int score = (int)Math.Round((double)partialScore / MAX_AGE_GAP * 100) ;
-            return score;
-        }
+        //private int GetAgeScore(User traveler, User guide)
+        //{
+        //    int ageDiff = GetAgeDifference(traveler.BirthDate, guide.BirthDate);
+        //    int partialScore = -(ageDiff) + MAX_AGE_GAP;
+        //    int score = (int)Math.Round((double)partialScore / MAX_AGE_GAP * 100) ;
+        //    return score;
+        //}
 
-        private int GetAgeDifference(DateTime tAge, DateTime gAge)
-        {
-            var yearNow = DateTime.Now.Year;
-            var ageTraveler = yearNow - tAge.Year;
-            var ageGuide = yearNow - gAge.Year;
+        //private int GetAgeDifference(DateTime tAge, DateTime gAge)
+        //{
+        //    var yearNow = DateTime.Now.Year;
+        //    var ageTraveler = yearNow - tAge.Year;
+        //    var ageGuide = yearNow - gAge.Year;
 
-            int ageDiff = Math.Abs(ageTraveler - ageGuide);
-            return ageDiff;
-        }
+        //    int ageDiff = Math.Abs(ageTraveler - ageGuide);
+        //    return ageDiff;
+        //}
 
 
     }
