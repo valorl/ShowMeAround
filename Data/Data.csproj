@@ -180,6 +180,7 @@
     <Compile Include="Session.cs" />
     <Compile Include="ShowMeAroundContext.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="Utils\InterestPopularity.cs" />
     <Compile Include="Utils\LoginCredentials.cs" />
     <Compile Include="Utils\Match.cs" />
     <Compile Include="Utils\PasswordHasher.cs" />

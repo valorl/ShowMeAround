@@ -8,6 +8,8 @@ using Data;
 using DataAccess;
 using System.ServiceModel.Web;
 using Service.Utils;
+using Data.Utils;
+using System.Threading.Tasks;
 
 namespace Service
 {
@@ -49,6 +51,39 @@ namespace Service
         {
       
             return interestDA.GetAll().ToList();
+        }
+
+        public List<InterestPopularity> GetAllTrendingInterestsAsync()
+        {
+
+            var interests = interestDA.GetAll().ToArray();
+            var counts = new int[interests.Length];
+            var users = userDA.GetAll().ToArray();
+            var interestsPopularity = new InterestPopularity[interests.Length];
+
+            Parallel.For(0, interests.Length, i =>
+            {
+                Parallel.For(0, users.Length, u =>
+                {
+                    if (users[u].Interests.Contains(interests[i]))
+                    {
+                        counts[i]++;
+                    }
+                });
+            });
+
+            Parallel.For(0, interests.Length, i =>
+            {
+                interestsPopularity[i] = new InterestPopularity()
+                {
+                    Interest = interests[i],
+                    Popularity = (int)Math.Round((double)counts[i] / users.Length * 100)
+                };
+            });
+
+            return interestsPopularity.OrderByDescending(i => i.Popularity).ToList();
+
+
         }
 
         // Languages
