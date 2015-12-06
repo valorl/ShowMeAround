@@ -5,39 +5,61 @@
 }
 
 <div class="dashboard-container">
-    <h1 class="page-header text-center" >Welcome to your dashboard, @ViewBag.User.FirstName!</h1>
+    <h1 class="page-header text-center">Welcome to your dashboard, @ViewBag.User.FirstName!</h1>
     <p class="header text-center" style="font-size:20px !important"> Here you can start a new trip! Just pick where and when, and we will take care of the rest.</p>
-    @using (Html.BeginForm("GetMatches", "Dashboard", FormMethod.Post))
+    @using (Html.BeginForm("GetMatches", "Dashboard", FormMethod.Post, new { @class = "form-signin" }))
     {
-        <div class="form-signin col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <h2>Select your destination</h2>
-                    <p>
-                        @Html.DropDownListFor(model => model.Country, ViewBag.CountryList as IEnumerable<SelectListItem>, new { @class = "form-control", id = "countryList" })
-                    </p>
-                    <p>
-                        <select id="City_Name" class="form-control" name="City.Name"></select>
-                    </p>
+        <div class="row">
+            <div class="form-signin col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h2>Select your destination</h2>
+                        <p>
+                            @Html.DropDownListFor(model => model.Country, ViewBag.CountryList as IEnumerable<SelectListItem>, new { @class = "form-control", id = "countryList" })
+                        </p>
+                        <p>
+                            <select id="City_Name" class="form-control" name="City.Name"></select>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="form-signin col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h2>When are you travelling?</h2>
+                        <p class="col-md-2 h4" style="padding:0px;">From: </p>
+                        <p class="col-md-10">
+                            @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", id = "datepickerStart", @placeholder = "StartDate", type = "date", style = "height:42px" } })
+                        </p>
+                        <p class="col-md-2 h4" style="padding-left:0px;">To: </p>
+                        <p class="col-md-10">
+                            @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control", id = "datepickerEnd", @placeholder = "EndDate", type = "date", style = "height:42px" } })
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="form-signin col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <h2>When are you travelling?</h2>
-                    <p class="col-md-2 h4" style="padding:0px;">From: </p>
-                    <p class="col-md-10">
-                        @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", id = "datepickerStart", @placeholder = "StartDate", type = "date", style = "height:42px" } })
-                    </p>
-                    <p class="col-md-2 h4" style="padding-left:0px;">To: </p>
-                    <p class="col-md-10">
-                        @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control", id = "datepickerEnd", @placeholder = "EndDate", type = "date", style = "height:42px" } })
-                    </p>
+        <div class="row">
+            <div class="form-signin col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h2>Specify the age of your matches:</h2>
+                        <p class="col-md-2 h4" style="padding:0px;">Minimum: </p>
+                        <p class="col-md-10">
+                            @Html.DropDownListFor(model => model.MinAge, ViewBag.AgeList as IEnumerable<SelectListItem>, new { @class = "form-control"})
+                        </p>
+                        <p class="col-md-2 h4" style="padding-left:0px;">Maximum: </p>
+                        <p class="col-md-10">
+                            @Html.DropDownListFor(model => model.MaxAge, ViewBag.AgeList as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                        </p>
+                    </div>
                 </div>
             </div>
+            <div class="form-signin col-md-6">
+                <button class="btn btn-success center-block " type="submit" 
+                        style="height: 200px; width:200px; border-radius: 50%;font-size: 30px !important;">Search!</button>
+            </div>
         </div>
-        <div class="pull-right" style="margin-right:16px;"><button class="btn btn-success" type="submit">Save</button></div>
     }
 </div>
 @section Scripts {
@@ -46,9 +68,9 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
 
-<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 
     <script language="javascript" type="text/javascript">
 

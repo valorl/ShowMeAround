@@ -27,6 +27,18 @@ namespace UI.Controllers
             }).ToList();
             ViewBag.CountryList = countries;
 
+            List<SelectListItem> ages = new List<SelectListItem>();
+            for(int i = 18; i <= 99; i++)
+            {
+                ages.Add(new SelectListItem
+                {
+                    Text = i.ToString(),
+                    Value = i.ToString()
+                });
+            }
+
+            ViewBag.AgeList = ages;
+
             ViewBag.User = Session["logged_in_user_obj"];
 
             ViewBag.Message = Session["auth_token"];
