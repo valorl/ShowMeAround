@@ -30,7 +30,7 @@ namespace Service
             auth = new Authentication();
         }
 
-        public IEnumerable<Match> GetMatchesAsync(string userid, string city)
+        public IEnumerable<Match> GetMatchesAsync(string userid, string city, int minAge, int maxAge)
         {
             //User user = auth.Authorize(WebOperationContext.Current.IncomingRequest);
             //if (user.Id != Convert.ToInt32(userid)) throw new WebFaultException(System.Net.HttpStatusCode.Unauthorized);
