@@ -13,8 +13,6 @@ using System.Threading.Tasks;
 
 namespace Service
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "UserService" in code, svc and config file together.
-    // NOTE: In order to launch WCF Test Client for testing this service, please select UserService.svc or UserService.svc.cs at the Solution Explorer and start debugging.
     public class UserService : IUserService
     {
         private UserDA userDA;
@@ -36,26 +34,21 @@ namespace Service
         {
             var incReq = WebOperationContext.Current.IncomingRequest;
             // authenticate current user
-            if (!(incReq.Headers.Get("sma_admin_pass") != null && incReq.Headers.Get("sma_admin_pass") == "T1mU2YUBjCLUrkhmI4UV"))
+            if (!(incReq.Headers.Get("sma_admin_pass") != null && incReq.Headers.Get("sma_admin_pass") == auth.SMA_ADMIN_PASS))
             {
                 auth.Authorize(WebOperationContext.Current.IncomingRequest);
             }
-            
-
             // Actual functionality
             return userDA.GetAll().ToList();
-
         }
         // Interests
         public List<Interest> GetAllInterests()
         {
-      
             return interestDA.GetAll().ToList();
         }
 
         public List<InterestPopularity> GetAllTrendingInterestsAsync()
         {
-
             var interests = interestDA.GetAll().ToArray();
             var counts = new int[interests.Length];
             var users = userDA.GetAll().ToArray();
@@ -82,36 +75,24 @@ namespace Service
             });
 
             return interestsPopularity.OrderByDescending(i => i.Popularity).ToList();
-
-
         }
 
         // Languages
         public List<Language> GetAllLanguages()
         {
-
             return languageDA.GetAll().ToList();
         }
 
         public User GetById(string id)
         {
             //auth.Authorize(WebOperationContext.Current.IncomingRequest);
-
             int intID = Convert.ToInt32(id);
             var user = userDA.GetOneByID(intID);
             return user;
-            
         }
 
         public User Create(User user)
         {
-            // request info test
-            //var request = WebOperationContext.Current.IncomingRequest;
-            //var headers = request.Headers;
-            //foreach (string name in headers)
-            //{
-            //    Console.WriteLine(name + " " + headers.Get(name));
-            //}
             userDA.Insert(user);
             userDA.SaveChanges();
             return userDA.GetOneByEmail(user.Email);
@@ -132,18 +113,18 @@ namespace Service
 
         public void Delete(string id)
         {
+            var incReq = WebOperationContext.Current.IncomingRequest;
+            if (!(incReq.Headers.Get("sma_admin_pass") != null && incReq.Headers.Get("sma_admin_pass") == auth.SMA_ADMIN_PASS))
+            {
+                auth.Authorize(WebOperationContext.Current.IncomingRequest);
+            }
+
             var toBeDeleted = userDA.GetOneByID(Convert.ToInt32(id));
-
-            // to do auth
-
             if (toBeDeleted != null)
             {
                 userDA.Delete(toBeDeleted);
                 userDA.SaveChanges();
             }
         }
-
-        
-
     }
 }

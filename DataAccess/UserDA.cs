@@ -18,10 +18,8 @@ namespace DataAccess
             dbContext = new ShowMeAroundContext();
         }
 
-
         public IEnumerable<User> GetAll()
         {
-
             var users = dbContext.User.ToList();
 
             foreach (var user in users)
@@ -31,13 +29,10 @@ namespace DataAccess
                 dbContext.Entry(user).Reference(u => u.City).Load();
             }
             return users;
-
-
         }
 
         public User GetOneByID(int id)
         {
-
             if (id == 0) throw new ArgumentNullException("UserDA.GetOneByID: 'id' null");
             using (var tempCtx = new ShowMeAroundContext())
             {
@@ -47,8 +42,6 @@ namespace DataAccess
                 tempCtx.Entry(user).Reference(u => u.City).Load();
                 return user;
             }
-            
-
         }
 
         public User GetOneByEmail(string email)
@@ -104,7 +97,6 @@ namespace DataAccess
                     dbContext.Entry(model.City).State = System.Data.Entity.EntityState.Unchanged;
                 }
             }
-
         }
 
         public void Update(User model)
@@ -138,9 +130,7 @@ namespace DataAccess
                 }
             }
 
-
             dbContext.Entry(model).State = System.Data.Entity.EntityState.Modified;
-
         }
 
         public void Delete(User model)

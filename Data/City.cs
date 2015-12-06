@@ -11,10 +11,8 @@ namespace Data
     [DataContract]
     public class City
     {
-        public City()
-        {
-            
-        }
+        public City() { }
+
         [Key]
         [DataMember]
         public string Name { get; set; }

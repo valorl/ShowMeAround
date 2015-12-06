@@ -12,10 +12,7 @@ namespace Data
     [DataContract]
     public class Session
     {
-        public Session()
-        {
-
-        }
+        public Session() { }
 
         public Session(User user)
         {
@@ -32,14 +29,12 @@ namespace Data
         [DataMember(Order = 2)]
         public DateTime TimeStamp { get; set; }
 
-
         private string GenerateToken()
         {
             RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
             byte[] byteToken = new byte[20];
             rng.GetBytes(byteToken);
             return Convert.ToBase64String(byteToken);
-
         }
     }
 }

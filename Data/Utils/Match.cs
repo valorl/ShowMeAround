@@ -10,10 +10,7 @@ namespace Data.Utils
     [DataContract]
     public class Match
     {
-        public Match()
-        {
-
-        }
+        public Match() { }
         [DataMember]
         public User Traveler { get; set; }
         [DataMember]
@@ -25,7 +22,7 @@ namespace Data.Utils
         {
             get
             {
-                return (int)Math.Round(((double)Score / 300) * 100);
+                return (int)Math.Round(((double)Score / 200) * 100);
             }
         }
 

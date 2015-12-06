@@ -10,10 +10,7 @@ namespace Data.Utils
     [DataContract]
     public class InterestPopularity
     {
-        public InterestPopularity()
-        {
-
-        }
+        public InterestPopularity() { }
 
         [DataMember]
         public Interest Interest { get; set; }

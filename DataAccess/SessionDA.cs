@@ -27,10 +27,8 @@ namespace DataAccess
 
         public Session GetOneByToken(string token)
         {
-
             if (token == null) throw new ArgumentNullException("SessionDA.GetOneByToken: 'token' null");
             return dbContext.Session.Find(token);
-
         }
 
         public void Insert(Session model)
@@ -43,8 +41,7 @@ namespace DataAccess
             else
             {
                 dbContext.Session.Add(model);
-            }  
-           
+            }
         }
 
         public void Update(Session model)
@@ -53,7 +50,6 @@ namespace DataAccess
             if (GetOneByToken(model.Token) == null)
                 throw new ArgumentException("SessionDA.Update: Session[" + model.Token + "] doesn't exists.");
             dbContext.Entry(model).State = System.Data.Entity.EntityState.Modified;
-
         }
 
         public void Delete(Session model)

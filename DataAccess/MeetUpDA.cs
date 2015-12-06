@@ -45,14 +45,13 @@ namespace DataAccess
         public void Insert(MeetUp model)
         {
             if (model == null) throw new ArgumentNullException("MeetUpDA.Insert: 'model' null");
-            //if (GetOneByID(model.Id) != null)
-            //    throw new ArgumentException("MeetUpDA.Insert: Meetup[" + model.Id + "] already exists in the database.");
+            if (GetOneByID(model.Id) != null)
+                throw new ArgumentException("MeetUpDA.Insert: Meetup[" + model.Id + "] already exists in the database.");
 
             var newTraveler = new User() { Id = model.Traveler.Id };
             var newGuide = new User() { Id = model.Guide.Id };
             model.Traveler = newTraveler;
             model.Guide = newGuide;
-
             dbContext.MeetUp.Add(model);
 
             using (var tempCtx = new ShowMeAroundContext())
@@ -66,21 +65,7 @@ namespace DataAccess
                     {
                         dbContext.Entry(model.Traveler).State = System.Data.Entity.EntityState.Unchanged;
 
-
-                        //using (var tempCtx2 = new ShowMeAroundContext())
-                        //{
-                        //    if (dbTraveler.Languages != null && dbTraveler.Languages.Count > 0)
-                        //    {
-                        //        foreach (var language in dbTraveler.Languages)
-                        //        {
-                        //            Language dbLanguage = tempCtx2.Language.Find;
-                        //        }
-                        //    }
-
-                        //}
                     }
-
-
                 }
 
                 if (model.Guide != null)
@@ -92,9 +77,7 @@ namespace DataAccess
                         dbContext.Entry(model.Guide).State = System.Data.Entity.EntityState.Unchanged;
                     }
                 }
-
             }
-
         }
 
         public void Update(MeetUp model)
@@ -124,9 +107,7 @@ namespace DataAccess
                         dbContext.Entry(model.Guide).State = System.Data.Entity.EntityState.Unchanged;
                     }
                 }
-
             }
-
 
             dbContext.Entry(model).State = System.Data.Entity.EntityState.Modified;
         }
@@ -142,7 +123,6 @@ namespace DataAccess
         public void SaveChanges()
         {
             dbContext.SaveChanges();
-
         }
     }
 }

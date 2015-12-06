@@ -21,7 +21,6 @@ namespace Data.Utils
         public static string HashPwd(string password, string salt)
         {
             byte[] byteSalt = Encoding.Unicode.GetBytes(salt);
-
             var pwdHash = new Rfc2898DeriveBytes(password, byteSalt, 1000).GetBytes(20);
             return Convert.ToBase64String(pwdHash);
         }

@@ -9,12 +9,12 @@ using System.Text;
 
 namespace Service
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IMatchingService" in both code and config file together.
     [ServiceContract]
     public interface IMatchingService
     {
         [OperationContract]
-        [WebGet(UriTemplate = "/matches/{userid}?city={city}&minAge={minAge}&maxAge={maxAge}", ResponseFormat = WebMessageFormat.Xml)]
+        [WebGet(UriTemplate = "/matches/{userid}?city={city}&minAge={minAge}&maxAge={maxAge}", 
+            ResponseFormat = WebMessageFormat.Xml)]
         IEnumerable<Match> GetMatchesAsync(string userid, string city, int minAge, int maxAge);
     }
 }

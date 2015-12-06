@@ -16,6 +16,7 @@ namespace Service.Tests
         [TestInitialize]
         public void Init()
         {
+            // prepare traveler 
             traveler = new User()
             {
                 FirstName = "Miroslaw",
@@ -37,8 +38,10 @@ namespace Service.Tests
                     new Interest("Weaponry")
                 }
 
-                // prepare traveler ...
+                
             };
+
+            // prepare guide
             guide = new User()
             {
                 FirstName = "Johnny",
@@ -59,10 +62,8 @@ namespace Service.Tests
                     new Interest("Science"),
                     new Interest("Animals"),
                     new Interest("Sightseeing")
-                }                // prepare guide
+                }                
             };
-
-
         }
 
         [TestMethod]

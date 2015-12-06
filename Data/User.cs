@@ -18,7 +18,6 @@ namespace Data
         {
             this.Languages = new List<Language>();
             this.Interests = new List<Interest>();
-            //this.City = new City();
         }
 
         public enum Genders
@@ -67,8 +66,8 @@ namespace Data
 
         //Auth
         [Required(ErrorMessage = "Please enter your password")]
-        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$", ErrorMessage = @"Password must have one capital, one special character and one numerical character")]
-        //[StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 8)]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$", 
+            ErrorMessage = @"Password must have one capital, one special character and one numerical character")]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         [Column(TypeName = "varchar(MAX)")]
@@ -94,7 +93,6 @@ namespace Data
         [ForeignKey("City")]
         public string City_Name { get; set; }
 
-        //[Required]
         [DataMember(Order = 10)]
         public City City { get; set; }
 

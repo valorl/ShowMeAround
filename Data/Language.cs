@@ -22,9 +22,10 @@ namespace Data
         public string Name { get; set; }
         public List<User> Users { get; set; }
 
+        // Equality logic - mainly for Matching intersections
         public override bool Equals(Object obj)
         {
-            // Check for null values and compare run-time types.
+            // Check for null and compare
             if (obj == null || GetType() != obj.GetType())
                 return false;
 

@@ -12,6 +12,7 @@ namespace Service.Utils
 {
     public class Authentication
     {
+        private const string _adminpass = "T1mU2YUBjCLUrkhmI4UV";
         UserDA userDA;
         SessionDA sessionDA;
 
@@ -21,31 +22,12 @@ namespace Service.Utils
             sessionDA = new SessionDA();
         }
 
-        // 
-        //public bool AuthenticateUser(User user, string token)
-        //{
-        //    var session = sessionDA.GetOneByToken(token);
-        //    if (session == null) throw new ArgumentException("Authentication.Authenticate: Invalid token.");
-        //    if (session.UserID == user.Id)
-        //    {
-        //        // Check if expired
-        //        TimeSpan sinceToken = DateTime.Now - session.TimeStamp;
-        //        if (sinceToken.TotalMinutes >= 15)
-        //        {
-        //            sessionDA.Delete(session);
-        //            sessionDA.SaveChanges();
-        //            return false;
-        //        }
-        //        else
-        //        {
-        //            return true;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-        //}
+
+        public string SMA_ADMIN_PASS
+        {
+            get { return _adminpass; }
+        }
+
 
         public User Authorize(IncomingWebRequestContext request)
         {
@@ -55,8 +37,7 @@ namespace Service.Utils
 
             string token = auth_header.Split()[1];
 
-            var auth = new Utils.Authentication();
-            if (!auth.ValidateToken(token)) throw new WebFaultException(System.Net.HttpStatusCode.Unauthorized);  // Return 401
+            if (!ValidateToken(token)) throw new WebFaultException(System.Net.HttpStatusCode.Unauthorized);  // Return 401
             return userDA.GetOneByID(sessionDA.GetOneByToken(token).UserID);
 
         }
@@ -87,10 +68,8 @@ namespace Service.Utils
             if (user == null) return false;
             var salt = user.PwDSalt;
 
-
             if (PasswordHasher.HashPwd(password, salt) == user.PwdHash) return true;
             return false;
         }
-
     }
 }

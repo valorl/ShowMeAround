@@ -23,14 +23,11 @@ namespace DataAccess.Tests
                 FinishDate = DateTime.Now,
                 GuideState = RequestState.Received,
                 TravelerState = RequestState.Sent
-                
-                
             };
 
             var mDA = new MeetUpDA();
             mDA.Insert(mu);
             mDA.SaveChanges();
-
         }
 
         public void CleanUp()

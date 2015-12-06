@@ -49,9 +49,5 @@ namespace DataAccess
             throw new NotImplementedException();
         }
 
-        IEnumerable<Language> IDataAccess<Language>.GetAll()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

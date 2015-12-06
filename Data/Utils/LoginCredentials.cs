@@ -11,10 +11,7 @@ namespace Data.Utils
     [DataContract]
     public class LoginCredentials
     {
-        public LoginCredentials()
-        {
-
-        }
+        public LoginCredentials() { }
 
         [Required(ErrorMessage = "Please enter your e-mail.")]
         [DataMember]

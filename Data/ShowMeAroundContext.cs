@@ -11,7 +11,7 @@ namespace Data
             : base("name=ShowMeAroundContext")
         {
             //this.Configuration.ProxyCreationEnabled = false;
-            this.Configuration.ValidateOnSaveEnabled = false;
+            this.Configuration.ValidateOnSaveEnabled = false; // for conflicts with MVC
         }
 
         public DbSet<User> User { get; set; }
@@ -50,7 +50,7 @@ namespace Data
                      m.ToTable("UserInterests");
                  });
 
-            // Cascade cycling fix
+            // Cascade cycling fix try
             modelBuilder.Entity<MeetUp>()
                 .HasOptional(m => m.Traveler)
                 .WithMany();

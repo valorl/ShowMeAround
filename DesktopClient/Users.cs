@@ -36,18 +36,13 @@ namespace DesktopClient
 
             lblInterestedContent.MaximumSize = new Size(200, 0);
             lblInterestedContent.AutoSize = true;
-
-
-
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-
             listUsers.DataSource = null;
             listUsers.DisplayMember = "FirstName";
             listUsers.DataSource = client.Get<List<User>>("/users");
-            
         }
 
         private void btnViewEdit_Click(object sender, EventArgs e)
