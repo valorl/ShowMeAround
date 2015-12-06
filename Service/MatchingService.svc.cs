@@ -37,7 +37,7 @@ namespace Service
 
             var user = userDA.GetOneByID(Convert.ToInt32(userid));
 
-            var guides = userDA.GetAll().Where(u => u.Id != user.Id /*&& u.City.ToLower() == city.ToLower()*/).ToList();
+            var guides = userDA.GetAll().Where(u => u.Id != user.Id /*&& u.City.ToLower() == city.ToLower()*/ &&  user.Age>minAge && user.Age<maxAge).ToList();
 
             var matches = new Match[guides.Count];
 
