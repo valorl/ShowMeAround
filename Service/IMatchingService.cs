@@ -15,6 +15,6 @@ namespace Service
         [OperationContract]
         [WebGet(UriTemplate = "/matches/{userid}?city={city}&minAge={minAge}&maxAge={maxAge}", 
             ResponseFormat = WebMessageFormat.Xml)]
-        IEnumerable<Match> GetMatchesAsync(string userid, string city, int minAge, int maxAge);
+        IEnumerable<Match> GetMatchesAsync(string userid, string city, string minAge, string maxAge);
     }
 }

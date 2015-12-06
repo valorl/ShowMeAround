@@ -19,7 +19,8 @@ namespace UI.Controllers
             return View();
         }
 
-        public ActionResult Matching(string city, DateTime start, DateTime end)
+        [HttpGet]
+        public ActionResult Matching(string city, DateTime start, DateTime end, int minAge, int maxAge)
         {
             // Check if user is logged in
             if (!PageAuthorization.Authorize()) return RedirectToAction("Login", "Users");
@@ -31,7 +32,8 @@ namespace UI.Controllers
             //var end = (DateTime)TempData["matching_end"];
 
             var client = new SMARestClient("MatchingService.svc");
-            var matchesContent = client.Get<List<Match>>($"matches/{user.Id}?city={city}");
+            client.AuthToken = (string)Session["auth_token"];
+            var matchesContent = client.Get<List<Match>>($"matches/{user.Id}?city={city}&minAge={minAge}&maxAge={maxAge}");
 
             ViewBag.MatchList = matchesContent.ToList<Match>();
             TempData["Matches"] = matchesContent;

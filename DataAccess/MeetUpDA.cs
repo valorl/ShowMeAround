@@ -36,8 +36,11 @@ namespace DataAccess
             {
                 if (id == null) throw new ArgumentNullException("MeeUpDA.GetOneByID: 'id' null");
                 var meetup = tempCtx.MeetUp.Find(id);
-                tempCtx.Entry(meetup).Reference(m => m.Guide).Load();
-                tempCtx.Entry(meetup).Reference(m => m.Traveler).Load();
+                if(meetup != null)
+                {
+                    tempCtx.Entry(meetup).Reference(m => m.Guide).Load();
+                    tempCtx.Entry(meetup).Reference(m => m.Traveler).Load();
+                }
                 return meetup;
             }
         }

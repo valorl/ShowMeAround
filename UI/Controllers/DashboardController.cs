@@ -61,7 +61,8 @@ namespace UI.Controllers
             //TempData["matching_end"] = model.EndDate;
 
             return RedirectToAction("Matching", "Matching", 
-                new {city = model.City.Name, start = model.StartDate, end = model.EndDate});
+                new {city = model.City.Name, start = model.StartDate,
+                    end = model.EndDate, minAge = model.MinAge, maxAge = model.MaxAge});
         }
 
         

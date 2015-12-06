@@ -30,12 +30,19 @@ namespace Service
             auth = new Authentication();
         }
 
-        public IEnumerable<Match> GetMatchesAsync(string userid, string city, int minAge, int maxAge)
+        public IEnumerable<Match> GetMatchesAsync(string userid, string city, string minAge, string maxAge)
         {
             User user = auth.Authorize(WebOperationContext.Current.IncomingRequest);
             if (user.Id != Convert.ToInt32(userid)) throw new WebFaultException(System.Net.HttpStatusCode.Unauthorized);
 
-            var guides = userDA.GetAll().Where(u => u.Id != user.Id && u.City.Name.ToLower() == city.ToLower() && user.Age > minAge && user.Age < maxAge).ToList();
+            var guides = userDA.GetAll()
+                .Where(
+                u => u.Id != user.Id 
+                && u.City != null
+                && u.City.Name.ToLower() == city.ToLower() 
+                && user.Age >= Convert.ToInt32(minAge) 
+                && user.Age <= Convert.ToInt32(maxAge))
+                .ToList();
             var matches = new Match[guides.Count];
 
             Parallel.For(0, guides.Count, index =>

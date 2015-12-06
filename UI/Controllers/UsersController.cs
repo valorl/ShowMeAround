@@ -118,12 +118,22 @@ namespace UI.Controllers
 
 
             var client = new SMARestClient("SessionService.svc");
-            Session newSession = client.Post<LoginCredentials, Session>("/login", credentials);
+            Session newSession = null;
+
+            try
+            {
+                newSession = client.Post<LoginCredentials, Session>("/login", credentials);
+            }
+            catch
+            {
+                newSession = null;
+            }
              
 
             if(newSession == null)
             {
-                ViewBag.Message = "Login failed.";
+                ViewBag.Message = "Login failed. Please try again.";
+                ViewBag.MessageClass = "text-danger";
                 return View();
             }
             else
