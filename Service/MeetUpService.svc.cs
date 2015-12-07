@@ -49,7 +49,7 @@ namespace Service
         public MeetUp Update(string id, MeetUp meetUp)
         {
             User authUser = auth.Authorize(WebOperationContext.Current.IncomingRequest);
-            if (authUser.Id != meetUp.Traveler.Id) throw new WebFaultException(System.Net.HttpStatusCode.Unauthorized);
+            if (authUser.Id != meetUp.Traveler.Id && authUser.Id != meetUp.Guide.Id) throw new WebFaultException(System.Net.HttpStatusCode.Unauthorized);
 
             meetUp.Id = Convert.ToInt32(id);
             meetUpDA.Update(meetUp);

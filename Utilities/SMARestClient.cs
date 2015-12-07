@@ -115,8 +115,9 @@ namespace Utilities
             var req = new RestRequest(endpoint, Method.PUT);
             req.AddHeader("sma_auth", AuthToken);
             req.RequestFormat = DataFormat.Xml;
-            //req.XmlSerializer = new DataContractSerializer(typeof(T));
-            req.AddBody(model, xmlns_base);
+            req.XmlSerializer = new XmlSerializer() { DateFormat = DATE_FORMAT };
+            string xmlns = string.Concat(xmlns_base, typeof(T).Namespace);
+            req.AddBody(model, xmlns);
             var response = client.Execute<T>(req);
 
             if (response.Data == null) throw new Exception($"Put request on endpoint {endpoint} failed.");

@@ -55,10 +55,14 @@ namespace UI.Controllers
         {
             var client = new SMARestClient("MeetUpService.svc");
             client.AuthToken = (string)Session["auth_token"];
+            var mu = client.Get<MeetUp>("/meetup/" + id);
+            mu.GuideState = RequestState.Declined;
+            mu.TravelerState = RequestState.Declined;
+            client.Put<MeetUp>("/meetup/" + id, mu);
             //client.Delete("meetup/", id);
 
             //return RedirectToAction("Index", "MeetUp", new { area = "" });
-            return View();
+            return RedirectToAction("Index", "MeetUp");
         }
 
         [HttpPost]
@@ -67,10 +71,12 @@ namespace UI.Controllers
         {
             var client = new SMARestClient("MeetUpService.svc");
             client.AuthToken = (string)Session["auth_token"];
-            client.Put("meetup/", id);
+            var mu = client.Get<MeetUp>("/meetup/" + id);
+            mu.TravelerState = RequestState.Confirmed;
+            client.Put<MeetUp>("/meetup/" + id, mu);
 
             //return RedirectToAction("Index", "MeetUp", new { area = "" });
-            return View();
+            return RedirectToAction("Index", "MeetUp");
         }
     }
 }

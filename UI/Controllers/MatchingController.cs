@@ -54,6 +54,8 @@ namespace UI.Controllers
             meetUp.StartDate = (DateTime)TempData["Start"];
             meetUp.FinishDate = (DateTime)TempData["End"];
             meetUp.City = (string)TempData["City"];
+            meetUp.TravelerState = RequestState.Sent;
+            meetUp.GuideState = RequestState.Received;
 
             var client = new SMARestClient("MeetUpService.svc");
             client.AuthToken = (string)Session["auth_token"];
