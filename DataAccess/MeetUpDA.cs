@@ -94,10 +94,11 @@ namespace DataAccess
             if (GetOneByID(model.Id) == null)
                 throw new ArgumentException("MeetUpDA.Update: No such Meetup in the database [Id: " + model.Id + "]");
 
-            string sql = "UPDATE MeetUps SET TravelerState=@tState,GuideState=@gState";
-            var parameters = new SqlParameter[2];
+            string sql = "UPDATE MeetUps SET TravelerState=@tState,GuideState=@gState WHERE Id=@mId";
+            var parameters = new SqlParameter[3];
             parameters[0] = new SqlParameter("@tState", (int)model.TravelerState);
             parameters[1] = new SqlParameter("@gState", (int)model.GuideState);
+            parameters[2] = new SqlParameter("@mId", (int)model.Id);
 
             dbContext.Database.ExecuteSqlCommand(sql, parameters);
 
