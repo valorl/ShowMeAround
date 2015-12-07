@@ -10,8 +10,7 @@ namespace Data
         public ShowMeAroundContext()
             : base("name=ShowMeAroundContext")
         {
-            //this.Configuration.ProxyCreationEnabled = false;
-            this.Configuration.ValidateOnSaveEnabled = false; // for conflicts with MVC
+            this.Configuration.ValidateOnSaveEnabled = false;
         }
 
         public DbSet<User> User { get; set; }
@@ -26,7 +25,6 @@ namespace Data
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             
-            // Many-to-many UserLanguages
             modelBuilder.Entity<User>()
                 .HasMany(u => u.Languages)
                 .WithMany(l => l.Users)
@@ -38,7 +36,6 @@ namespace Data
                      m.ToTable("UserLanguages");
                  });
 
-            // Many-to-many UserInterests
             modelBuilder.Entity<User>()
                 .HasMany(u => u.Interests)
                 .WithMany(i => i.Users)
@@ -50,7 +47,6 @@ namespace Data
                      m.ToTable("UserInterests");
                  });
 
-            // Cascade cycling fix try
             modelBuilder.Entity<MeetUp>()
                 .HasOptional(m => m.Traveler)
                 .WithMany();

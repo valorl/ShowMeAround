@@ -9,9 +9,6 @@ using System.Text;
 
 namespace Service
 {
-    // ShowMeAround API - Country:
-    // /countries:
-    //     GET - Return all countries
     [ServiceContract]
     public interface ICountryService
     {

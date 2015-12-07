@@ -31,11 +31,9 @@ namespace Service.Utils
         private int CalculateScore(User traveler, User guide)
         {
             int l_score = GetLangScore(traveler, guide);
-            // Condition: At least 1 common language
             if (l_score < 0) return 0;
             int i_score = GetInterestScore(traveler, guide);
 
-            // apply weight
             int l_score_with_weight = (int)Math.Round(l_score * LANG_WEIGHT);
             int i_score_with_weight = (int)Math.Round(i_score * INTEREST_WEIGHT);
 
@@ -45,7 +43,6 @@ namespace Service.Utils
         private int GetLangScore(User traveler, User guide)
         {
             int commonCount = traveler.Languages.Intersect(guide.Languages).ToList().Count;
-            // 1 language is mandatory -> if 0 common languages: make the score negative , then check during calculation
             commonCount--;
             int score = (int)Math.Round((double)commonCount / (traveler.Languages.Count - 1) * 100);
             return score;

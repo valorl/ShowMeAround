@@ -59,7 +59,6 @@ namespace DataAccess
 
             using (var tempCtx = new ShowMeAroundContext())
             {
-                //FK violation fix
                 if (model.Traveler != null)
                 {
                     User dbTraveler = tempCtx.User.Find(model.Traveler.Id);

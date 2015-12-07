@@ -77,7 +77,6 @@ namespace Service
             return interestsPopularity.OrderByDescending(i => i.Popularity).ToList();
         }
 
-        // Languages
         public List<Language> GetAllLanguages()
         {
             return languageDA.GetAll().ToList();
@@ -85,7 +84,6 @@ namespace Service
 
         public User GetById(string id)
         {
-            //auth.Authorize(WebOperationContext.Current.IncomingRequest);
             int intID = Convert.ToInt32(id);
             var user = userDA.GetOneByID(intID);
             return user;
@@ -101,8 +99,6 @@ namespace Service
         public User Update(string id, User user)
         {
             user.Id = Convert.ToInt32(id);
-            
-            // Only allow users update their own information
             User authUser = auth.Authorize(WebOperationContext.Current.IncomingRequest);
             if (authUser.Id != user.Id) throw new WebFaultException(System.Net.HttpStatusCode.Unauthorized);
 
