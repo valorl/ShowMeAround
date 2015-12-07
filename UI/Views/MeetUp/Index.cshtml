@@ -14,7 +14,6 @@
     <li><a data-toggle="tab" href="#received">Received requests</a></li>
 </ul>
 <div class="meetup-container tab-content">
-
     <div id="sent" class="row tab-pane fade in active">
         @if (ViewBag.SentRequest.Count == 0)
         {
@@ -59,7 +58,7 @@
                             </div>
                             <div class="social">
                                 <ul>
-                                    <li class="cancel"><button onclick="return confirm('Are you sure?')" type="submit" name="Delete request" title="Cancel request" value="Cancel request" id="deleteRequest" class="btn btn-cancel"><span class="glyphicon glyphicon-remove"></span></button></li>
+                                    <li class="cancel"><button onclick="return confirm('Are you sure?')" type="submit" name="action" title="Cancel request" value="delete" id="deleteRequest" class="btn btn-cancel"><span class="glyphicon glyphicon-remove"></span></button></li>
                                 </ul>
                             </div>
                         </li>
@@ -109,8 +108,8 @@
                         </div>
                         <div class="social">
                             <ul>
-                                <li class="cancel"><button onclick="return confirm('Are you sure?')" type="submit" title="Cancel request" name="X-HTTP-Method-Override" formnovalidate value="DELETE" id="deleteRequest" class="btn btn-cancel cancel"><span class="glyphicon glyphicon-remove"></span></button></li>
-                                <li class="accept"><button onclick="return confirm('Are you sure?')" type="submit" name="Accept request" title="Accept request" value="Accept request" id="acceptRequest" class="btn btn-accept"><span class="glyphicon glyphicon-ok"></span></button></li>
+                                <li class="cancel"><button onclick="return confirm('Are you sure?')" type="submit" title="Cancel request" name="action" formnovalidate value="delete" id="deleteRequest" class="btn btn-cancel cancel"><span class="glyphicon glyphicon-remove"></span></button></li>
+                                <li class="accept"><button onclick="return confirm('Are you sure?')" type="submit" title="Accept request" name="action" value="accept" id="acceptRequest" class="btn btn-accept"><span class="glyphicon glyphicon-ok"></span></button></li>
                             </ul>
                         </div>
                     </li>

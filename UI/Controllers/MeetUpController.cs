@@ -50,11 +50,24 @@ namespace UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(int id)
+        [MultiButton(MatchFormKey = "action", MatchFormValue = "delete")]
+        public ActionResult Delete(int id)
         {
             var client = new SMARestClient("MeetUpService.svc");
             client.AuthToken = (string)Session["auth_token"];
             //client.Delete("meetup/", id);
+
+            //return RedirectToAction("Index", "MeetUp", new { area = "" });
+            return View();
+        }
+
+        [HttpPost]
+        [MultiButton(MatchFormKey = "action", MatchFormValue = "accept")]
+        public ActionResult Accept(int id)
+        {
+            var client = new SMARestClient("MeetUpService.svc");
+            client.AuthToken = (string)Session["auth_token"];
+            client.Put("meetup/", id);
 
             //return RedirectToAction("Index", "MeetUp", new { area = "" });
             return View();
