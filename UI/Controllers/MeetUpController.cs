@@ -73,6 +73,7 @@ namespace UI.Controllers
             client.AuthToken = (string)Session["auth_token"];
             var mu = client.Get<MeetUp>("/meetup/" + id);
             mu.TravelerState = RequestState.Confirmed;
+            mu.GuideState = RequestState.Confirmed;
             client.Put<MeetUp>("/meetup/" + id, mu);
 
             //return RedirectToAction("Index", "MeetUp", new { area = "" });
