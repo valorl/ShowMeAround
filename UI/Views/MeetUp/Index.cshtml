@@ -17,17 +17,13 @@
     <div id="sent" class="row tab-pane fade in active">
         @if (ViewBag.SentRequest.Count == 0)
         {
-            <h2>You haven't received any request yet.</h2>
+            <h2>You haven't sent any request yet.</h2>
         }
 
         @for (int i = 0; i < sentRequest.Count; i++)
         {
             using (Html.BeginForm("Index", "MeetUp", new { id = sentRequest[i].Id }, FormMethod.Post))
             {
-                if (ViewBag.Sentrequest == null)
-                {
-                    <p>You haven't sent any requests yet.</p>
-                }
                 <div class="meetup-list">
                     <ul class="event-list">
                         <li>
