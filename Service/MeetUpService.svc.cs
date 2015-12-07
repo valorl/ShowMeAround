@@ -37,7 +37,6 @@ namespace Service
 
         public MeetUp Create(MeetUp meetup)
         {
-            //Auth
             User authUser = auth.Authorize(WebOperationContext.Current.IncomingRequest);
             if (authUser.Id != meetup.Traveler.Id) throw new WebFaultException(System.Net.HttpStatusCode.Unauthorized);
 

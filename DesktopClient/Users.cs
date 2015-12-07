@@ -52,11 +52,10 @@ namespace DesktopClient
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            //commented text is code Miro tried
-            //client.AdminToken = "T1mU2YUBjCLUrkhmI4UV";
+            client.AdminToken = "T1mU2YUBjCLUrkhmI4UV";
             var listItems = (List<User>)listUsers.DataSource;
             User user = (User)listUsers.SelectedItem;
-            //int id = user.Id;
+            int id = user.Id;
             if (user != null)
             { 
                 listItems.Remove(user);
@@ -75,7 +74,6 @@ namespace DesktopClient
         private void listUsers_SelectedIndexChanged(object sender, EventArgs e)
         {
             var list = (ListBox)sender;
-            //var index = list.SelectedIndices[0];
             User user = (User)list.SelectedItem;
 
             if (user == null) return;

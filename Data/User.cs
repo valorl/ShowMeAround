@@ -64,7 +64,6 @@ namespace Data
         [DataMember(Order = 6)]
         public List<Interest> Interests { get; set; }
 
-        //Auth
         [Required(ErrorMessage = "Please enter your password")]
         [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$", 
             ErrorMessage = @"Password must have one capital, one special character and one numerical character")]

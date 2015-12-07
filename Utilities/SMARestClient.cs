@@ -63,18 +63,6 @@ namespace Utilities
             if (response.Data == null) throw new Exception($"Post request on endpoint {endpoint} failed.");
             return response.Data;
         }
-        //public T Post<T>(string endpoint, T model, string xmlns) where T : new()
-        //{
-        //    var req = new RestRequest(endpoint, Method.POST);
-        //    req.RequestFormat = DataFormat.Xml;
-        //    req.XmlSerializer = new XmlSerializer() { DateFormat = DATE_FORMAT };
-        //    req.DateFormat = DATE_FORMAT;
-        //    req.AddBody(model, xmlns);
-        //    var response = client.Execute<T>(req);
-
-        //    if (response.Data == null) throw new Exception($"Post request on endpoint {endpoint} failed.");
-        //    return response.Data;
-        //}
 
         public V Post<T,V>(string endpoint, T model)  
             where V : new()
@@ -85,7 +73,6 @@ namespace Utilities
             req.XmlSerializer = new XmlSerializer() { DateFormat = DATE_FORMAT };
             req.DateFormat = DATE_FORMAT;
             string xmlns = string.Concat(xmlns_base, typeof(T).Namespace);
-            //if (typeof(T).IsPrimitive) xmlns = "http://schemas.microsoft.com/2003/10/Serialization/";
             req.AddBody(model, xmlns);
             var response = client.Execute(req);
 
@@ -93,22 +80,6 @@ namespace Utilities
             if (objResponse == null) throw new Exception($"Post request on endpoint {endpoint} failed.");
             return objResponse;  
         }
-
-        //public V Post<T, V>(string endpoint, T model, string xmlns)
-        //    where V : new()
-        //{
-        //    var req = new RestRequest(endpoint, Method.POST);
-        //    req.RequestFormat = DataFormat.Xml;
-        //    req.XmlSerializer = new XmlSerializer() { DateFormat = DATE_FORMAT };
-        //    req.DateFormat = DATE_FORMAT;
-        //    req.AddBody(model, xmlns);
-        //    var response = client.Execute(req);
-
-        //    V objResponse = new XmlDeserializer().Deserialize<V>(response);
-        //    if (objResponse == null) throw new Exception($"Post request on endpoint {endpoint} failed.");
-        //    return objResponse;
-
-        //}
 
         public T Put<T>(string endpoint, T model) where T : new()
         {
