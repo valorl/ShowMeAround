@@ -79,6 +79,7 @@ body {
 .dashboard-container {
     width: 80%;    
     margin: 0 auto;
+    margin-bottom: 60px;
 }
 
 .navbar-brand
