@@ -29,11 +29,11 @@
                         <h2>When are you travelling?</h2>
                         <p class="col-md-2 h4" style="padding:0px;">From: </p>
                         <p class="col-md-10">
-                            @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", id = "datepickerStart", @placeholder = "StartDate", type = "date", style = "height:42px" } })
+                            @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", id = "datepickerStart", @placeholder = "mm/dd/yy", style = "height:42px" } })
                         </p>
                         <p class="col-md-2 h4" style="padding-left:0px;">To: </p>
                         <p class="col-md-10">
-                            @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control", id = "datepickerEnd", @placeholder = "EndDate", type = "date", style = "height:42px" } })
+                            @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control", id = "datepickerEnd", @placeholder = "mm/dd/yy", style = "height:42px" } })
                         </p>
                     </div>
                 </div>
@@ -142,4 +142,22 @@
       " and " + $( "#slider-range" ).slider( "values", 1 ) );
   });
 </script>
+
+<script>
+  $(function() {
+      $("#datepickerStart").datepicker({
+          minDate: new Date(),
+          changeMonth: true,
+          changeYear: true
+      });
+  });
+  $(function () {
+      $("#datepickerEnd").datepicker({
+          minDate: new Date(),
+          changeMonth: true,
+          changeYear: true
+      });
+  });
+</script>
+
 }
