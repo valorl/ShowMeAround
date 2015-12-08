@@ -138,6 +138,13 @@ namespace DataAccess
             var user = GetOneByEmail(model.Email);
             if (GetOneByEmail(model.Email) == null)
                 throw new ArgumentException("UserDA.Remove: No such user in the database [e-mail: " + model.Email + "]");
+            var muDA = new MeetUpDA();
+            var toBeDeleted = muDA.GetAll().Where(mu => mu.Traveler.Id == model.Id || mu.Guide.Id == model.Id);
+            foreach (var mu in toBeDeleted)
+            {
+                muDA.Delete(mu);
+            }
+
             dbContext.User.Attach(user);
             dbContext.User.Remove(user);
         }

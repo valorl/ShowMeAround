@@ -146,9 +146,14 @@ namespace DataAccess
         public void Delete(MeetUp model)
         {
             if (model == null) throw new ArgumentNullException("MeetUpDA.Delete: 'model' null");
-            if (GetOneByID(model.Id) == null)
+            var foundModel = GetOneByID(model.Id);
+            if (foundModel == null)
                 throw new ArgumentException("MeetUpDA.Remove: No such Meetup in the database [Id: " + model.Id + "]");
-            dbContext.MeetUp.Remove(model);
+
+            string sql = "DELETE from MeetUps where Id = @Id";
+            var parameters = new SqlParameter[1];
+            parameters[0] = new SqlParameter("@Id", model.Id);
+            dbContext.Database.ExecuteSqlCommand(sql, parameters);
         }
 
         public void SaveChanges()

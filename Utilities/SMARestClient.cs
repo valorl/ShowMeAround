@@ -102,6 +102,7 @@ namespace Utilities
             var req = new RestRequest(endpoint + "/" + id.ToString(), Method.DELETE);
             req.RequestFormat = DataFormat.Xml;
             req.AddParameter("sma_auth", AuthToken, ParameterType.HttpHeader);
+            if (AdminToken != null) req.AddHeader("sma_admin_pass", AdminToken);
             var response = client.Execute(req);
             if (response.StatusCode != System.Net.HttpStatusCode.OK) throw new Exception($"Delete request on endpoint {endpoint} failed.");
         }
