@@ -1,6 +1,7 @@
 ﻿using Data;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -107,7 +108,6 @@ namespace DataAccess
             parameters[2] = new SqlParameter("@mId", (int)model.Id);
 
             dbContext.Database.ExecuteSqlCommand(sql, parameters);
-
             //using (var tempCtx = new ShowMeAroundContext())
             //{
             //    //FK violation fix
@@ -161,6 +161,11 @@ namespace DataAccess
             var parameters = new SqlParameter[1];
             parameters[0] = new SqlParameter("@Id", model.Id);
             dbContext.Database.ExecuteSqlCommand(sql, parameters);
+        }
+
+        public DbContextTransaction BeginTransaction()
+        {
+            return dbContext.Database.BeginTransaction();
         }
 
         public void SaveChanges()

@@ -8,6 +8,7 @@ using Data;
 using DataAccess;
 using System.ServiceModel.Web;
 using Service.Utils;
+using System.Threading.Tasks;
 
 namespace Service
 {
@@ -40,9 +41,26 @@ namespace Service
             User authUser = auth.Authorize(WebOperationContext.Current.IncomingRequest);
             if (authUser.Id != meetup.Traveler.Id) throw new WebFaultException(System.Net.HttpStatusCode.Unauthorized);
 
-            meetUpDA.Insert(meetup);
-            meetUpDA.SaveChanges();
-            return meetUpDA.GetOneByID(meetup.Id);
+            MeetUp result = null;
+
+            using (var muTransaction = meetUpDA.BeginTransaction())
+            {
+                try
+                {
+                    if (IsGuideAvailable(meetup))
+                    {
+                        meetUpDA.Insert(meetup);
+                        meetUpDA.SaveChanges();
+                        result = meetUpDA.GetOneByID(meetup.Id);
+                    }
+                }
+                catch(Exception)
+                {
+                    muTransaction.Rollback();
+                }
+
+            }
+            return result;      
         }
 
         public MeetUp Update(string id, MeetUp meetUp)
@@ -65,6 +83,33 @@ namespace Service
                 meetUpDA.Delete(toBeDeleted);
                 meetUpDA.SaveChanges();
             }
+        }
+
+
+
+        //Utility methods
+        private bool IsGuideAvailable(MeetUp meetup)
+        {
+            var gMeetUps = meetUpDA.GetAll().Where(m => m.Guide.Id == meetup.Guide.Id).ToArray();
+            if (gMeetUps.Length == 0) return true;
+
+            bool isAvailable = true;
+
+            Parallel.For(0, gMeetUps.Length, i =>
+            {
+                bool datesOverlap = DatesOverlap(meetup.StartDate, meetup.FinishDate, gMeetUps[i].StartDate, gMeetUps[i].FinishDate);
+                if(datesOverlap)
+                {
+                        isAvailable = false;
+                }
+            });
+
+            return isAvailable;
+        }
+        public bool DatesOverlap(DateTime startA, DateTime endA, DateTime startB, DateTime endB)
+        {
+            if (startA < endB && startB < endA) return true;
+            return false;
         }
     }
 
