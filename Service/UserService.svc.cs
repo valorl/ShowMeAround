@@ -70,7 +70,7 @@ namespace Service
                 interestsPopularity[i] = new InterestPopularity()
                 {
                     Interest = interests[i],
-                    Popularity = (int)Math.Round((double)counts[i] / users.Length * 100)
+                    Popularity = users.Length > 0 ? (int)Math.Round((double)counts[i] / users.Length * 100) : 0
                 };
             });
 
