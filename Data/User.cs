@@ -85,15 +85,15 @@ namespace Data
         public string ConfirmPassword { get; set; }
 
         [Required]
-        [DataMember]
+        [DataMember(Order = 9)]
         public Genders Gender { get; set; }
 
         
-        [DataMember(Order = 9)]
+        [DataMember(Order = 10)]
         [ForeignKey("City")]
         public string City_Name { get; set; }
 
-        [DataMember(Order = 10)]
+        [DataMember(Order = 11)]
         public City City { get; set; }
 
                
