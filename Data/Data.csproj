@@ -175,6 +175,10 @@
     <Compile Include="Migrations\201512041650302_Meetup_cycle_fix_again_v2.Designer.cs">
       <DependentUpon>201512041650302_Meetup_cycle_fix_again_v2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201512080844173_MeetupCityFK.cs" />
+    <Compile Include="Migrations\201512080844173_MeetupCityFK.Designer.cs">
+      <DependentUpon>201512080844173_MeetupCityFK.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Session.cs" />
@@ -246,6 +250,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201512041650302_Meetup_cycle_fix_again_v2.resx">
       <DependentUpon>201512041650302_Meetup_cycle_fix_again_v2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512080844173_MeetupCityFK.resx">
+      <DependentUpon>201512080844173_MeetupCityFK.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -46,12 +46,16 @@ namespace Data
         public DateTime FinishDate { get; set; }
         [Required]
         [DataMember(Order = 5)]
-        public string City { get; set; }
-        [Required]
+        [ForeignKey("City")]
+        public string City_Name { get; set; }
+
         [DataMember(Order = 6)]
-        public RequestState TravelerState { get; set; }
+        public City City { get; set; }
         [Required]
         [DataMember(Order = 7)]
+        public RequestState TravelerState { get; set; }
+        [Required]
+        [DataMember(Order = 8)]
         public RequestState GuideState { get; set; }
     }
 }

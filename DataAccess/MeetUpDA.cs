@@ -86,6 +86,12 @@ namespace DataAccess
                         dbContext.Entry(model.Guide).State = System.Data.Entity.EntityState.Unchanged;
                     }
                 }
+
+                City dbCity = tempCtx.City.Find(model.City.Name);
+                if (dbCity != null)
+                {
+                    dbContext.Entry(model.City).State = System.Data.Entity.EntityState.Unchanged;
+                }
             }
         }
 

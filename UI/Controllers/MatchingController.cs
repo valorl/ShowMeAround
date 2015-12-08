@@ -40,7 +40,7 @@ namespace UI.Controllers
             TempData["Start"] = start;
             TempData["End"] = end;
             TempData["City"] = city;
-
+            ViewBag.City = city;
             return View();
         }
 
@@ -53,7 +53,7 @@ namespace UI.Controllers
             meetUp.Traveler = matches[id].Traveler;
             meetUp.StartDate = (DateTime)TempData["Start"];
             meetUp.FinishDate = (DateTime)TempData["End"];
-            meetUp.City = (string)TempData["City"];
+            meetUp.City = new City { Name = (string)TempData["City"] };
             meetUp.TravelerState = RequestState.Sent;
             meetUp.GuideState = RequestState.Received;
 

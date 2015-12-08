@@ -14,6 +14,10 @@
     {
         <h1>Sorry, we couldn't find any suitable guides for your trip.</h1>
     }
+    else
+    {
+        <h2 class="text-center">Here are the matches we found for your trip to @ViewBag.City.</h2>
+    }
 
     @for (int i = 0; i < item.Count; i++)
     {
