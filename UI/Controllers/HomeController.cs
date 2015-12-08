@@ -10,20 +10,13 @@ namespace UI.Controllers
     {
         public ActionResult Index()
         {
+            if (Session["logged_in_user_obj"] != null) return RedirectToAction("Index", "Dashboard");
             return View();
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = $"Your token is {Session["auth_token"]}: ";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
+            if (Session["logged_in_user_obj"] != null) return RedirectToAction("Index", "Dashboard");
             return View();
         }
     }

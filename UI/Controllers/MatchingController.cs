@@ -54,6 +54,7 @@ namespace UI.Controllers
             meetUp.StartDate = (DateTime)TempData["Start"];
             meetUp.FinishDate = (DateTime)TempData["End"];
             meetUp.City = new City { Name = (string)TempData["City"] };
+            meetUp.City_Name = meetUp.City.Name;
             meetUp.TravelerState = RequestState.Sent;
             meetUp.GuideState = RequestState.Received;
 

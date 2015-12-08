@@ -79,7 +79,7 @@ namespace Service.Tests
         {
             var mp = new MatchingProvider();
             var matchingScore = mp.GetMatch(traveler, guide).Score;
-            var expectedScore = 210;
+            var expectedScore = 110;
             Assert.AreEqual(expectedScore, matchingScore);
         }
 

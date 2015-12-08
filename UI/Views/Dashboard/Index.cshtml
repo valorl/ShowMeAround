@@ -3,6 +3,9 @@
     ViewBag.Title = "My Dashboard - Show Me Around";
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
+
+
+
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <div class="dashboard-container">
     <h1 class="page-header text-center">Welcome to your dashboard, @ViewBag.User.FirstName!</h1>
@@ -29,11 +32,11 @@
                         <h2>When are you travelling?</h2>
                         <p class="col-md-2 h4" style="padding:0px;">From: </p>
                         <p class="col-md-10">
-                            @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", id = "datepickerStart", @placeholder = "dd/mm/yy", type="date", style = "height:42px" } })
+                            @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", id = "datepickerStart", @placeholder = "dd/mm/yy", type = "date", style = "height:42px" } })
                         </p>
                         <p class="col-md-2 h4" style="padding-left:0px;">To: </p>
                         <p class="col-md-10">
-                            @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control", id = "datepickerEnd", @placeholder = "dd/mm/yy", type="date", style = "height:42px" } })
+                            @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control", id = "datepickerEnd", @placeholder = "dd/mm/yy", type = "date", style = "height:42px" } })
                         </p>
                     </div>
                 </div>
@@ -43,27 +46,25 @@
             <div class="form-signin col-md-9">
                 <div class="panel panel-default">
                     @*<div class="panel-body">
-                        <h2>Specify the age of your matches:</h2>
-                        <p class="col-md-2 h4" style="padding:0px;">Minimum: </p>
-                        <p class="col-md-10">
-                            @Html.DropDownListFor(model => model.MinAge, ViewBag.AgeList as IEnumerable<SelectListItem>, new { @class = "form-control" })
-                        </p>
-                        <p class="col-md-2 h4" style="padding-left:0px;">Maximum: </p>
-                        <p class="col-md-10">
-                            @Html.DropDownListFor(model => model.MaxAge, ViewBag.AgeList as IEnumerable<SelectListItem>, new { @class = "form-control" })
-                        </p>
-                    </div>*@
+                            <h2>Specify the age of your matches:</h2>
+                            <p class="col-md-2 h4" style="padding:0px;">Minimum: </p>
+                            <p class="col-md-10">
+                                @Html.DropDownListFor(model => model.MinAge, ViewBag.AgeList as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                            </p>
+                            <p class="col-md-2 h4" style="padding-left:0px;">Maximum: </p>
+                            <p class="col-md-10">
+                                @Html.DropDownListFor(model => model.MaxAge, ViewBag.AgeList as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                            </p>
+                        </div>*@
 
                     <div class="panel-body">
                         <h2>Specify the age of your matches:</h2>
                         <h3>Between <input type="text" id="amount" name="amount" style="border:0;" readonly /></h3>
-                        @Html.HiddenFor(m => m.MinAge, new { id ="minAmount", name="minAmount" })
-                        @Html.HiddenFor(m => m.MaxAge, new { id = "maxAmount", name = "maxAmount"})
+                        @Html.HiddenFor(m => m.MinAge, new { id = "minAmount", name = "minAmount" })
+                        @Html.HiddenFor(m => m.MaxAge, new { id = "maxAmount", name = "maxAmount" })
                         <div id="slider-range"></div>
                     </div>
-
                 </div>
-
             </div>
             <div class="form-signin col-md-3" style="padding-top:15px;">
                 <button class="btn btn-success center-block " type="submit"
@@ -72,8 +73,12 @@
                 </button>
             </div>
         </div>
+        
     }
 </div>
+
+
+
 @section Scripts {
     @Scripts.Render()
     @Scripts.Render("~/Content/css")
@@ -86,7 +91,7 @@
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
-  
+
 
     <script language="javascript" type="text/javascript">
 
@@ -125,39 +130,39 @@
         $("#countryList").change(populateCities);
     </script>
 
-<script language="javascript" type="text/javascript">
-  $(function() {
-    $( "#slider-range" ).slider({
-      range: true,
-      min: 18,
-      max: 99,
-      values: [ 18, 35 ],
-      slide: function (event, ui) {
-          $('#minAmount').val(ui.values[0]);
-          $('#maxAmount').val(ui.values[1]);
-          $("#amount").val(ui.values[0] + " and " + ui.values[1]);
-      }
-    });
-    $( "#amount" ).val( $( "#slider-range" ).slider( "values", 0 ) +
-      " and " + $( "#slider-range" ).slider( "values", 1 ) );
-  });
-</script>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            $("#slider-range").slider({
+                range: true,
+                min: 18,
+                max: 99,
+                values: [18, 35],
+                slide: function (event, ui) {
+                    $('#minAmount').val(ui.values[0]);
+                    $('#maxAmount').val(ui.values[1]);
+                    $("#amount").val(ui.values[0] + " and " + ui.values[1]);
+                }
+            });
+            $("#amount").val($("#slider-range").slider("values", 0) +
+              " and " + $("#slider-range").slider("values", 1));
+        });
+    </script>
 
-@*<script>
-  $(function() {
-      $("#datepickerStart").datepicker({
-          minDate: new Date(),
-          changeMonth: true,
-          changeYear: true
-      });
-  });
-  $(function () {
-      $("#datepickerEnd").datepicker({
-          minDate: new Date(),
-          changeMonth: true,
-          changeYear: true
-      });
-  });
-</script>*@
+    @*<script>
+          $(function() {
+              $("#datepickerStart").datepicker({
+                  minDate: new Date(),
+                  changeMonth: true,
+                  changeYear: true
+              });
+          });
+          $(function () {
+              $("#datepickerEnd").datepicker({
+                  minDate: new Date(),
+                  changeMonth: true,
+                  changeYear: true
+              });
+          });
+        </script>*@
 
 }

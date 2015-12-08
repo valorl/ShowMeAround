@@ -51,11 +51,13 @@ namespace Service
                     {
                         meetUpDA.Insert(meetup);
                         meetUpDA.SaveChanges();
+                        muTransaction.Commit();
                         result = meetUpDA.GetOneByID(meetup.Id);
                     }
                 }
-                catch(Exception)
+                catch(Exception ex)
                 {
+                    Console.WriteLine(ex.ToString());
                     muTransaction.Rollback();
                 }
 

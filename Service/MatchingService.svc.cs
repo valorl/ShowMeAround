@@ -40,8 +40,8 @@ namespace Service
                 u => u.Id != user.Id 
                 && u.City != null
                 && u.City.Name.ToLower() == city.ToLower() 
-                && user.Age >= Convert.ToInt32(minAge) 
-                && user.Age <= Convert.ToInt32(maxAge))
+                && u.Age >= Convert.ToInt32(minAge) 
+                && u.Age <= Convert.ToInt32(maxAge))
                 .ToList();
             var matches = new Match[guides.Count];
 

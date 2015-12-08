@@ -41,7 +41,7 @@
                             <img src="http://www.gravatar.com/avatar/bbe8907c4b1ff6229e0ee5e140d7ce04?s=47&d=http%3A%2F%2Fwww.techrepublic.com%2Fbundles%2Ftechrepubliccore%2Fimages%2Ficons%2Fstandard%2Ficon-user-default.png" />
                             <div class="info">
                                 <h2 class="title">@Html.DisplayName(sentRequest[i].Guide.FirstName) @Html.DisplayName(sentRequest[i].Guide.LastName)</h2>
-                                <p class="desc">Traveling to: @Html.DisplayName(sentRequest[i].City)</p>
+                                <p class="desc">Traveling to: @Html.DisplayName(sentRequest[i].City.Name)</p>
                                 <p class="desc">Travel date: @Html.DisplayName(sentRequest[i].StartDate.ToString(@"dd\/MM\/yyyy")) - @Html.DisplayName(sentRequest[i].FinishDate.ToString(@"dd\/MM\/yyyy"))</p>
                                 <br />
                                 <ul>
@@ -102,7 +102,7 @@
 
                             <div class="info">
                                 <h2 class="title">@Html.DisplayName(receivedRequest[i].Traveler.FirstName) @Html.DisplayName(receivedRequest[i].Traveler.LastName)</h2>
-                                <p class="desc">Traveling to: @Html.DisplayName(receivedRequest[i].City)</p>
+                                <p class="desc">Traveling to: @Html.DisplayName(receivedRequest[i].City.Name)</p>
                                 <p class="desc">Travel date: @Html.DisplayName(receivedRequest[i].StartDate.ToString(@"dd\/MM\/yyyy")) - @Html.DisplayName(receivedRequest[i].FinishDate.ToString(@"dd\/MM\/yyyy"))</p>
                                 <br />
                                 <ul>

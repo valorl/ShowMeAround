@@ -26,6 +26,7 @@ namespace UI.Controllers
         [HttpGet]
         public ActionResult Register()
         {
+            if (Session["logged_in_user_obj"] != null) return RedirectToAction("Index", "Dashboard");
             //Languages
             var uClient = new SMARestClient("UserService.svc");
             var languageContent = uClient.Get<List<Language>>("languages/");
@@ -73,6 +74,7 @@ namespace UI.Controllers
         [HttpPost]
         public ActionResult Register(Models.Registration registration)
         {
+
             //registration.User.Languages.Add(new Language("English"));
             //registration.User.Interests.Add(new Interest("String content 1"));
 
