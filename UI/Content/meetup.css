@@ -8,12 +8,18 @@
 .meetup-list{
     width:65%;
 }
+.meetup-list-rejected {
+    opacity: 0.4;  /* Opacity for Modern Browsers */
+    filter: alpha(opacity=50);  /* Opacity for IE8 and lower */
+    zoom: 1; 
+}
 
 .event-list {
 		list-style: none;
 		font-family: 'Lato', sans-serif;
 		margin: 0px;
 		padding: 0px;
+        
 	}
 	.event-list > li {
 		background-color: rgb(255, 255, 255);

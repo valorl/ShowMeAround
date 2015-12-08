@@ -5,6 +5,7 @@
 
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
 <div class="container-forms">
     @using (Html.BeginForm("Register", "Users", FormMethod.Post, new { @class = "form-signin" }))
@@ -19,65 +20,65 @@
                 </div>
             }
             <form class="form-signin">
-                        <h2 class="form-signin-heading">Register</h2>
-                        <div class="col-md-6">
-                            @Html.Label("Hey there! Start by entering your details")
-                            @Html.TextBoxFor(model => model.User.FirstName, new { @class = "form-control", @placeholder = "First Name" })
-                            <p class="help-block">@Html.ValidationMessageFor(model => model.User.FirstName)</p>
+                <h2 class="form-signin-heading">Register</h2>
+                <div class="col-md-6">
+                    @Html.Label("Hey there! Start by entering your details")
+                    @Html.TextBoxFor(model => model.User.FirstName, new { @class = "form-control", @placeholder = "First Name" })
+                    <p class="help-block">@Html.ValidationMessageFor(model => model.User.FirstName)</p>
 
-                            @Html.TextBoxFor(model => model.User.LastName, new { @class = "form-control", @placeholder = "Last Name" })
-                            <p class="help-block">@Html.ValidationMessageFor(model => model.User.LastName)</p>
+                    @Html.TextBoxFor(model => model.User.LastName, new { @class = "form-control", @placeholder = "Last Name" })
+                    <p class="help-block">@Html.ValidationMessageFor(model => model.User.LastName)</p>
 
-                            @Html.TextBoxFor(model => model.User.Email, new { @class = "form-control", @placeholder = "Email" })
-                            <p class="help-block">@Html.ValidationMessageFor(model => model.User.Email)</p>
+                    @Html.TextBoxFor(model => model.User.Email, new { @class = "form-control", @placeholder = "Email" })
+                    <p class="help-block">@Html.ValidationMessageFor(model => model.User.Email)</p>
 
-                            @Html.TextBoxFor(model => model.User.PwdHash, new { @class = "form-control", @placeholder = "Password", type = "password" })
-                            <p class="help-block">@Html.ValidationMessageFor(model => model.User.PwdHash)</p>
+                    @Html.TextBoxFor(model => model.User.PwdHash, new { @class = "form-control", @placeholder = "Password", type = "password" })
+                    <p class="help-block">@Html.ValidationMessageFor(model => model.User.PwdHash)</p>
 
-                            @Html.TextBoxFor(model => model.User.ConfirmPassword, new { @class = "form-control", @placeholder = "Confirm Password", type = "password" })
-                            <p class="help-block">@Html.ValidationMessageFor(model => model.User.ConfirmPassword)</p>
-                            @Html.Label("When were you born?")
-                            @Html.EditorFor(model => model.User.BirthDate, new { htmlAttributes = new { @class = "form-control", id = "datepicker", @placeholder = "BirthDate", type = "date", style = "height:42px" } })
-                            <p class="help-block">@Html.ValidationMessageFor(model => model.User.BirthDate)</p>
-                            @Html.Label("How do you identify yourself?")
-                            @Html.EnumDropDownListFor(model => model.User.Gender, new { @class = "form-control" })
-                            <p class="help-block">@Html.ValidationMessageFor(model => model.User.Gender)</p>
-                        </div>
-                        <div class="col-md-6">
-                            @Html.Label("Gloat about your language skills here")
-                            <p>
-                                @Html.DropDownListFor(model => model.Language, ViewBag.LanguageList as IEnumerable<SelectListItem>, new { @class = "form-control form-control-languages", id = "languageList", })
-                                <input type="button" value="Add" class="btn btn-list" id="btnAddLanguage" />
-                            </p>
-                            <table style="display: none" class="table" id="languagesBody">
-                                <tr></tr>
-                            </table>
-                            @Html.Label("Now tell us where you live")
-                            <p>
-                                @Html.DropDownListFor(model => model.Country, ViewBag.CountryList as IEnumerable<SelectListItem>, new { @class = "form-control form-control-languages", id = "countryList" })
-                            </p>
-                            <p>
-                                <select id="User_City_Name" class="form-control form-control-languages" name="User.City.Name"></select>
-                            </p>
-                            @Html.Label("Help us find you good matches for your travels by picking some of the things you are interested in")
-                     
-                            <div class="form-control">
-                                <table class="table table-hover" style="overflow-y:scroll;margin-bottom:0px;">
-                                    <thead>
-                                        <tr>
-                                            <th style="text-align: center">&nbsp;</th>
-                                            <th style="text-align: center">Interest</th>
-                                            <th style="text-align: center">Popularity</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @Html.EditorFor(m => m.Interests, new { htmlAttributes = new { @class = "form-control " } })
-                                    </tbody>
-                                </table>
-                            </div>
+                    @Html.TextBoxFor(model => model.User.ConfirmPassword, new { @class = "form-control", @placeholder = "Confirm Password", type = "password" })
+                    <p class="help-block">@Html.ValidationMessageFor(model => model.User.ConfirmPassword)</p>
+                    @Html.Label("When were you born?")
+                    @Html.TextBoxFor(model => model.User.BirthDate, "{0:dd-MM-yyyy}", new { @class = "form-control", id = "datepicker", @placeholder = "mm/dd/yy", style = "height:42px" } )
+                    <p class="help-block">@Html.ValidationMessageFor(model => model.User.BirthDate)</p>
+                    @Html.Label("How do you identify yourself?")
+                    @Html.EnumDropDownListFor(model => model.User.Gender, new { @class = "form-control" })
+                    <p class="help-block">@Html.ValidationMessageFor(model => model.User.Gender)</p>
+                </div>
+                <div class="col-md-6">
+                    @Html.Label("Gloat about your language skills here")
+                    <p>
+                        @Html.DropDownListFor(model => model.Language, ViewBag.LanguageList as IEnumerable<SelectListItem>, new { @class = "form-control form-control-languages", id = "languageList", })
+                        <input type="button" value="Add" class="btn btn-list" id="btnAddLanguage" />
+                    </p>
+                    <table style="display: none" class="table" id="languagesBody">
+                        <tr></tr>
+                    </table>
+                    @Html.Label("Now tell us where you live")
+                    <p>
+                        @Html.DropDownListFor(model => model.Country, ViewBag.CountryList as IEnumerable<SelectListItem>, new { @class = "form-control form-control-languages", id = "countryList" })
+                    </p>
+                    <p>
+                        <select id="User_City_Name" class="form-control form-control-languages" name="User.City.Name"></select>
+                    </p>
+                    @Html.Label("Help us find you good matches for your travels by picking some of the things you are interested in")
 
-                            <button class="btn btn-lg btn-primary btn-block btn-success" type="submit">Register</button>
-                        </div>
+                    <div class="form-control">
+                        <table class="table table-hover" style="overflow-y:scroll;margin-bottom:0px;">
+                            <thead>
+                                <tr>
+                                    <th style="text-align: center">&nbsp;</th>
+                                    <th style="text-align: center">Interest</th>
+                                    <th style="text-align: center">Popularity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @Html.EditorFor(m => m.Interests, new { htmlAttributes = new { @class = "form-control " } })
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <button class="btn btn-lg btn-primary btn-block btn-success" type="submit">Register</button>
+                </div>
 
             </form>
             @*</div>*@
@@ -90,6 +91,9 @@
     @Scripts.Render("~/Content/css")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
     <script language="javascript" type="text/javascript">
 
@@ -189,5 +193,17 @@
 
 
         $("#countryList").change(populateCities);
+    </script>
+
+    <script>
+        $(function () {
+            $("#datepicker").datepicker({
+
+                minDate: new Date(1900, 1 - 1, 1), maxDate: '-18Y',
+                yearRange: '-110:-18',
+                changeMonth: true,
+                changeYear: true
+            });
+        });
     </script>
 }

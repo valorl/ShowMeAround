@@ -53,6 +53,7 @@ namespace Data
 
         [Required(ErrorMessage = "Please select your date of birth")]
         [DataType(DataType.Date)]
+        [Display(Name = "mm/dd/yy")]
         [DataMember(Order = 4)]
         public DateTime BirthDate { get; set; }
 
