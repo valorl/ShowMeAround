@@ -32,6 +32,11 @@ namespace Service
 
         public IEnumerable<Match> GetMatchesAsync(string userid, string city, string minAge, string maxAge)
         {
+            int minAgeInt = Convert.ToInt32(minAge);
+            int maxAgeInt = Convert.ToInt32(maxAge);
+            if (minAgeInt == 0) minAgeInt = 18;
+            if (maxAgeInt == 0) maxAgeInt = 100;
+
             User user = auth.Authorize(WebOperationContext.Current.IncomingRequest);
             if (user.Id != Convert.ToInt32(userid)) throw new WebFaultException(System.Net.HttpStatusCode.Unauthorized);
 
@@ -40,13 +45,13 @@ namespace Service
                 u => u.Id != user.Id 
                 && u.City != null
                 && u.City.Name.ToLower() == city.ToLower() 
-                && u.Age >= Convert.ToInt32(minAge) 
-                && u.Age <= Convert.ToInt32(maxAge))
+                && u.Age >= minAgeInt
+                && u.Age <= maxAgeInt)
                 .ToList();
             var matches = new Match[guides.Count];
 
             Parallel.For(0, guides.Count, index =>
-            {
+            {   
                 matches[index] = provider.GetMatch(user, guides[index]);
             });
 

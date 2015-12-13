@@ -39,7 +39,6 @@ namespace Service.Utils
 
             if (!ValidateToken(token)) throw new WebFaultException(System.Net.HttpStatusCode.Unauthorized);  // Return 401
             return userDA.GetOneByID(sessionDA.GetOneByToken(token).UserID);
-
         }
 
         public bool ValidateToken(string token)

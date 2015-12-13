@@ -14,7 +14,6 @@ namespace Service.Utils
         private const double LANG_WEIGHT = 0.5;
         private const double INTEREST_WEIGHT = 1.5;
 
-
         public MatchingProvider() { }
 
         public Match GetMatch(User traveler, User guide)

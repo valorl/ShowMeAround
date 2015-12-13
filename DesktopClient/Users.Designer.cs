@@ -29,16 +29,12 @@
         private void InitializeComponent()
         {
             this.listUsers = new System.Windows.Forms.ListBox();
-            this.btnViewEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.lblName = new System.Windows.Forms.Label();
             this.lblEmail = new System.Windows.Forms.Label();
             this.lblCity = new System.Windows.Forms.Label();
             this.lblSpeaks = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.lblMeetups = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.lblInterested = new System.Windows.Forms.Label();
             this.lblBirthDate = new System.Windows.Forms.Label();
             this.lblNameContent = new System.Windows.Forms.Label();
@@ -47,7 +43,6 @@
             this.tboxCity = new System.Windows.Forms.TextBox();
             this.lblSpeaksContent = new System.Windows.Forms.Label();
             this.lblInterestedContent = new System.Windows.Forms.Label();
-            this.btnSave = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listUsers
@@ -55,36 +50,27 @@
             this.listUsers.FormattingEnabled = true;
             this.listUsers.Location = new System.Drawing.Point(29, 21);
             this.listUsers.Name = "listUsers";
-            this.listUsers.Size = new System.Drawing.Size(286, 355);
+            this.listUsers.Size = new System.Drawing.Size(286, 394);
             this.listUsers.TabIndex = 1;
             this.listUsers.SelectedIndexChanged += new System.EventHandler(this.listUsers_SelectedIndexChanged);
             this.listUsers.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.listUsers_Format);
             // 
-            // btnViewEdit
-            // 
-            this.btnViewEdit.Location = new System.Drawing.Point(105, 388);
-            this.btnViewEdit.Name = "btnViewEdit";
-            this.btnViewEdit.Size = new System.Drawing.Size(132, 30);
-            this.btnViewEdit.TabIndex = 2;
-            this.btnViewEdit.Text = "View/Edit";
-            this.btnViewEdit.UseVisualStyleBackColor = true;
-            this.btnViewEdit.Click += new System.EventHandler(this.btnViewEdit_Click);
-            // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(243, 388);
+            this.btnDelete.BackColor = System.Drawing.Color.IndianRed;
+            this.btnDelete.Location = new System.Drawing.Point(233, 430);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(72, 30);
+            this.btnDelete.Size = new System.Drawing.Size(82, 30);
             this.btnDelete.TabIndex = 3;
             this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(29, 388);
+            this.btnRefresh.Location = new System.Drawing.Point(29, 430);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(70, 30);
+            this.btnRefresh.Size = new System.Drawing.Size(198, 30);
             this.btnRefresh.TabIndex = 4;
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = true;
@@ -129,35 +115,6 @@
             this.lblSpeaks.Size = new System.Drawing.Size(73, 18);
             this.lblSpeaks.TabIndex = 9;
             this.lblSpeaks.Text = "Speaks:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(335, 347);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(198, 18);
-            this.label7.TabIndex = 11;
-            this.label7.Text = "This user has attended";
-            // 
-            // lblMeetups
-            // 
-            this.lblMeetups.AutoSize = true;
-            this.lblMeetups.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMeetups.Location = new System.Drawing.Point(538, 347);
-            this.lblMeetups.Name = "lblMeetups";
-            this.lblMeetups.Size = new System.Drawing.Size(0, 18);
-            this.lblMeetups.TabIndex = 12;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(555, 347);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(85, 18);
-            this.label9.TabIndex = 13;
-            this.label9.Text = "meetups.";
             // 
             // lblInterested
             // 
@@ -224,7 +181,7 @@
             this.lblSpeaksContent.AutoEllipsis = true;
             this.lblSpeaksContent.AutoSize = true;
             this.lblSpeaksContent.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSpeaksContent.Location = new System.Drawing.Point(454, 228);
+            this.lblSpeaksContent.Location = new System.Drawing.Point(412, 228);
             this.lblSpeaksContent.Name = "lblSpeaksContent";
             this.lblSpeaksContent.Size = new System.Drawing.Size(0, 16);
             this.lblSpeaksContent.TabIndex = 18;
@@ -239,31 +196,17 @@
             this.lblInterestedContent.Size = new System.Drawing.Size(0, 16);
             this.lblInterestedContent.TabIndex = 19;
             // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(560, 386);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(87, 30);
-            this.btnSave.TabIndex = 20;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
             // Users
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(679, 440);
-            this.Controls.Add(this.btnSave);
+            this.ClientSize = new System.Drawing.Size(758, 472);
             this.Controls.Add(this.lblInterestedContent);
             this.Controls.Add(this.lblSpeaksContent);
             this.Controls.Add(this.tboxCity);
             this.Controls.Add(this.tboxBirthDate);
             this.Controls.Add(this.tboxEmail);
             this.Controls.Add(this.lblNameContent);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.lblMeetups);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.lblInterested);
             this.Controls.Add(this.lblSpeaks);
             this.Controls.Add(this.lblCity);
@@ -272,7 +215,6 @@
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnViewEdit);
             this.Controls.Add(this.listUsers);
             this.Name = "Users";
             this.Text = "Users";
@@ -284,16 +226,12 @@
 
         #endregion
         private System.Windows.Forms.ListBox listUsers;
-        private System.Windows.Forms.Button btnViewEdit;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblEmail;
         private System.Windows.Forms.Label lblCity;
         private System.Windows.Forms.Label lblSpeaks;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label lblMeetups;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lblInterested;
         private System.Windows.Forms.Label lblBirthDate;
         private System.Windows.Forms.Label lblNameContent;
@@ -302,7 +240,6 @@
         private System.Windows.Forms.TextBox tboxCity;
         private System.Windows.Forms.Label lblSpeaksContent;
         private System.Windows.Forms.Label lblInterestedContent;
-        private System.Windows.Forms.Button btnSave;
     }
 }
 

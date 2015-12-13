@@ -105,7 +105,6 @@ namespace DesktopClient
                 lblInterestedContent.Text = interests;
             }
 
-            lblMeetups.Text = "0";
         }
 
         private void listUsers_Format(object sender, ListControlConvertEventArgs e)

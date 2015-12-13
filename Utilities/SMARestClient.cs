@@ -25,7 +25,6 @@ namespace Utilities
         public SMARestClient(string svc)
         {
             client = new RestClient("http://localhost:37550/" + svc);
-
         }
 
         public string AuthToken
